@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-<item android:icon="@drawable/ic_mileage"></item>
+
+    <item
+    android:id="@+id/milegae"
+    android:icon="@drawable/ic_mileage"
+    android:enabled="true"
+    android:title="주유"/>
+    <item
+    android:id="@+id/maintentance"
+    android:icon="@drawable/ic_maintentance"
+    android:enabled="true"
+    android:title="정비"/>
+    <item
+    android:id="@+id/main"
+    android:icon="@drawable/ic_main"
+    android:enabled="true"
+    android:title="주유"/>
+    <item
+    android:id="@+id/used"
+    android:icon="@drawable/ic_used"
+    android:enabled="true"
+    android:title="주유"/>
+    <item
+    android:id="@+id/setting"
+    android:icon="@drawable/ic_setting"
+    android:enabled="true"
+    android:title="주유"/>
 </menu>

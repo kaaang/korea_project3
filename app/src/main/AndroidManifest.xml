@@ -9,14 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RMC">
-        <activity
-            android:name=".navi.BottomNaviActivity"
-            android:label="@string/title_activity_bottom_navi"></activity>
         <activity android:name=".activity.bike.BikeActivity" />
-        <activity android:name=".used.UsedActivity" />
-        <activity android:name=".member.JoinActivity" />
-        <activity android:name=".member.LoginActivity" />
-        <activity android:name=".main.MainActivity">
+        <activity android:name=".activity.used.UsedActivity" />
+        <activity android:name=".activity.member.JoinActivity" />
+        <activity android:name=".activity.member.LoginActivity" />
+        <activity android:name=".activity.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

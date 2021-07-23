@@ -1,0 +1,25 @@
+로그인
+// login
+
+회원가입
+// join
+
+중고 - fragment 4개
+//used
+used_write
+used_list
+used_detail
+used_search
+
+바이크 - fragment 2개
+//bike
+bike_regist
+bike_detail
+
+메인- fragment 3개
+//main
+main_main
+main_maintenance_list
+main_maintenance_regist
+main_mileage_list
+main_mileage_regist

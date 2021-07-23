@@ -15,15 +15,15 @@
     android:id="@+id/main"
     android:icon="@drawable/ic_main"
     android:enabled="true"
-    android:title="주유"/>
+    android:title="메인"/>
     <item
     android:id="@+id/used"
     android:icon="@drawable/ic_used"
     android:enabled="true"
-    android:title="주유"/>
+    android:title="중고"/>
     <item
     android:id="@+id/setting"
     android:icon="@drawable/ic_setting"
     android:enabled="true"
-    android:title="주유"/>
+    android:title="설정"/>
 </menu>

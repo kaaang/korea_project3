@@ -12,5 +12,6 @@ public class UsedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_used);
+        //asda
     }
 }

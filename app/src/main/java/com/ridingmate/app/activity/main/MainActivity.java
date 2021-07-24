@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager=findViewById(R.id.viewpager);
         //뷰페이저에 어댑터 붙이기
         viewPager.setAdapter(pageAdapter);
-        viewPager.setCurrentItem(4);
+        viewPager.setCurrentItem(4, false);
 
 
         //하단 네비게이션 불러오기
@@ -49,6 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void showPage(int index) {
-        viewPager.setCurrentItem(index);
+        viewPager.setCurrentItem(index,false);
     }
 }

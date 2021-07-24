@@ -29,13 +29,13 @@ public class MainBottomNaviListener implements NavigationBarView.OnItemSelectedL
     @Override
     public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.milegae:
-                mainActivity.showPage(0);
-                Toast.makeText(mainActivity.getApplicationContext(),"주유",Toast.LENGTH_SHORT).show();
-                break;
             case R.id.maintentance:
-                mainActivity.showPage(2);
+                mainActivity.showPage(0);
                 Toast.makeText(mainActivity.getApplicationContext(),"정비",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.milegae:
+                mainActivity.showPage(2);
+                Toast.makeText(mainActivity.getApplicationContext(),"주유",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.main:
                 mainActivity.showPage(4);

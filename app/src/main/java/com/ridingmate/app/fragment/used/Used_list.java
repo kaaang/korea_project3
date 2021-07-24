@@ -1,4 +1,4 @@
-package com.ridingmate.app.fragment.main;
+package com.ridingmate.app.fragment.used;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,9 +7,12 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-public class main_mileage_regist extends Fragment {
+import com.ridingmate.app.R;
+
+public class Used_list extends Fragment {
     @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View view=inflater.inflate(R.layout.fragment_used_list,container,false);
+        return view;
     }
 }

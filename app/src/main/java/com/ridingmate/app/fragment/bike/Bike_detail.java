@@ -1,4 +1,4 @@
-package com.ridingmate.app.fragment.main;
+package com.ridingmate.app.fragment.bike;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,9 +7,12 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-public class main_maintenance_regist extends Fragment {
+import com.ridingmate.app.R;
+
+public class Bike_detail extends Fragment {
     @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View view=inflater.inflate(R.layout.fragment_bike_detail,container,false);
+        return view;
     }
 }

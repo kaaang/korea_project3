@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "138944358558",
+    "project_id": "running-mate-crew",
+    "storage_bucket": "running-mate-crew.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:138944358558:android:4e6cd1066fd72ff79a338f",
+        "android_client_info": {
+          "package_name": "com.ridingmate.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "138944358558-4l42lu1bhnd6uu10af70qahk8e6j7b9k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ridingmate.app",
+            "certificate_hash": "764a746bf86b87be446abaef9a35522c8b6c8db2"
+          }
+        },
+        {
+          "client_id": "138944358558-lainqqh98ipv0jsvg4tatqi5m27bt6t3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIPiEUO0sY-cls0ItxtYqKyqtj2QbqFQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "138944358558-lainqqh98ipv0jsvg4tatqi5m27bt6t3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

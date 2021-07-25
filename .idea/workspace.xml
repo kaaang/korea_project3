@@ -38,22 +38,15 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="046d3357-3283-4edb-b727-a3fdad34bbc9" name="Default Changelist" comment="starting point&#10;Kang Shin Hyuk has awesome face">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/img.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/logo.png" afterDir="false" />
+    <list default="true" id="046d3357-3283-4edb-b727-a3fdad34bbc9" name="Default Changelist" comment="Default Changelist //jinah 07.25">
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_annotations_15_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/RMC.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/RMC.app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/activity/main/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/activity/main/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main_maintenance_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main_maintenance_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main_maintenance_regist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main_maintenance_regist.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,6 +93,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="layoutResourceFile" />
+        <option value="resourceFile" />
         <option value="Class" />
       </list>
     </option>
@@ -120,7 +114,7 @@
     </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="jinah" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -146,11 +140,10 @@
     <option name="LAST_EDITED_BUILD_TYPE" value="release" />
   </component>
   <component name="RecentsManager">
-    <key name="android.template.-2091307001">
-      <recent name="com.ridingmate.app.navi" />
-      <recent name="com.ridingmate.app.activity.bike" />
-      <recent name="com.ridingmate.app.used" />
-      <recent name="com.ridingmate.app.member" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Workspace\korea_project3\app\src\main\res\drawable-v24" />
+      <recent name="D:\Workspace\korea_project3\app\src\main\res\drawable" />
+      <recent name="C:\work-on-Dev\project3\korea_project3\app" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Workspace\korea_project3\app\src\main\res\drawable\mainSampleImg" />
@@ -161,9 +154,11 @@
       <recent name="com.ridingmate.app.fragment.bike" />
       <recent name="com.ridingmate.app.fragment.main" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Workspace\korea_project3\app\src\main\res\drawable" />
-      <recent name="C:\work-on-Dev\project3\korea_project3\app" />
+    <key name="android.template.-2091307001">
+      <recent name="com.ridingmate.app.navi" />
+      <recent name="com.ridingmate.app.activity.bike" />
+      <recent name="com.ridingmate.app.used" />
+      <recent name="com.ridingmate.app.member" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -327,8 +322,39 @@
       <option name="project" value="LOCAL" />
       <updated>1627130947929</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Designed Fragment_main //jinah 07.25">
+      <created>1627151883054</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1627151883054</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Designed Fragment_main //jinah 07.25">
+      <created>1627151899721</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1627151899721</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Default Changelist //jinah 07.25">
+      <created>1627152017545</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1627152017545</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -357,7 +383,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="starting point&#10;Kang Shin Hyuk has awesome face" />
     <MESSAGE value="0724 sukho" />
-    <option name="LAST_COMMIT_MESSAGE" value="0724 sukho" />
+    <MESSAGE value="Designed Fragment_main //jinah 07.25" />
+    <MESSAGE value="Default Changelist //jinah 07.25" />
+    <option name="LAST_COMMIT_MESSAGE" value="Default Changelist //jinah 07.25" />
   </component>
   <component name="WindowStateProjectService">
     <state x="477" y="266" key="#PSD" timestamp="1627145959708">
@@ -373,9 +401,10 @@
       <screen x="2560" y="0" width="1920" height="1040" />
     </state>
     <state x="3200" y="322" key="#com.intellij.fileTypes.FileTypeChooser/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627033269802" />
-    <state x="3374" y="302" key="#com.intellij.ide.util.MemberChooser" timestamp="1627128373500">
-      <screen x="2560" y="0" width="1920" height="1040" />
+    <state x="814" y="302" key="#com.intellij.ide.util.MemberChooser" timestamp="1627229605054">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="814" y="302" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1627229605054" />
     <state x="1085" y="406" key="#com.intellij.ide.util.MemberChooser/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@0.0.2560.1400" timestamp="1627123834615" />
     <state x="3374" y="302" key="#com.intellij.ide.util.MemberChooser/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627128373500" />
     <state x="3084" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1627126323010">
@@ -394,11 +423,15 @@
       <screen x="2560" y="0" width="1920" height="1040" />
     </state>
     <state x="3100" y="275" key="AndroidCreateResourceDirectoryDialog/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627034321078" />
-    <state x="540" y="275" key="AndroidCreateResourceFileDialog" timestamp="1627148964383">
+    <state x="540" y="275" key="AndroidCreateResourceFileDialog" timestamp="1627228463296">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="540" y="275" key="AndroidCreateResourceFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1627148964383" />
+    <state x="540" y="275" key="AndroidCreateResourceFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1627228463296" />
     <state x="3100" y="275" key="AndroidCreateResourceFileDialog/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627033422613" />
+    <state x="685" y="204" key="AndroidCreateXmlResourceDialog" timestamp="1627228804558">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="685" y="204" key="AndroidCreateXmlResourceDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1627228804558" />
     <state x="3366" y="272" key="EnvironmentVariablesDialog" timestamp="1627132686376">
       <screen x="2560" y="0" width="1920" height="1040" />
     </state>
@@ -435,10 +468,10 @@
       <screen x="2560" y="0" width="1920" height="1040" />
     </state>
     <state x="3021" y="165" key="SettingsEditor/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627132834048" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1627140764084">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1627152020062">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1627140764084" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1627152020062" />
     <state x="3112" y="253" key="Vcs.Push.Dialog.v2/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627130949519" />
     <state x="741" y="298" key="chooseDestDirectoryDialog" timestamp="1627149670492">
       <screen x="0" y="0" width="1920" height="1040" />

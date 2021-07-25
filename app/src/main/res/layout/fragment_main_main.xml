@@ -140,7 +140,7 @@
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp">
 
-                <!--                            오토바이 이미지                        -->
+                <!--    오토바이 이미지는 사용자에게 받을 예정                 -->
                 <ImageView
                     android:id="@+id/card_background"
                     android:layout_width="match_parent"
@@ -148,7 +148,7 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/img" />
 
-                <!--                            엠블럼                                    -->
+                <!--                         엠블럼(저작권때문에 뺄  수도 있음   -->
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"

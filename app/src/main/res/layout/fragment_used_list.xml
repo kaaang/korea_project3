@@ -42,11 +42,13 @@
         app:srcCompat="@android:drawable/stat_notify_chat" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/used_RV"
         android:layout_width="409dp"
-        android:layout_height="672dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@id/editTextTextPersonName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

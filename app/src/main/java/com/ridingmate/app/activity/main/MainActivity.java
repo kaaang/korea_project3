@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         //프래그먼트 관리 어댑터 인스턴스 얻어오기
         pageAdapter=PageAdapter.getInstance(this);
 

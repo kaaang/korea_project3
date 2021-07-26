@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         //뷰페이저에 어댑터 붙이기
         viewPager.setAdapter(pageAdapter);
         viewPager.setCurrentItem(4, false);
+        viewPager.setUserInputEnabled(false);
 
 
         //하단 네비게이션 불러오기

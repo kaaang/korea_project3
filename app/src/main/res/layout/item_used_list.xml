@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/used_thumb"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -16,13 +16,19 @@
 
     <TextView
         android:id="@+id/used_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:ellipsize="end"
+        android:maxLines="2"
         android:text="존잘 시녀기가 타던 프리미엄 커브 팝니다."
         android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/used_thumb"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,20 +67,62 @@
         android:id="@+id/manwon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginBottom="3dp"
         android:text="만원"
-        app:layout_constraintBottom_toTopOf="@+id/used_comment_cont"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/model_type"
+        app:layout_constraintStart_toEndOf="@+id/used_welth" />
 
     <TextView
         android:id="@+id/used_welth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginBottom="3dp"
         android:text="45"
-        app:layout_constraintBottom_toTopOf="@+id/used_comment"
-        app:layout_constraintEnd_toStartOf="@+id/manwon" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/model_type"
+        app:layout_constraintStart_toEndOf="@+id/used_thumb" />
+
+    <TextView
+        android:id="@+id/area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="3dp"
+        android:text="서초동"
+        app:layout_constraintBottom_toTopOf="@+id/used_welth"
+        app:layout_constraintStart_toEndOf="@+id/used_thumb" />
+
+    <TextView
+        android:id="@+id/dot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
+        android:text="ㆍ"
+        app:layout_constraintBottom_toTopOf="@+id/manwon"
+        app:layout_constraintStart_toEndOf="@+id/area" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
+        android:text="1시간"
+        app:layout_constraintBottom_toTopOf="@+id/manwon"
+        app:layout_constraintStart_toEndOf="@+id/dot" />
+
+    <TextView
+        android:id="@+id/before"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
+        android:text="전"
+        app:layout_constraintBottom_toTopOf="@+id/manwon"
+        app:layout_constraintStart_toEndOf="@+id/time" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

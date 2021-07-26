@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,6 +33,7 @@ public class Used_list extends Fragment {
         recyclerView=(RecyclerView)view.findViewById(R.id.used_RV);
         linearLayoutManager= new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), 1));
 
         arrayList=new ArrayList<>();
 

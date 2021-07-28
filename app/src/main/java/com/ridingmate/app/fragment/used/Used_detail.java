@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import com.ridingmate.app.R;
 
 public class Used_detail extends Fragment {
+
     @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_used_detail,container,false);

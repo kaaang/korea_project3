@@ -1,7 +1,5 @@
 package com.ridingmate.app.util.used;
 
-import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +14,6 @@ import com.ridingmate.app.R;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.net.URI;
 import java.util.ArrayList;
 
 public class UsedListAdapter extends RecyclerView.Adapter<UsedListAdapter.CustomViewHolder> {
@@ -29,7 +26,7 @@ public class UsedListAdapter extends RecyclerView.Adapter<UsedListAdapter.Custom
     @NonNull
     @NotNull
     @Override
-    public CustomViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+    public CustomViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_used_list,parent,false);
 
         CustomViewHolder holder=new CustomViewHolder(view);

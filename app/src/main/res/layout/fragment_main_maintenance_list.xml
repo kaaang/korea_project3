@@ -15,8 +15,19 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-
     <!-- 캘린더 일자 클릭 시 정보가 하단의 정비 기록 란에 왔으면 좋겠음-->
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="+"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <CalendarView
         android:id="@+id/maintentance_cal"
         android:layout_width="match_parent"
@@ -24,7 +35,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         tools:ignore="MissingConstraints" />
 
-        <!--정비 일정 등록/수정/삭제란 -->
+  <!-- 등록, 수정, 삭제는 다른 페이지에서 처리 할 예정(생각보다 화면이 작음)
+        &lt;!&ndash;정비 일정 등록/수정/삭제란 &ndash;&gt;
         <LinearLayout
             android:id="@+id/regist_mainenance"
             android:layout_width="match_parent"
@@ -49,7 +61,7 @@
                 android:hint="업체명"/>
 
         </LinearLayout>
-        <!-- 버튼 -->
+        &lt;!&ndash; 버튼 &ndash;&gt;
         <LinearLayout
             android:id="@+id/btn_all"
             android:layout_width="wrap_content"
@@ -81,24 +93,21 @@
                 android:text="정비 삭제"/>
 
         </LinearLayout>
-
+-->
         <!--날짜 미 선택 시에는 해당 달의 전체 정비기록
         날짜 클릭 시 해당 일 정비기록-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/regist_mainenance">
+        app:layout_constraintTop_toBottomOf="@+id/maintentance_cal">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/maintentance_list"
-            android:layout_width="411dp"
-            android:layout_height="171dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            tools:ignore="MissingConstraints"/>
 
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="0dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

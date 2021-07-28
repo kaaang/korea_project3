@@ -45,15 +45,6 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/img" />
 
-                <!--                         엠블럼(저작권때문에 뺄  수도 있음   -->
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="top|right"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="30dp"
-                    android:src="@drawable/logo" />
-
                 <!--                            바이크 명                                 -->
                 <TextView
                     android:id="@+id/text_bikename"

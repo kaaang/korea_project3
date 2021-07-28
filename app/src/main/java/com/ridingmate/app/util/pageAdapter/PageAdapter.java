@@ -5,16 +5,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.ridingmate.app.fragment.bike.Bike_detail;
+import com.ridingmate.app.fragment.bike.Bike_regist;
 import com.ridingmate.app.fragment.main.*;
 import com.ridingmate.app.fragment.used.*;
 
-import org.jetbrains.annotations.NotNull;
 
 public class PageAdapter extends FragmentStateAdapter {
-    Fragment pages[]=new Fragment[8];
+    Fragment pages[]=new Fragment[10];
     static private PageAdapter pageAdapter=null;
 
-    private PageAdapter(@NonNull @NotNull FragmentActivity fragmentActivity) {
+    private PageAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
         pages[0]=new Main_maintenance_list();
         pages[1]=new Main_maintenance_regist();
@@ -24,6 +25,8 @@ public class PageAdapter extends FragmentStateAdapter {
         pages[5]=new Used_list();
         pages[6]=new Used_write();
         pages[7]=new Used_detail();
+        pages[8]=new Bike_regist();
+        pages[9]=new Bike_detail();
     }
     public static PageAdapter getInstance(FragmentActivity fragmentActivity){
         if(pageAdapter==null){
@@ -33,7 +36,7 @@ public class PageAdapter extends FragmentStateAdapter {
     }
 
     @NonNull
-    @NotNull
+
     @Override
     public Fragment createFragment(int position) {
         return pages[position];

@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="my_bike">
+        <item>bike1</item>
+        <item>bike2</item>
+        <item>bike3</item>
+        <item>bike4</item>
+    </string-array>
     <string-array name="bike_brand">
+        <item>제조사를 선택하세요</item>
         <item>혼다</item>
         <item>가와사키</item>
         <item>야마하</item>
     </string-array>
     <string-array name="bike_name">
+        <item>차량 이름을 선택하세요</item>
         <item>슈퍼커브</item>
         <item>벤리</item>
     </string-array>
     <string-array name="bike_year">
+        <item>연식을 선택하세요</item>
         <item>1990</item>
         <item>1991</item>
     </string-array>
+
 
 
 

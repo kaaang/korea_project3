@@ -1,25 +1,46 @@
 package com.ridingmate.app.activity.member;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.ridingmate.app.R;
+import com.ridingmate.app.activity.main.MainActivity;
 
-public class LoginActivity extends AppCompatActivity{
+public class LoginActivity extends AppCompatActivity {
 
     Button bt_login;
     TextView bt_regist;
 
-    ImageView bt_google;//구글 로그인
-   /* private FirebaseAuth auth; //파이어베이스 인증객체
-    private GoogleApiClient googleApiClient;//구글 API 클라이언트 객체
-    private static final int REQ_SIGN_GOOGLE=100; //구글 로그인 결과*/
+    ImageView bt_google;//구글 로그인 버튼
+
+    //구글 로그인 변수
+    private static final String TAG = "LoginActivity";
+    private static final int RC_SIGN_IN = 100;
+    private GoogleSignInClient googleSignInClient;
+    private FirebaseAuth firebaseAuth;
 
 
     @Override
@@ -28,81 +49,98 @@ public class LoginActivity extends AppCompatActivity{
         setContentView(R.layout.activity_login);
 
 
-        bt_login=findViewById(R.id.bt_login);
-        bt_regist=findViewById(R.id.bt_regist);
-        bt_google=findViewById(R.id.bt_google);
+        bt_login = findViewById(R.id.bt_login);
+        bt_regist = findViewById(R.id.bt_regist);
+        bt_google = findViewById(R.id.bt_google);
 
         //텍스트 클릭시 회원가입 창 이동
         bt_regist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(LoginActivity.this, JoinActivity.class);
+                Intent intent = new Intent(LoginActivity.this, PhoneNumActivity.class);
                 startActivity(intent);
 
             }
         });
-/*
-        //구글 로그인 초기작업
-        GoogleSignInOptions googleSignInOptions=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+
+        //구글 로그인 초기 세팅
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
+        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
 
-        googleApiClient=new GoogleApiClient.Builder(this)
-                .enableAutoManage(this,this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API,googleSignInOptions)
-                .build();
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        auth=FirebaseAuth.getInstance(); //파이어베이스 인증객체 초기화
-
-       //버튼 클릭시 구글 로그인
         bt_google.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-                startActivityForResult(intent, REQ_SIGN_GOOGLE);
+                Log.e(TAG, "onclick 작동");
+                Intent intent = googleSignInClient.getSignInIntent();
+                startActivityForResult(intent, RC_SIGN_IN);
+
             }
         });
-*/
     }
-/*
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==REQ_SIGN_GOOGLE){
-            GoogleSignInResult result=Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            if(result.isSuccess()){
-                GoogleSignInAccount account=result.getSignInAccount();//구글로그인 정보를 담고있음
-                resultLogin(account);//로그인 결과값 출력
-            }
+
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        if(currentUser!=null){
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
         }
     }
 
-    private void resultLogin(GoogleSignInAccount account) {
-        AuthCredential credential= GoogleAuthProvider.getCredential(account.getIdToken(), null);
-        auth.signInWithCredential(credential)
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RC_SIGN_IN) {
+            Log.e(TAG, "onActivityResult 작동");
+            Task<GoogleSignInAccount> accountTask = GoogleSignIn.getSignedInAccountFromIntent(data);
+
+            try {
+                GoogleSignInAccount account = accountTask.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account.getIdToken());
+
+                SharedPreferences.Editor editor=getApplicationContext()
+                        .getSharedPreferences("MyPrefs", MODE_PRIVATE)
+                        .edit();
+                editor.putString("username", account.getDisplayName());
+                editor.putString("useremail", account.getEmail());
+                editor.apply();
+
+            } catch (ApiException e) {
+                e.printStackTrace();
+                Log.e(TAG, "OnActivity Result : " + e.getMessage());
+            }
+
+        }
+    }
+
+    private void firebaseAuthWithGoogle(String idToken) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+        firebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){//로그인 성공시
-                            AlertDialog.Builder builder=new AlertDialog.Builder(LoginActivity.this);
-                            builder.setTitle("로그인 결과");
-                            builder.setMessage("로그인 성공");
-                            builder.show();
-                            Intent intent=new Intent(getApplicationContext(), MainActivity.class);
-                            intent.putExtra("nickName", account.getDisplayName());
-                            startActivity(intent);
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.e(TAG, "signInWithCredential:success");
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                        }else{//로그인 성공시
-                            AlertDialog.Builder builder=new AlertDialog.Builder(LoginActivity.this);
-                            builder.setTitle("로그인 결과");
-                            builder.setMessage("로그인 실패");
-                            builder.show();
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
 
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.e(TAG, "signInWithCredential:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "로그인에 실패하였습니다", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-
     }
-     */
 
 }

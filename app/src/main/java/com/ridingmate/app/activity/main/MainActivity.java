@@ -3,10 +3,14 @@ package com.ridingmate.app.activity.main;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.ridingmate.app.R;
+import com.ridingmate.app.activity.member.LoginActivity;
 import com.ridingmate.app.util.navi.MainBottomNaviListener;
 import com.ridingmate.app.util.pageAdapter.PageAdapter;
 
@@ -18,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     PageAdapter pageAdapter;
     // 뷰페이저
     ViewPager2 viewPager;
+
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +49,14 @@ public class MainActivity extends AppCompatActivity {
         // 처음 선택되있을 하단 네비게이션 아이템 선택
         bottomNavigationView.setSelectedItemId(R.id.main);
 
+
+        //파이어베이스 권한
+        firebaseAuth=FirebaseAuth.getInstance();
+
+
     }
+
+
     public void showPage(int index) {
         viewPager.setCurrentItem(index,false);
     }

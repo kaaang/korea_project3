@@ -14,7 +14,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <!-- 캘린더 일자 클릭 시 정보가 하단의 정비 기록 란에 왔으면 좋겠음-->
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="+"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <CalendarView
         android:id="@+id/maintentance_cal"
         android:layout_width="match_parent"
@@ -22,29 +35,79 @@
         app:layout_constraintLeft_toLeftOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <LinearLayout
+  <!-- 등록, 수정, 삭제는 다른 페이지에서 처리 할 예정(생각보다 화면이 작음)
+        &lt;!&ndash;정비 일정 등록/수정/삭제란 &ndash;&gt;
+        <LinearLayout
+            android:id="@+id/regist_mainenance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/maintentance_cal">
+
+            <EditText
+                android:id="@+id/regist_mainenance_write"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="정비 내역 등록"/>
+            <EditText
+                android:id="@+id/regist_mainenance_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="정비 날짜"/>
+            <EditText
+                android:id="@+id/regist_mainenance_company"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="업체명"/>
+
+        </LinearLayout>
+        &lt;!&ndash; 버튼 &ndash;&gt;
+        <LinearLayout
+            android:id="@+id/btn_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="MissingConstraints">
+
+            <Button
+                android:id="@+id/btn_regist_maintenance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_margin="10dp"
+                android:text="정비 등록"/>
+            <Button
+                android:id="@+id/btn_edit_maintenance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:text="정비 수정"/>
+            <Button
+                android:id="@+id/btn_delete_maintenance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_margin="10dp"
+                android:text="정비 삭제"/>
+
+        </LinearLayout>
+-->
+        <!--날짜 미 선택 시에는 해당 달의 전체 정비기록
+        날짜 클릭 시 해당 일 정비기록-->
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/maintentance_cal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="정비 기록"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:textColor="#000000"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/maintentance_list"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            tools:ignore="MissingConstraints"/>
 
-        <TextView
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="고객이 등록한 일정 끌어오기"
-            android:textSize="20dp"
-            android:textColor="#000000"/>
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

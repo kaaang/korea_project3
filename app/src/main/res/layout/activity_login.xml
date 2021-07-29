@@ -25,10 +25,10 @@
             style="@style/viewParent.headerText.NoMode"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:autoSizeTextType="uniform"
             android:layout_alignParentLeft="true"
             android:layout_weight="10"
-            android:text="Riding\nMate\nCrew" />
+            android:text="Riding\nMate\nCrew"
+            app:autoSizeTextType="uniform" />
 
         <ImageView
             android:id="@+id/logo"
@@ -41,11 +41,23 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/bt_forgetID"
+        style="@style/viewParent"
+        android:layout_gravity="end"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:text="아이디 찾기"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/bt_forgetPW"
+        app:layout_constraintTop_toTopOf="@+id/bt_forgetPW" />
+
+    <TextView
         android:id="@+id/bt_forgetPW"
         style="@style/viewParent"
         android:layout_gravity="end"
         android:layout_marginTop="15dp"
-        android:text="Forgot Password?"
+        android:text="비밀번호 찾기"
         android:textColor="@color/primaryTextColor"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/et_pass"
@@ -57,8 +69,8 @@
         style="@style/modifiedEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:hint="Email"
+        android:layout_marginTop="32dp"
+        android:hint="이메일"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="@+id/top_logo"
         app:layout_constraintHorizontal_bias="0.0"
@@ -71,7 +83,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
-        android:hint="Password"
+        android:hint="비밀번호"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/et_id"
         app:layout_constraintHorizontal_bias="0.0"
@@ -84,7 +96,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="65dp"
         android:gravity="center"
-        android:text="LOGIN"
+        android:text="로그인"
         android:textSize="16sp"
         app:cornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="@+id/et_pass"
@@ -97,11 +109,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="New User? Regist Now"
+        android:clickable="true"
+        android:text="회원가입"
         android:textColor="@color/themeColor"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:clickable="true"
         app:layout_constraintEnd_toEndOf="@+id/bt_login"
         app:layout_constraintStart_toStartOf="@+id/bt_login"
         app:layout_constraintTop_toBottomOf="@+id/bt_login" />
@@ -128,7 +140,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="6"
             android:gravity="center_horizontal"
-            android:text="Use Other Method"
+            android:text="SNS 로그인"
             android:textAlignment="center"
             android:textSize="12sp" />
 
@@ -149,25 +161,27 @@
         android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/top_logo"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/top_logo"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text">
+
 
         <ImageView
             android:id="@+id/bt_kakao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/ic_facebook" />
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:maxWidth="100dp"
+            android:maxHeight="50dp"
+            android:src="@drawable/ic_kakao" />
 
         <ImageView
             android:id="@+id/bt_google"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_google_plus" />
-
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/ic_google" />
 
 
     </LinearLayout>

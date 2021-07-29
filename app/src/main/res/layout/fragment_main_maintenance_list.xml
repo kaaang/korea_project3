@@ -17,11 +17,13 @@
 
     <!-- 캘린더 일자 클릭 시 정보가 하단의 정비 기록 란에 왔으면 좋겠음-->
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/cal_add"
+        android:onClick="addCal"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginBottom="4dp"
-        android:text="+"
+        android:src="@drawable/bike_regist"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
@@ -100,11 +102,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/maintentance_cal">
+        <TextView
+            android:id="@+id/item_maintenance_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_margin="10dp"
+            android:text="정비 기록"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/maintentance_list"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="230dp"
+            app:layout_constraintTop_toBottomOf="@+id/item_maintenance_all"
             tools:ignore="MissingConstraints"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

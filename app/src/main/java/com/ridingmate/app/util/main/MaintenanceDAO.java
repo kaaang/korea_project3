@@ -1,4 +1,4 @@
-package com.ridingmate.app.util.maintenance;
+package com.ridingmate.app.util.main;
 
 
 public class MaintenanceDAO {

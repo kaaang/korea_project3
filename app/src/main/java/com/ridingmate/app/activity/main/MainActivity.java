@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,15 +29,18 @@ public class MainActivity extends AppCompatActivity {
     // 프래그먼트 관리 어댑터
     PageAdapter pageAdapter;
     // 뷰페이저
-    ViewPager2 viewPager;
+   private  static   ViewPager2 viewPager;
     //상단 툴바
     Toolbar toolbar;
     String[] category=null;
-
+    // 주유 등록시 context접근 필요하여 선언
+    public  static Context  _main;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // context담기
+        _main =  this;
 
         //상단 툴바 인스턴스 얻기
         toolbar = findViewById(R.id.toolbar);
@@ -65,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
     }
-    public void showPage(int index) {
+    public static void showPage(int index) {
         viewPager.setCurrentItem(index,false);
     }
 

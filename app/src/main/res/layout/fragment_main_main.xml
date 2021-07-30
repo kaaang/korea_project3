@@ -126,18 +126,20 @@
                     android:textStyle="bold" />
 
                 <!--                            버튼                                       -->
-
+                <!-- 버튼 눌러서 정비 갈 필요는 없을 것 같음.
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/btn_my"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|right"
                     android:layout_marginRight="30dp"
                     android:layout_marginBottom="20dp"
                     android:text="내 오토바이"
-                    android:textColor="@color/white"
+                    android:backgroundTint="#F57254"
+                    android:textColor="#414042"
                     android:textSize="10dp"
                     android:textStyle="bold" />
+                -->
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
@@ -225,14 +227,15 @@
             <!--                            버튼                                       -->
 
             <Button
-                android:id="@+id/showGasStation"
+                android:id="@+id/btn_showGasStation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|right"
                 android:layout_marginRight="30dp"
                 android:layout_marginBottom="20dp"
-                android:text="주유 기록 등록"
-                android:textColor="@color/white"
+                android:text="주유 등록"
+                android:backgroundTint="#F57254"
+                android:textColor="#414042"
                 android:textSize="10dp"
                 android:textStyle="bold" />
     </androidx.cardview.widget.CardView>

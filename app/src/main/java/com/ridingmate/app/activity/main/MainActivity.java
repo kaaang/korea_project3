@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
 
         //상단 툴바 적용
         setSupportActionBar(toolbar);
+        //툴바 타이틀 로고로 변경
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
     }
     public static void showPage(int index) {

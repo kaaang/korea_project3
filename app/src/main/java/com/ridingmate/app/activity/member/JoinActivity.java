@@ -1,5 +1,6 @@
 package com.ridingmate.app.activity.member;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,15 +9,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.ridingmate.app.R;
+
+import org.jetbrains.annotations.NotNull;
 
 public class JoinActivity extends AppCompatActivity {
 
-    Button bt_regist;
+
+    private FirebaseAuth mfireFirebaseAuth;
+    private FirebaseFirestore db;
+    EditText et_email, et_name, et_password, et_passwordCheck;
+    Button bt_regist, bt_checkDupli;
+
     TextView bt_login;
     ImageView bt_agreement, bt_overForteen, bt_personalAgree, bt_LocationAgree;
 
@@ -25,6 +43,7 @@ public class JoinActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
 
+        //객체 생성하기==========================================================
         //버튼 가져오기
         bt_login=findViewById(R.id.bt_login);
 
@@ -34,7 +53,60 @@ public class JoinActivity extends AppCompatActivity {
         bt_personalAgree=findViewById(R.id.bt_personalAgree);
         bt_LocationAgree=findViewById(R.id.bt_LocationAgree);
 
+        //회원정보
+        et_email=findViewById(R.id.et_email);
+        et_name=findViewById(R.id.et_name);
+        et_password=findViewById(R.id.et_password);
+        et_passwordCheck=findViewById(R.id.et_passwordCheck);
+        bt_checkDupli=findViewById(R.id.bt_checkDupli);
+        bt_regist=findViewById(R.id.bt_regist);
 
+
+        //파이어베이스 객체 ========================================================
+
+        mfireFirebaseAuth=FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+
+        bt_regist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String strEmail=et_email.getText().toString();
+                String strName=et_name.getText().toString();
+                String strPwd=et_password.getText().toString();
+
+                mfireFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(JoinActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+
+
+                            FirebaseUser firebaseUser=mfireFirebaseAuth.getCurrentUser();
+                            UserAccount account=new UserAccount();
+                            account.setIdToken(firebaseUser.getUid());
+                            account.setEmailId(firebaseUser.getEmail());
+                            account.setPassword(strPwd);
+                            account.setName(strName);
+
+                            db.collection("user").document("user").set(account);
+
+
+                            Toast.makeText(JoinActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(JoinActivity.this, "회원가입 실패", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+            }
+        });
+
+
+
+
+
+
+
+        //이벤트 리스너==========================================================
         bt_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

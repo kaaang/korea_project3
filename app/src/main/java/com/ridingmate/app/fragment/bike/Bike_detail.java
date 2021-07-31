@@ -11,13 +11,19 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 import com.ridingmate.app.R;
 
 import org.jetbrains.annotations.NotNull;
@@ -31,6 +37,7 @@ public class Bike_detail extends Fragment {
     String TAG = getClass().getName();
 
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
+    private FirebaseAuth mAuth = null;
 
 
 
@@ -73,6 +80,30 @@ public class Bike_detail extends Fragment {
 //                }
 //            }
 //        });
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser=mAuth.getCurrentUser();
+        String token = firebaseUser.getUid();
+        Log.e(TAG, "token : "+token);
+
+        Bike_regist_DAO data = new Bike_regist_DAO();
+        data.setTest("test");
+
+        db.collection("user").document(token).set(data, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d(TAG, "DocumentSnapshot successfully written!");
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+        });
+
+
+
 
 
 

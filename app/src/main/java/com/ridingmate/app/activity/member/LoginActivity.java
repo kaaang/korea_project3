@@ -20,6 +20,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -27,7 +29,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 import com.ridingmate.app.R;
 import com.ridingmate.app.activity.main.MainActivity;
 
@@ -50,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
 
     //파이어 베이스 변수
     private FirebaseAuth mAuth = null;
-    private DatabaseReference mDatabaseReference; //실시간 데이터베이스
 
     SignInButton signInButton;
 
@@ -148,7 +151,6 @@ public class LoginActivity extends AppCompatActivity {
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
@@ -187,7 +189,7 @@ public class LoginActivity extends AppCompatActivity {
             account.setName(firebaseUser.getDisplayName());
             account.setPhoneNum(firebaseUser.getPhoneNumber());
 
-            db.collection("user").document("user").set(account);
+            db.collection("user").document(firebaseUser.getUid()).set(account);
 
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);

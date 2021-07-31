@@ -125,19 +125,6 @@
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
-                <!--                            버튼                                       -->
-
-                <Button
-                    android:id="@+id/bt_checkDupli"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|right"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginBottom="20dp"
-                    android:text="내 오토바이"
-                    android:textColor="@color/white"
-                    android:textSize="10dp"
-                    android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
@@ -225,7 +212,7 @@
             <!--                            버튼                                       -->
 
             <Button
-                android:id="@+id/showGasStation"
+                android:id="@+id/btn_showGasStation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|right"

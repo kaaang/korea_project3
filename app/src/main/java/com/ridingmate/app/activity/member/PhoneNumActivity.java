@@ -18,6 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
@@ -28,6 +30,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.ridingmate.app.R;
 import com.ridingmate.app.activity.main.MainActivity;
 
@@ -39,6 +43,7 @@ public class PhoneNumActivity extends AppCompatActivity {
 
     // [START declare_auth]
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
     // [END declare_auth]
 
     private String mVerificationId;
@@ -48,6 +53,9 @@ public class PhoneNumActivity extends AppCompatActivity {
     TextView bt_Auth_request, bt_retry_auth;
     Button bt_submit;
     EditText et_phone, et_code;
+
+    String phoneNum=null;
+    String uid=null;
 
 
 
@@ -64,7 +72,11 @@ public class PhoneNumActivity extends AppCompatActivity {
         et_code=findViewById(R.id.et_code);
 
 
+
+
         mAuth = FirebaseAuth.getInstance();
+        uid=mAuth.getUid();
+        db = FirebaseFirestore.getInstance();
 
         // Initialize phone auth callbacks
         // [START phone_auth_callbacks]
@@ -119,7 +131,7 @@ public class PhoneNumActivity extends AppCompatActivity {
         bt_Auth_request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 String phoneNum=et_phone.getText().toString();
+                phoneNum=et_phone.getText().toString();
                  if(TextUtils.isEmpty(phoneNum)){
                      Toast.makeText(PhoneNumActivity.this, "번호를 입력해 주세요", Toast.LENGTH_SHORT).show();
                  }else{
@@ -134,7 +146,7 @@ public class PhoneNumActivity extends AppCompatActivity {
         bt_retry_auth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String phoneNum=et_phone.getText().toString();
+                phoneNum=et_phone.getText().toString();
                 if(TextUtils.isEmpty(phoneNum)){
                     Toast.makeText(PhoneNumActivity.this, "번호를 입력해 주세요", Toast.LENGTH_SHORT).show();
                 }else{
@@ -162,13 +174,13 @@ public class PhoneNumActivity extends AppCompatActivity {
 
 
     // [START on_start_check_user]
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        updateUI(currentUser);
+//    }
     // [END on_start_check_user]
 
 
@@ -190,6 +202,7 @@ public class PhoneNumActivity extends AppCompatActivity {
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
         signInWithPhoneAuthCredential(credential);
         // [END verify_with_code]
+
     }
 
     // [START resend_verification]
@@ -219,8 +232,8 @@ public class PhoneNumActivity extends AppCompatActivity {
 
                             Toast.makeText(PhoneNumActivity.this, "휴대폰 인증 성공", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = task.getResult().getUser();
-                            updateUI(user);
-                            // Update UI
+                            //updateUI(user);
+                            updatePhoneNum();
                         } else {
                             // Sign in failed, display a message and update the UI
                             Log.e(TAG, "signInWithCredential:failure", task.getException());
@@ -231,14 +244,44 @@ public class PhoneNumActivity extends AppCompatActivity {
                     }
                 });
     }
-    // [END sign_in_with_phone]
+     //[END sign_in_with_phone]
 
-    private void updateUI(FirebaseUser user) {
-        if (user != null) {
-            Intent intent = new Intent(this, JoinActivity.class);
-            startActivity(intent);
-            finish();
-        }
+//    private void updateUI(FirebaseUser user) {
+//        if (user != null) {
+//            Intent intent = new Intent(this, MainActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
+//
+//    }
+
+    public void updatePhoneNum(){
+        Log.e(TAG, "인증제출");
+        Log.e(TAG, "현재 uid는"+uid);
+        Log.e(TAG, "현재 phoneNum은"+phoneNum);
+        DocumentReference userRef = db.collection("user").document(uid);
+
+        userRef
+                .update("phoneNum", phoneNum)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.e(TAG, "핸드폰 db넣기 성공");
+                        Log.e(TAG, "내 핸드폰 번호는"+phoneNum);
+
+
+                        Intent intent = new Intent(PhoneNumActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, "핸드폰번호 업데이트 못함", e);
+                    }
+                });
 
     }
 

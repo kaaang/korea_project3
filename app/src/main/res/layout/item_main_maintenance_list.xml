@@ -68,4 +68,39 @@
         android:textColor="#000000"
         android:textSize="20dp"/>
 
+
+    <!-- 버튼 -->
+
+    <TextView
+        android:id="@+id/btn_maintenance_edit"
+        android:onClick="maintenance_regist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="left"
+        android:textColor="#D83F51B5"
+        android:textSize="20sp"
+        android:text="수정"
+        app:layout_constraintRight_toLeftOf="@+id/btn_maintenance_delete"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/btn_maintenance_delete"
+        android:onClick="maintenace_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="end"
+        android:textColor="#D83F51B5"
+        android:textSize="20sp"
+        android:text="삭제"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

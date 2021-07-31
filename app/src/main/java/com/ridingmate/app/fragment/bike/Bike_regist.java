@@ -19,11 +19,13 @@ import androidx.fragment.app.Fragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.ridingmate.app.R;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
@@ -283,6 +285,15 @@ public class Bike_regist extends Fragment {
     }
     private void insertBike() {
         Bike_regist_DAO data=new Bike_regist_DAO(company,model,year,driven,nickname,image);
-        db.collection("mybike").add(data);
+        db.collection("mybike").add(data)
+                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<DocumentReference> task) {
+                        if (task.isSuccessful()) {
+                            DocumentReference document = task.getResult();
+                            Log.e("asd",document.getId());
+                        }
+                    }
+                });
     }
 }

@@ -92,6 +92,7 @@ public class PhoneNumActivity extends AppCompatActivity {
                 //     user action.
                 Log.e(TAG, "onVerificationCompleted:" + credential);
 
+
                 signInWithPhoneAuthCredential(credential);
             }
 
@@ -116,11 +117,13 @@ public class PhoneNumActivity extends AppCompatActivity {
                 // The SMS verification code has been sent to the provided phone number, we
                 // now need to ask the user to enter the code and then construct a credential
                 // by combining the code with a verification ID.
-                Log.e(TAG, "onCodeSent:" + verificationId);
+                Log.e(TAG, "test : onCodeSent:" + verificationId);
+                Log.e(TAG, "test : token:" + token);
 
                 // Save verification ID and resending token so we can use them later
                 mVerificationId = verificationId;
                 mResendToken = token;
+                Log.e(TAG, "test : mVerificationId : " + mVerificationId);
             }
         };
         // [END phone_auth_callbacks]
@@ -231,9 +234,10 @@ public class PhoneNumActivity extends AppCompatActivity {
                             Log.e(TAG, "signInWithCredential:success");
 
                             Toast.makeText(PhoneNumActivity.this, "휴대폰 인증 성공", Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = task.getResult().getUser();
+                            //FirebaseUser user = task.getResult().getUser();
                             //updateUI(user);
-                            updatePhoneNum();
+                            //updatePhoneNum();
+                            Log.e(TAG, "현재 phoneNum은"+phoneNum);
                         } else {
                             // Sign in failed, display a message and update the UI
                             Log.e(TAG, "signInWithCredential:failure", task.getException());

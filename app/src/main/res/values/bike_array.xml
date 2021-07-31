@@ -8,19 +8,15 @@
     </string-array>
     <string-array name="bike_brand">
         <item>제조사를 선택하세요</item>
-        <item>혼다</item>
-        <item>가와사키</item>
-        <item>야마하</item>
+        <item>제조사 불러오는 중</item>
     </string-array>
     <string-array name="bike_name">
         <item>차량 이름을 선택하세요</item>
-        <item>슈퍼커브</item>
-        <item>벤리</item>
+        <item>제조사를 선택하세요</item>
     </string-array>
     <string-array name="bike_year">
         <item>연식을 선택하세요</item>
-        <item>1990</item>
-        <item>1991</item>
+        <item>차량 이름을 선택하세요</item>
     </string-array>
 
 

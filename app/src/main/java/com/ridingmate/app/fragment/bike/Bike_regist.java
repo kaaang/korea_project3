@@ -1,5 +1,6 @@
 package com.ridingmate.app.fragment.bike;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,17 +19,21 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 import com.ridingmate.app.R;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -69,12 +74,14 @@ public class Bike_regist extends Fragment {
     String driven;
     String nickname;
     String image;
-
+    String userUid;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_bike_regist,container,false);
+
+        userUid= FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         //바인딩
         companySpinner=view.findViewById(R.id.bike_regist_companySpinner);
@@ -88,7 +95,6 @@ public class Bike_regist extends Fragment {
         cancel =view.findViewById(R.id.bike_regist_cancel);
         getCompanyDB();
 
-//        Log.e("asd","로그뽑자");
 
         regist.setOnClickListener(v -> {
             driven=et_distance.getText().toString();
@@ -284,16 +290,30 @@ public class Bike_regist extends Fragment {
 
     }
     private void insertBike() {
-        Bike_regist_DAO data=new Bike_regist_DAO(company,model,year,driven,nickname,image);
+
+
+        Bike_regist_DAO data=new Bike_regist_DAO(company,model,year,driven,nickname,image,userUid);
         db.collection("mybike").add(data)
                 .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull @NotNull Task<DocumentReference> task) {
                         if (task.isSuccessful()) {
                             DocumentReference document = task.getResult();
-                            Log.e("asd",document.getId());
+                            String bikeId = document.getId();
+                            insertBikeInUser(bikeId);
                         }
+
+
                     }
                 });
+
+    }
+
+    private void insertBikeInUser(String bikeId) {
+        Map<String, Object> data = new HashMap<>();
+        data.put(bikeId,"bike");
+
+        db.collection("user").document(userUid)
+                .set(data, SetOptions.merge());
     }
 }

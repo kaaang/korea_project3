@@ -79,18 +79,24 @@
                 android:text="정비 일자"
                 app:layout_constraintTop_toBottomOf="@+id/tv_maintenance_list"
                 tools:ignore="MissingConstraints" />
-            <TextView
+
+            <Button
                 android:id="@+id/regist_maintenance_date"
                 android:layout_width="250dp"
                 android:layout_height="40dp"
+
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
                 android:text="정비 일자"
+                android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/regist_maintenance_list"
-                app:layout_constraintLeft_toRightOf="@+id/tv_maintenance_date"/>
+                app:layout_constraintLeft_toRightOf="@+id/tv_maintenance_date"
+                android:backgroundTint="#FDFCFC"
+                style="?android:spinnerStyle"
+                />
             <!-- 정비소 -->
             <TextView
                 android:id="@+id/tv_maintenance_location"

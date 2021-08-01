@@ -17,16 +17,23 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -41,14 +48,20 @@ public class PhoneNumActivity extends AppCompatActivity {
 
     private static final String TAG = "PhoneAuthActivity";
 
-    // [START declare_auth]
-    private FirebaseAuth mAuth;
+    // 파이어 베이스 객체
+    private FirebaseAuth mAuth=null;
     private FirebaseFirestore db;
-    // [END declare_auth]
 
+    //구글 로그인 객체
+    private GoogleSignInClient mGoogleSignInClient;
+    private static final int RC_SIGN_IN = 9001;
+
+    //전화번호 인증 객체
     private String mVerificationId;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
+
+
 
     TextView bt_Auth_request, bt_retry_auth;
     Button bt_submit;
@@ -56,6 +69,8 @@ public class PhoneNumActivity extends AppCompatActivity {
 
     String phoneNum=null;
     String uid=null;
+    String clicked=null;
+
 
 
 
@@ -64,6 +79,7 @@ public class PhoneNumActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_num);
 
+        //객체 생성
         bt_Auth_request=findViewById(R.id.bt_Auth_request);
         bt_retry_auth=findViewById(R.id.bt_retry_auth);
         bt_submit=findViewById(R.id.bt_submit);
@@ -72,12 +88,23 @@ public class PhoneNumActivity extends AppCompatActivity {
         et_code=findViewById(R.id.et_code);
 
 
-
-
         mAuth = FirebaseAuth.getInstance();
-        uid=mAuth.getUid();
         db = FirebaseFirestore.getInstance();
 
+        Bundle bundle=getIntent().getExtras();
+        clicked=bundle.getString("clicked");
+        Log.e(TAG, "현재 클릭된 버튼은"+clicked);
+
+
+
+        //구글 로그인 초기 세팅
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        //전화번호 인증 초기 셋팅
         // Initialize phone auth callbacks
         // [START phone_auth_callbacks]
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -132,15 +159,16 @@ public class PhoneNumActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 phoneNum=et_phone.getText().toString();
-                 if(TextUtils.isEmpty(phoneNum)){
-                     Toast.makeText(PhoneNumActivity.this, "번호를 입력해 주세요", Toast.LENGTH_SHORT).show();
-                 }else{
-                     startPhoneNumberVerification("+82"+phoneNum);
-                     et_code.setEnabled(true);
-                     Resources res = getResources();
-                     Drawable res_white = res.getDrawable(R.drawable.white_edittext);
-                     et_code.setBackground(res_white);
-                 }
+                if(TextUtils.isEmpty(phoneNum)){
+                    Toast.makeText(PhoneNumActivity.this, "번호를 입력해 주세요", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(PhoneNumActivity.this, "인증번호를 전송하였습니다. 60초안에 인증하여 주십시오", Toast.LENGTH_SHORT).show();
+                    startPhoneNumberVerification("+1"+phoneNum);
+                    et_code.setEnabled(true);
+                    Resources res = getResources();
+                    Drawable res_white = res.getDrawable(R.drawable.white_edittext);
+                    et_code.setBackground(res_white);
+                }
             }
         });
         bt_retry_auth.setOnClickListener(new View.OnClickListener() {
@@ -150,7 +178,7 @@ public class PhoneNumActivity extends AppCompatActivity {
                 if(TextUtils.isEmpty(phoneNum)){
                     Toast.makeText(PhoneNumActivity.this, "번호를 입력해 주세요", Toast.LENGTH_SHORT).show();
                 }else{
-
+                    Toast.makeText(PhoneNumActivity.this, "인증번호를 다시 전송하였습니다. 60초안에 인증하여 주십시오", Toast.LENGTH_SHORT).show();
                     resendVerificationCode(phoneNum, mResendToken);
                 }
             }
@@ -163,16 +191,17 @@ public class PhoneNumActivity extends AppCompatActivity {
                 if(TextUtils.isEmpty(code)){
                     Toast.makeText(PhoneNumActivity.this, "인증코드를 입력해 주세요", Toast.LENGTH_SHORT).show();
                 }else{
+
                     verifyPhoneNumberWithCode(mVerificationId,code);
                 }
             }
         });
-        //클릭 리스너==========================================================끝
+        //클릭 리스너 끝==========================================================
 
 
     }
 
-
+//전화전호 인증=================================================================
     // [START on_start_check_user]
 //    @Override
 //    public void onStart() {
@@ -229,22 +258,36 @@ public class PhoneNumActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.e(TAG, "signInWithCredential:success");
+                            Toast.makeText(PhoneNumActivity.this, "인증 성공", Toast.LENGTH_SHORT).show();
+                            FirebaseUser user=mAuth.getCurrentUser();
+                            user.delete();
 
-                            Toast.makeText(PhoneNumActivity.this, "휴대폰 인증 성공", Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = task.getResult().getUser();
+                            if(clicked.equals("normal")){
+                                Log.e(TAG, "일반 로그인 시작");
+                                Intent intent=new Intent(PhoneNumActivity.this, JoinActivity.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putString("phoneNum", phoneNum);
+                                intent.putExtras(bundle);
+                                startActivity(intent);
+
+                            }else if(clicked.equals("google")){
+                                Log.e(TAG, "구글 로그인 시작");
+                                signIn();
+                            }
                             //updateUI(user);
                             updatePhoneNum();
                         } else {
                             // Sign in failed, display a message and update the UI
                             Log.e(TAG, "signInWithCredential:failure", task.getException());
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                                Toast.makeText(PhoneNumActivity.this, "인증 실패! 재인증하여 주십시오", Toast.LENGTH_SHORT).show();
                                 // The verification code entered was invalid
                             }
                         }
                     }
                 });
     }
-     //[END sign_in_with_phone]
+    //[END sign_in_with_phone]
 
 //    private void updateUI(FirebaseUser user) {
 //        if (user != null) {
@@ -257,9 +300,8 @@ public class PhoneNumActivity extends AppCompatActivity {
 
     public void updatePhoneNum(){
         Log.e(TAG, "인증제출");
-        Log.e(TAG, "현재 uid는"+uid);
         Log.e(TAG, "현재 phoneNum은"+phoneNum);
-        DocumentReference userRef = db.collection("user").document(uid);
+        DocumentReference userRef = db.collection("user").document(mAuth.getUid());
 
         userRef
                 .update("phoneNum", phoneNum)
@@ -267,7 +309,7 @@ public class PhoneNumActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.e(TAG, "핸드폰 db넣기 성공");
-                        Log.e(TAG, "내 핸드폰 번호는"+phoneNum);
+
 
 
                         Intent intent = new Intent(PhoneNumActivity.this, MainActivity.class);
@@ -284,6 +326,78 @@ public class PhoneNumActivity extends AppCompatActivity {
                 });
 
     }
+    //전화전호 인증 END=================================================================
+
+    //구글 로그인============================================================================
+    private void signIn() {
+        Log.e(TAG, "로그인창 띄웠음");
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.e(TAG, "구글 계정 가져오기 ");
+
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account);
+            } catch (ApiException e) {
+            }
+        }
+    }
+    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+
+        Log.e(TAG, "파베에 구글 계정 넣기 ");
+
+        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+//                            Snackbar.make(findViewById(R.id.layout_main), "Authentication Successed.", Snackbar.LENGTH_SHORT).show();
+                            Log.e(TAG, "구글로 로그인 성공 ");
+
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+//                            Snackbar.make(findViewById(R.id.layout_main), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
+                    }
+                });
+    }
+    private void updateUI(FirebaseUser user) { //update ui code here
+        if (user != null) {
+
+            FirebaseUser firebaseUser=mAuth.getCurrentUser();
+            UserAccount account=new UserAccount();
+            account.setIdToken(firebaseUser.getUid());
+            account.setEmailId(firebaseUser.getEmail());
+            account.setName(firebaseUser.getDisplayName());
+            account.setPhoneNum(phoneNum);
+
+            db.collection("user").document(firebaseUser.getUid()).set(account);
+
+
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+
+
+        }
+    }
+    //구글 로그인 END============================================================================
 
 
 

@@ -39,21 +39,19 @@ import org.jetbrains.annotations.NotNull;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private static final String TAG = "LoginActivity";
+
     Button bt_login;
-    TextView bt_regist;
+    TextView bt_regist; //일반 회원가입 버튼
     EditText et_email, et_password;
 
     ImageView bt_google;//구글 로그인 버튼
 
-    //구글 로그인 변수
-    private static final String TAG = "LoginActivity";
-    private GoogleSignInClient mGoogleSignInClient;
-    private static final int RC_SIGN_IN = 9001;
-    private FirebaseFirestore db;
-
+    Bundle bundle = new Bundle();
 
     //파이어 베이스 변수
     private FirebaseAuth mAuth = null;
+    private FirebaseFirestore db;
 
     SignInButton signInButton;
 
@@ -78,12 +76,8 @@ public class LoginActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
 
-        //구글 로그인 초기 세팅
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+
 
 
 //이벤트 리스너==============================================================
@@ -92,10 +86,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, PhoneNumActivity.class);
+                bundle.putString("clicked", "normal");
+                intent.putExtras(bundle);
                 startActivity(intent);
 
             }
         });
+
 
         //로그인 클릭시 로그인처리
         bt_login.setOnClickListener(new View.OnClickListener() {
@@ -110,7 +107,6 @@ public class LoginActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
 
                         }else{
                             Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
@@ -125,18 +121,17 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.e(TAG, "onclick 작동");
-                signIn();
+                Intent intent=new Intent(LoginActivity.this, PhoneNumActivity.class);
+
+                bundle.putString("clicked", "google");
+                intent.putExtras(bundle);
+                startActivity(intent);
 
             }
         });
     }
-    //구글 로그인============================================================================
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
 
-    public void onStart() {
+        public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -144,61 +139,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
         }
     }
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                firebaseAuthWithGoogle(account);
-            } catch (ApiException e) {
-            }
-        }
-    }
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-//                            Snackbar.make(findViewById(R.id.layout_main), "Authentication Successed.", Snackbar.LENGTH_SHORT).show();
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-//                            Snackbar.make(findViewById(R.id.layout_main), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-                    }
-                });
-    }
-    private void updateUI(FirebaseUser user) { //update ui code here
-        if (user != null) {
-
-            FirebaseUser firebaseUser=mAuth.getCurrentUser();
-            UserAccount account=new UserAccount();
-            account.setIdToken(firebaseUser.getUid());
-            account.setEmailId(firebaseUser.getEmail());
-            account.setName(firebaseUser.getDisplayName());
-            account.setPhoneNum(firebaseUser.getPhoneNumber());
-
-            db.collection("user").document(firebaseUser.getUid()).set(account);
 
 
-            Intent intent = new Intent(this, PhoneNumActivity.class);
-            startActivity(intent);
-            finish();
-
-
-        }
-    }
-    //구글 로그인 끝============================================================================
 
 }

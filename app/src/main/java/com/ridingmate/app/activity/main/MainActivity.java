@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     // 프래그먼트 관리 어댑터
     PageAdapter pageAdapter;
     // 뷰페이저
-   private  static   ViewPager2 viewPager;
+   public   static   ViewPager2 viewPager;
     //상단 툴바
     Toolbar toolbar;
     String[] category=null;

@@ -146,7 +146,7 @@ public class Main_main extends Fragment {
         if (month == 12)
             return "12월 ";
 
-        return "JAN";
+        return "01월";
     }
 
 

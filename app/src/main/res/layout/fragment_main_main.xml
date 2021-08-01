@@ -218,7 +218,7 @@
                 android:layout_gravity="bottom|right"
                 android:layout_marginRight="30dp"
                 android:layout_marginBottom="20dp"
-                android:text="주유 기록 등록"
+                android:text="주유 등록"
                 android:textColor="@color/white"
                 android:textSize="10dp"
                 android:textStyle="bold" />

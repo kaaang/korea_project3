@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ridingmate.app.R;
+import com.ridingmate.app.activity.main.MainActivity;
 import com.ridingmate.app.util.used.UsedListAdapter;
 import com.ridingmate.app.util.used.UsedListData;
 
@@ -23,6 +25,7 @@ public class Used_list extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<UsedListData> arrayList;
     private UsedListAdapter usedListAdapter;
+    private ImageButton write_button;
 
     @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,6 +50,20 @@ public class Used_list extends Fragment {
         }
 
         usedListAdapter.notifyDataSetChanged();
+
+        
+        
+        
+        
+        //중고거래 글작성 페이지로 이동
+        write_button=view.findViewById(R.id.write_button);
+        write_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity main =  (MainActivity) getContext();
+                main.showPage(6);
+            }
+        });
 
 
 

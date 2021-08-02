@@ -6,6 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="&gt;&gt;&gt;&gt;&gt;&gt;" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
@@ -42,20 +43,30 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/RMC.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/RMC.app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/activity/member/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/activity/member/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/activity/member/PhoneNumActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/activity/member/PhoneNumActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/fragment/bike/Bike_detail.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/fragment/bike/Bike_detail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/grey_edittext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/grey_edittext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/fragment/used/Used_list.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/fragment/used/Used_list.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/fragment/used/Used_write.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/fragment/used/Used_write.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/util/used/UsedWriteAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/util/used/UsedWriteAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/util/used/UsedWriteData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/util/used/UsedWriteData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_used_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_used_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_used_write.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_used_write.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_used_write_image.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_used_write_image.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@2234abee22027ece]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@21e96aa44a0c7ece]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -124,15 +135,15 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="SerialNumber@2234abee22027ece" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-07-30T05:00:34.950332500Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="VirtualDevicePath@C:\Users\82109\.android\avd\Pixel_3a_API_30_x86.avd" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-08-01T07:28:50.810160900Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="android-custom-viewC:/Users/563/.gradle/caches/modules-2/files-2.1/androidx.viewpager2/viewpager2/1.0.0/3c3569044e6969f1ee5c3aa03b08e6717a2d782f/viewpager2-1.0.0-sources.jar!/androidx/viewpager2/widget/ViewPager2.java_SELECTED" value="ViewPager2" />
     <property name="android-custom-viewC:/Users/sju01/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.2.1/f0f93e67af3f7417bdd560d5142f6dec4fe629c3/recyclerview-1.2.1-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
     <property name="android-custom-viewC:/Users/sju01/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.4.0/51035a8f6342c20d4d8f242d100e6f25e0c271ac/material-1.4.0-sources.jar!/com/google/android/material/bottomnavigation/BottomNavigationView.java_SELECTED" value="BottomNavigationView" />
     <property name="android-custom-viewC:/Users/sju01/AppData/Local/Android/Sdk/sources/android-30/android/widget/Spinner.java_SELECTED" value="Spinner" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../androidworkspace/BoardApp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -145,6 +156,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\korea_project_3\app\src\main\res\drawable" />
       <recent name="C:\koreaIT\project3\app\src\main\res\drawable" />
       <recent name="C:\work-on-Dev\project3\RMC\app\src\main\res\layout" />
     </key>
@@ -158,6 +170,7 @@
       <recent name="com.ridingmate.app.member" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ridingmate.app.fragment.used" />
       <recent name="com.ridingmate.app.fragment.bike" />
       <recent name="com.ridingmate.app.fragment.main" />
     </key>
@@ -415,10 +428,11 @@
     <option name="LAST_COMMIT_MESSAGE" value="PhoneNum testing" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="477" y="266" key="#PSD" timestamp="1627717855550">
+    <state x="477" y="266" key="#PSD" timestamp="1627800007644">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="477" y="266" key="#PSD/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627717855550" />
+    <state x="477" y="266" key="#PSD/0.0.1920.1040/1920.0.1080.1880/3000.1610.1194.794@0.0.1920.1040" timestamp="1627800007644" />
     <state x="3037" y="266" key="#PSD/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627205105761" />
     <state x="2974" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1627132730894">
       <screen x="2560" y="0" width="1920" height="1040" />
@@ -428,10 +442,11 @@
       <screen x="2560" y="0" width="1920" height="1040" />
     </state>
     <state x="3200" y="322" key="#com.intellij.fileTypes.FileTypeChooser/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627033269802" />
-    <state x="814" y="302" key="#com.intellij.ide.util.MemberChooser" timestamp="1627649621888">
+    <state x="814" y="302" key="#com.intellij.ide.util.MemberChooser" timestamp="1627823508971">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="814" y="302" key="#com.intellij.ide.util.MemberChooser/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627649621888" />
+    <state x="814" y="302" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1080.1880/3000.1610.1194.794@0.0.1920.1040" timestamp="1627823508971" />
     <state x="1085" y="406" key="#com.intellij.ide.util.MemberChooser/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@0.0.2560.1400" timestamp="1627123834615" />
     <state x="3374" y="302" key="#com.intellij.ide.util.MemberChooser/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627204304506" />
     <state x="524" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1627751082558">
@@ -443,10 +458,12 @@
       <screen x="2560" y="0" width="1920" height="1040" />
     </state>
     <state x="3268" y="389" width="504" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627044533814" />
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1627400819669">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2308" y="483" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1627827911591">
+      <screen x="1920" y="0" width="1080" height="1880" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627400819669" />
+    <state x="2308" y="483" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.0.1080.1880/-1194.758.1194.794@1920.0.1080.1880" timestamp="1627827911591" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.0.1080.1880/3000.1610.1194.794@0.0.1920.1040" timestamp="1627801470068" />
     <state x="3250" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627034260632" />
     <state x="2652" y="92" width="1736" height="856" key="AVDManager" timestamp="1627207004209">
       <screen x="2560" y="0" width="1920" height="1040" />
@@ -482,25 +499,33 @@
       <screen x="2560" y="0" width="1920" height="1040" />
     </state>
     <state x="3385" y="418" width="601" height="204" key="Github.ShareDialog/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627034372091" />
-    <state width="1877" height="189" key="GridCell.Tab.0.bottom" timestamp="1627739905719">
+    <state width="1877" height="272" key="GridCell.Tab.0.bottom" timestamp="1627831091372">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="189" key="GridCell.Tab.0.bottom/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627739905719" />
+    <state width="1877" height="272" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1080.1880/-1194.758.1194.794@0.0.1920.1040" timestamp="1627831091372" />
+    <state width="1877" height="272" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1080.1880/3000.1610.1194.794@0.0.1920.1040" timestamp="1627824748393" />
     <state width="1877" height="341" key="GridCell.Tab.0.bottom/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627207020357" />
-    <state width="1877" height="189" key="GridCell.Tab.0.center" timestamp="1627739905719">
+    <state width="1877" height="272" key="GridCell.Tab.0.center" timestamp="1627831091372">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="189" key="GridCell.Tab.0.center/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627739905719" />
+    <state width="1877" height="272" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1080.1880/-1194.758.1194.794@0.0.1920.1040" timestamp="1627831091372" />
+    <state width="1877" height="272" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1080.1880/3000.1610.1194.794@0.0.1920.1040" timestamp="1627824748393" />
     <state width="1877" height="341" key="GridCell.Tab.0.center/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627207020357" />
-    <state width="1877" height="189" key="GridCell.Tab.0.left" timestamp="1627739905718">
+    <state width="1877" height="272" key="GridCell.Tab.0.left" timestamp="1627831091372">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="189" key="GridCell.Tab.0.left/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627739905718" />
+    <state width="1877" height="272" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1080.1880/-1194.758.1194.794@0.0.1920.1040" timestamp="1627831091372" />
+    <state width="1877" height="272" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1080.1880/3000.1610.1194.794@0.0.1920.1040" timestamp="1627824748392" />
     <state width="1877" height="341" key="GridCell.Tab.0.left/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627207020357" />
-    <state width="1877" height="189" key="GridCell.Tab.0.right" timestamp="1627739905719">
+    <state width="1877" height="272" key="GridCell.Tab.0.right" timestamp="1627831091372">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="189" key="GridCell.Tab.0.right/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627739905719" />
+    <state width="1877" height="272" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1080.1880/-1194.758.1194.794@0.0.1920.1040" timestamp="1627831091372" />
+    <state width="1877" height="272" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1080.1880/3000.1610.1194.794@0.0.1920.1040" timestamp="1627824748393" />
     <state width="1877" height="341" key="GridCell.Tab.0.right/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627207020357" />
     <state width="1877" height="241" key="GridCell.Tab.1.bottom" timestamp="1627729570124">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -532,10 +557,11 @@
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627715958566" />
     <state x="3112" y="253" key="Vcs.Push.Dialog.v2/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627136687659" />
-    <state x="741" y="298" key="chooseDestDirectoryDialog" timestamp="1627405041536">
+    <state x="741" y="298" key="chooseDestDirectoryDialog" timestamp="1627805956071">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="741" y="298" key="chooseDestDirectoryDialog/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627405041536" />
+    <state x="741" y="298" key="chooseDestDirectoryDialog/0.0.1920.1040/1920.0.1080.1880/3000.1610.1194.794@0.0.1920.1040" timestamp="1627805956071" />
     <state x="3301" y="298" key="chooseDestDirectoryDialog/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627033691108" />
     <state x="3222" y="329" key="com.android.tools.idea.run.deployment.SelectMultipleDevicesDialog" timestamp="1627132639728">
       <screen x="2560" y="0" width="1920" height="1040" />
@@ -549,6 +575,18 @@
       <screen x="2560" y="0" width="1920" height="1040" />
     </state>
     <state x="3408" y="255" key="com.intellij.tools.ToolSelectDialog.dimensionServiceKey/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627132708413" />
+    <state x="616" y="0" width="976" height="1127" key="dock-window-1" timestamp="1627826670748">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="0" width="976" height="1127" key="dock-window-1/0.0.1920.1040/1920.0.1080.1880/-1194.758.1194.794@1920.0.1080.1880" timestamp="1627826670748" />
+    <state x="231" y="0" width="976" height="1127" maximized="true" key="dock-window-2" timestamp="1627826670748">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="231" y="0" width="976" height="1127" maximized="true" key="dock-window-2/0.0.1920.1040/1920.0.1080.1880/-1194.758.1194.794@1920.0.1080.1880" timestamp="1627826670748" />
+    <state x="1951" y="329" width="1096" height="1027" key="dock-window-3" timestamp="1627830603932">
+      <screen x="1920" y="0" width="1080" height="1880" />
+    </state>
+    <state x="1951" y="329" width="1096" height="1027" key="dock-window-3/0.0.1920.1040/1920.0.1080.1880/-1194.758.1194.794@0.0.1920.1040" timestamp="1627830603932" />
     <state x="3199" y="364" key="edit.logcat.filter.dialog.dimensions" timestamp="1627032844704">
       <screen x="2560" y="0" width="1920" height="1040" />
     </state>
@@ -562,9 +600,10 @@
     </state>
     <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627571252678" />
     <state x="3176" y="240" width="672" height="677" key="run.anything.popup/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627132927262" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1627733978666">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1627807282282">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627733978666" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1080.1880/3000.1610.1194.794@0.0.1920.1040" timestamp="1627807282282" />
   </component>
 </project>

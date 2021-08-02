@@ -20,14 +20,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/add_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="15dp"
-                android:src="@mipmap/ic_launcher"
+                android:background="@color/nobackground"
+                android:src="@drawable/write_camera"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,6 +36,8 @@
                 android:id="@+id/used_write_RV"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
                 android:layout_marginTop="15dp"
                 app:layout_constraintBottom_toBottomOf="@+id/add_image"
                 app:layout_constraintEnd_toEndOf="parent"

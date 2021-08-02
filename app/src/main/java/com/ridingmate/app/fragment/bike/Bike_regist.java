@@ -290,8 +290,6 @@ public class Bike_regist extends Fragment {
 
     }
     private void insertBike() {
-
-
         Bike_regist_DAO data=new Bike_regist_DAO(company,model,year,driven,nickname,image,userUid);
         db.collection("mybike").add(data)
                 .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {

@@ -42,6 +42,14 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/activity/member/JoinActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/activity/member/JoinActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/activity/member/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/activity/member/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/activity/member/PhoneNumActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ridingmate/app/activity/member/PhoneNumActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_join.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_join.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/tos_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/tos_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -422,10 +430,10 @@
       <screen x="2560" y="0" width="1920" height="1040" />
     </state>
     <state x="3200" y="322" key="#com.intellij.fileTypes.FileTypeChooser/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627033269802" />
-    <state x="814" y="302" key="#com.intellij.ide.util.MemberChooser" timestamp="1627649621888">
+    <state x="814" y="302" key="#com.intellij.ide.util.MemberChooser" timestamp="1627908881829">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="814" y="302" key="#com.intellij.ide.util.MemberChooser/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627649621888" />
+    <state x="814" y="302" key="#com.intellij.ide.util.MemberChooser/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627908881829" />
     <state x="1085" y="406" key="#com.intellij.ide.util.MemberChooser/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@0.0.2560.1400" timestamp="1627123834615" />
     <state x="3374" y="302" key="#com.intellij.ide.util.MemberChooser/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627204304506" />
     <state x="524" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1627751082558">
@@ -476,25 +484,25 @@
       <screen x="2560" y="0" width="1920" height="1040" />
     </state>
     <state x="3385" y="418" width="601" height="204" key="Github.ShareDialog/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627034372091" />
-    <state width="1877" height="5" key="GridCell.Tab.0.bottom" timestamp="1627799014960">
+    <state width="1877" height="188" key="GridCell.Tab.0.bottom" timestamp="1627887282720">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="5" key="GridCell.Tab.0.bottom/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627799014960" />
+    <state width="1877" height="188" key="GridCell.Tab.0.bottom/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627887282720" />
     <state width="1877" height="341" key="GridCell.Tab.0.bottom/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627207020357" />
-    <state width="1877" height="5" key="GridCell.Tab.0.center" timestamp="1627799014960">
+    <state width="1877" height="188" key="GridCell.Tab.0.center" timestamp="1627887282720">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="5" key="GridCell.Tab.0.center/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627799014960" />
+    <state width="1877" height="188" key="GridCell.Tab.0.center/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627887282720" />
     <state width="1877" height="341" key="GridCell.Tab.0.center/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627207020357" />
-    <state width="1877" height="5" key="GridCell.Tab.0.left" timestamp="1627799014960">
+    <state width="1877" height="188" key="GridCell.Tab.0.left" timestamp="1627887282719">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="5" key="GridCell.Tab.0.left/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627799014960" />
+    <state width="1877" height="188" key="GridCell.Tab.0.left/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627887282719" />
     <state width="1877" height="341" key="GridCell.Tab.0.left/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627207020357" />
-    <state width="1877" height="5" key="GridCell.Tab.0.right" timestamp="1627799014960">
+    <state width="1877" height="188" key="GridCell.Tab.0.right" timestamp="1627887282720">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="5" key="GridCell.Tab.0.right/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627799014960" />
+    <state width="1877" height="188" key="GridCell.Tab.0.right/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627887282720" />
     <state width="1877" height="341" key="GridCell.Tab.0.right/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627207020357" />
     <state width="1877" height="241" key="GridCell.Tab.1.bottom" timestamp="1627729570124">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -526,10 +534,10 @@
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627715958566" />
     <state x="3112" y="253" key="Vcs.Push.Dialog.v2/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627136687659" />
-    <state x="741" y="298" key="chooseDestDirectoryDialog" timestamp="1627405041536">
+    <state x="741" y="298" key="chooseDestDirectoryDialog" timestamp="1627907307387">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="741" y="298" key="chooseDestDirectoryDialog/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627405041536" />
+    <state x="741" y="298" key="chooseDestDirectoryDialog/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627907307387" />
     <state x="3301" y="298" key="chooseDestDirectoryDialog/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627033691108" />
     <state x="3222" y="329" key="com.android.tools.idea.run.deployment.SelectMultipleDevicesDialog" timestamp="1627132639728">
       <screen x="2560" y="0" width="1920" height="1040" />
@@ -547,14 +555,14 @@
       <screen x="2560" y="0" width="1920" height="1040" />
     </state>
     <state x="3199" y="364" key="edit.logcat.filter.dialog.dimensions/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627032844704" />
-    <state x="652" y="277" key="refactoring.ChangeSignatureDialog" timestamp="1627731376622">
+    <state x="652" y="277" key="refactoring.ChangeSignatureDialog" timestamp="1627801425086">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="652" y="277" key="refactoring.ChangeSignatureDialog/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627731376622" />
-    <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1627571252678">
+    <state x="652" y="277" key="refactoring.ChangeSignatureDialog/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627801425086" />
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1627822417781">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627571252678" />
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.-1080.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627822417781" />
     <state x="3176" y="240" width="672" height="677" key="run.anything.popup/2560.0.1920.1040/0.0.2560.1400/4480.0.1920.1040@2560.0.1920.1040" timestamp="1627132927262" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1627733978666">
       <screen x="0" y="0" width="1920" height="1040" />

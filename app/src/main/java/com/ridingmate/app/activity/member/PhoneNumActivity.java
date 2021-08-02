@@ -97,6 +97,8 @@ public class PhoneNumActivity extends AppCompatActivity {
 
 
 
+
+
         //구글 로그인 초기 세팅
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -262,20 +264,28 @@ public class PhoneNumActivity extends AppCompatActivity {
                             FirebaseUser user=mAuth.getCurrentUser();
                             user.delete();
 
+                            phoneNum=et_phone.getText().toString();
+
                             if(clicked.equals("normal")){
-                                Log.e(TAG, "일반 로그인 시작");
+                                Log.e("asd", "일반 로그인 시작");
                                 Intent intent=new Intent(PhoneNumActivity.this, JoinActivity.class);
-                                Bundle bundle = new Bundle();
-                                bundle.putString("phoneNum", phoneNum);
-                                intent.putExtras(bundle);
+
+                                Log.e("asd", "핸드폰번호 넘기기 바로전"+phoneNum);
+                                Bundle phoneBundle = new Bundle();
+                                phoneBundle.putString("phoneNum", phoneNum);
+                                intent.putExtras(phoneBundle);
+                                finish();
+
                                 startActivity(intent);
+
 
                             }else if(clicked.equals("google")){
                                 Log.e(TAG, "구글 로그인 시작");
                                 signIn();
+                                updatePhoneNum();
                             }
                             //updateUI(user);
-                            updatePhoneNum();
+
                         } else {
                             // Sign in failed, display a message and update the UI
                             Log.e(TAG, "signInWithCredential:failure", task.getException());
@@ -309,8 +319,6 @@ public class PhoneNumActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.e(TAG, "핸드폰 db넣기 성공");
-
-
 
                         Intent intent = new Intent(PhoneNumActivity.this, MainActivity.class);
                         startActivity(intent);
@@ -369,6 +377,7 @@ public class PhoneNumActivity extends AppCompatActivity {
 
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+
                         } else {
                             // If sign in fails, display a message to the user.
 //                            Snackbar.make(findViewById(R.id.layout_main), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();

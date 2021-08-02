@@ -97,12 +97,20 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
+                    <TextView
+                        android:id="@+id/emailCheckText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="#FF0000"
+                        android:textSize="12sp" />
+
                     <EditText
                         android:id="@+id/et_name"
                         style="@style/modifiedEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/ViewsMargin"
+                        android:layout_marginTop="5dp"
                         android:hint="이름"
                         android:inputType="textPersonName" />
 
@@ -115,14 +123,6 @@
                         android:hint="비밀번호"
                         android:inputType="textPassword" />
 
-                    <EditText
-                        android:id="@+id/et_passwordCheck"
-                        style="@style/modifiedEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/ViewsMargin"
-                        android:hint="비밀번호 확인"
-                        android:inputType="textPassword" />
 
                     <EditText
                         android:id="@+id/et_phone"
@@ -132,6 +132,15 @@
                         android:layout_marginTop="@dimen/ViewsMargin"
                         android:hint="Phone Number"
                         android:inputType="phone" />
+
+                    <TextView
+                        android:id="@+id/txt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="전화 번호 인증완료"
+                        android:textColor="#FF0000"
+                        android:textSize="12sp" />
 
                     <Button
                         android:id="@+id/bt_regist"
@@ -188,7 +197,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <CheckBox
-                            android:id="@+id/agreeAll"
+                            android:id="@+id/ch_agreeAll"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -204,14 +213,23 @@
                         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
                         <CheckBox
+                            android:id="@+id/ch_overForteen"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginLeft="4dp"
+                            android:text="만 14세 이상 확인(필수)"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <CheckBox
                             android:id="@+id/ch_agreement"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginLeft="5dp"
                             android:text="이용약관 동의(필수)"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintEnd_toStartOf="@+id/bt_agreement"
+                            app:layout_constraintStart_toStartOf="@+id/ch_overForteen"
+                            app:layout_constraintTop_toBottomOf="@+id/ch_overForteen" />
 
                         <ImageView
                             android:id="@+id/bt_agreement"
@@ -222,31 +240,8 @@
                             app:layout_constraintBottom_toBottomOf="@+id/ch_agreement"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="1.0"
-                            app:layout_constraintStart_toEndOf="@+id/ch_agreement"
+                            app:layout_constraintStart_toEndOf="@+id/ch_overForteen"
                             app:layout_constraintTop_toTopOf="@+id/ch_agreement"
-                            app:layout_constraintVertical_bias="0.571"
-                            app:srcCompat="@drawable/front" />
-
-                        <CheckBox
-                            android:id="@+id/ch_overForteen"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:text="만 14세 이상 확인(필수)"
-                            app:layout_constraintEnd_toStartOf="@+id/bt_overForteen"
-                            app:layout_constraintStart_toStartOf="@+id/ch_agreement"
-                            app:layout_constraintTop_toBottomOf="@+id/ch_agreement" />
-
-                        <ImageView
-                            android:id="@+id/bt_overForteen"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginRight="5dp"
-                            app:layout_constraintBottom_toBottomOf="@+id/ch_overForteen"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="1.0"
-                            app:layout_constraintStart_toEndOf="@+id/ch_agreement"
-                            app:layout_constraintTop_toTopOf="@+id/ch_overForteen"
                             app:layout_constraintVertical_bias="0.571"
                             app:srcCompat="@drawable/front" />
 
@@ -255,8 +250,8 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="개인정보 수집 이용 동의(필수)"
-                            app:layout_constraintStart_toStartOf="@+id/ch_overForteen"
-                            app:layout_constraintTop_toBottomOf="@+id/ch_overForteen" />
+                            app:layout_constraintStart_toStartOf="@+id/ch_agreement"
+                            app:layout_constraintTop_toBottomOf="@+id/ch_agreement" />
 
                         <ImageView
                             android:id="@+id/bt_personalAgree"
@@ -276,7 +271,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="위치기반 서비스 이용약관 동의(선택)"
-                            app:layout_constraintStart_toStartOf="@+id/ch_overForteen"
+                            app:layout_constraintStart_toStartOf="@+id/ch_agreement"
                             app:layout_constraintTop_toBottomOf="@+id/ch_personalAgree" />
 
                         <ImageView

@@ -1,4 +1,4 @@
-package com.ridingmate.app.util.main;
+package com.ridingmate.app.util.main.maintenance;
 
 import android.util.Log;
 import android.view.LayoutInflater;

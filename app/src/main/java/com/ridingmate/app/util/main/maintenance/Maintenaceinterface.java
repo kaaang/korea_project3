@@ -1,4 +1,4 @@
-package com.ridingmate.app.util.main;
+package com.ridingmate.app.util.main.maintenance;
 
 import android.widget.TextView;
 
@@ -11,6 +11,7 @@ public interface Maintenaceinterface {
     TextView Tv_maintenance_list(TextView view);
     TextView Tv_maintenance_location(TextView view);
     TextView Tv_maintenance_regist(TextView view);
+    TextView Tv_maintenance_detail(TextView view);
     String Cel_Data(String str);
     void Maintenace_ChangeTextView(int id, boolean check);
 }

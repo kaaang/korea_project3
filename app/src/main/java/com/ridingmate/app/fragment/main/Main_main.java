@@ -3,44 +3,48 @@ package com.ridingmate.app.fragment.main;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.ridingmate.app.R;
 import com.ridingmate.app.activity.main.MainActivity;
+import com.ridingmate.app.util.main.FireBaseInterface;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class Main_main extends Fragment {
+    private EditText tx_litter, tx_price, tx_station;
     // 팝업
     private Button btn_showGasStation;
-    private TextView bt_ok;
+    private TextView bt_ok, bt_list;
     // 날짜 선택
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
-
     private int mYear = 0, mMonth = 0, mDay = 0;
+    private  String selected_date;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_main, container, false);
         ImageView imageView = view.findViewById(R.id.card_background);
         imageView.setColorFilter(R.color.black);
+        FireBaseInterface.m_interface.Tv_litter((TextView)view.findViewById(R.id.milegae_litter));
+        FireBaseInterface.m_interface.Tv_date((TextView)view.findViewById(R.id.milegae_date));
+        FireBaseInterface.m_interface.InitFirebase();
+        FireBaseInterface.m_interface.downloadMileageData();
 
         // -------------------------------------------------------------------주유 기록 등록
         btn_showGasStation = (Button) view.findViewById(R.id.btn_showGasStation);
@@ -48,18 +52,29 @@ public class Main_main extends Fragment {
             @Override
             public void onClick(View v) {
                 PopupWindow popupWindow = new PopupWindow(v);
-
+                /* ----------------------------------------팝업---------------------------------------------------------------*/
                 View popup = inflater.inflate(R.layout.fragment_main_mileage_regist, null);
                 popupWindow.setContentView(popup);
                 popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
                 popupWindow.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+
+                popupWindow.setFocusable(true);
                 popupWindow.setTouchable(true);
+                popupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
+
+                // 주유 기록 등록
+                tx_litter= (EditText)popup.findViewById(R.id.milegae_text_litter);
+                tx_price= (EditText)popup.findViewById(R.id.milegae_text_price);
+                tx_station= (EditText)popup.findViewById(R.id.milegae_text_station);
+
+
 
                 // ---------------------날짜 선택
                 dateButton = (Button) popup.findViewById(R.id.date_picker);
                 dateButton.setText(getTodaysDate());
                 initDatePicker();
-                
+
                 dateButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -67,20 +82,35 @@ public class Main_main extends Fragment {
                     }
                 });
 
-                // ---------------------팝업 확인 버튼(DB연결하면 바로 insert 되게끔)
-                bt_ok = (TextView) view.findViewById(R.id.bt_ok);
-                TextView bt_ok = popupWindow.getContentView().findViewById(R.id.bt_ok);
+
+                // Firebase
+
+
+                // ---------------------팝업 버튼
+                // 확인
+                bt_ok = popupWindow.getContentView().findViewById(R.id.bt_ok);
                 bt_ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                  /*      String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();*/
+                        popupWindow.dismiss();
+                        FireBaseInterface.m_interface.uploadMileageData(selected_date, tx_station.getText().toString(), tx_litter.getText().toString() + "L", tx_price.getText().toString() + "원");
+                        FireBaseInterface.m_interface.downloadMileageData();
+                    }
+                });
+                // 취소
+                bt_list = popupWindow.getContentView().findViewById(R.id.bt_list);
+                bt_list.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         popupWindow.dismiss();
                     }
                 });
-                popupWindow.showAsDropDown(v);
+               popupWindow.showAsDropDown(v);
+
+
             }
         });
-
-
         return view;
     }
 
@@ -99,8 +129,8 @@ public class Main_main extends Fragment {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
-                String date = makeDateString(day, month, year);
-                dateButton.setText(date);
+                selected_date = makeDateString(day, month, year);
+                dateButton.setText(selected_date);
             }
         };
 

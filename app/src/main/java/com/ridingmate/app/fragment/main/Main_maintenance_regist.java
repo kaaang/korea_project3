@@ -8,20 +8,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.ridingmate.app.R;
 import com.ridingmate.app.activity.main.MainActivity;
-import com.ridingmate.app.util.main.Maintenaceinterface;
-import com.ridingmate.app.util.main.MaintenanceConstants;
+import com.ridingmate.app.util.main.FireBaseInterface;
+import com.ridingmate.app.util.main.maintenance.MaintenanceConstants;
 
 import java.util.Calendar;
 
 public class Main_maintenance_regist extends Fragment {
     // 등록 수정 xml 공통 버튼
-    private TextView btn_list;
+    private TextView btn_list, btn_regist;
+
+    // EditText
+    EditText regist_item, regist_date, regist_ServiceCenter, regist_detail;
+
     // 프레그먼트 업데이트(등록, 수정 넘어갈때)
     public  static  boolean check_actiive = false;
     public  static  boolean check_edit;
@@ -37,11 +42,31 @@ public class Main_maintenance_regist extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_main_maintenance_regist, container, false);
 
-        MaintenanceConstants.m_interface.Tv_maintenance_date((TextView) view.findViewById(R.id.regist_maintenance_date));
+
         MaintenanceConstants.m_interface.Tv_maintenance_list((TextView) view.findViewById(R.id.regist_maintenance_list));
+        MaintenanceConstants.m_interface.Tv_maintenance_date((TextView) view.findViewById(R.id.regist_maintenance_date));
         MaintenanceConstants.m_interface.Tv_maintenance_location((TextView) view.findViewById(R.id.regist_maintenance_location));
+
         MaintenanceConstants.m_interface.Tv_maintenance_regist((TextView) view.findViewById(R.id.btn_maintenance_regist));
+        MaintenanceConstants.m_interface.Tv_maintenance_detail((TextView) view.findViewById(R.id.regist_maintenance_detail));
+
         MaintenanceConstants.m_interface.Maintenace_ChangeTextView(check_id, check_edit);
+        
+        // FireBase 등록 연결
+        FireBaseInterface.m_interface.InitFirebase();
+        // EditText
+        regist_item= (EditText)view.findViewById(R.id.regist_maintenance_list);
+        regist_ServiceCenter= (EditText)view.findViewById(R.id.regist_maintenance_location);
+        regist_detail= (EditText)view.findViewById(R.id.regist_maintenance_detail) ;
+
+        btn_regist=(TextView)view.findViewById(R.id.btn_maintenance_regist);
+        btn_regist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FireBaseInterface.m_interface.uploadMaintenanceData(regist_item.getText().toString(), getTodaysDate(), regist_ServiceCenter.getText().toString(), regist_detail.getText().toString());
+                MainActivity.showPage(0);
+            }
+        });
         btn_list = (TextView) view.findViewById(R.id.btn_maintenance_list);
         btn_list.setOnClickListener(new View.OnClickListener() {
             @Override

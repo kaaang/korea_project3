@@ -163,18 +163,9 @@
                 android:textColor="@color/black"
                 android:textSize="15dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="130dp"
-                android:gravity="top|left"
-                android:text="L"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
 
             <TextView
-                android:id="@+id/text_litter"
+                android:id="@+id/milegae_litter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -188,6 +179,7 @@
             <!--                            최근 주유 일시                           -->
 
             <TextView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="150dp"
@@ -198,6 +190,7 @@
                 android:textSize="15dp" />
 
             <TextView
+                android:id="@+id/milegae_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="150dp"

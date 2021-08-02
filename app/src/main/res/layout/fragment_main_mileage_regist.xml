@@ -67,28 +67,7 @@
                     android:gravity="center"
                     android:textStyle="bold"
                     android:textSize="15dp"/>
-   <!--             <Spinner
-                    android:id="@+id/spinner"
-                    android:onClick="Click"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="20dp"
-                    app:layout_constraintLeft_toRightOf="@+id/milegae_date"
-                    app:layout_constraintTop_toTopOf="parent"/>-->
-    <!--            <TextView
-                    android:id="@+id/tv_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="20dp"
-                    app:layout_constraintLeft_toRightOf="@+id/milegae_date"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:text="2021-07-30"/>-->
+
                 <Button
                     android:id="@+id/date_picker"
                     android:layout_width="250dp"
@@ -106,8 +85,7 @@
 
                     android:backgroundTint="#FDFCFC"
                     />
-                <!-- android:datePickerMode="spinner"
-                           android:calendarViewShown="false" -->
+
                 <TextView
                     android:id="@+id/milegae_litter"
                     android:layout_width="50dp"

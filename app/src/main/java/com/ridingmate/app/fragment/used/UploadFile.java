@@ -24,22 +24,18 @@ import java.util.Date;
 
 
 public class UploadFile {
-    private Uri filePath;
     private Activity activity;
     private FirebaseUser firebaseUser;
-    private int i;
 
 
-    public UploadFile(Uri filePath, Activity activity, FirebaseUser firebaseUser,int i) {
-        this.filePath = filePath;
+    public UploadFile( Activity activity, FirebaseUser firebaseUser) {
         this.activity = activity;
         this.firebaseUser = firebaseUser;
-        this.i=i;
 
-        uploadFile();
     }
 
-    private void uploadFile() {
+    public String uploadFile(Uri filePath,int i) {
+        String filename = null;
         //업로드할 파일이 있으면 수행
         if (filePath != null) {
             //업로드 진행 Dialog 보이기
@@ -53,7 +49,7 @@ public class UploadFile {
             //Unique한 파일명을 만들자.
             SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMHH_mmssSS"+i);
             Date now = new Date();
-            String filename = formatter.format(now) + ".png";
+            filename = formatter.format(now);
             //storage 주소와 폴더 파일명을 지정해 준다.
             StorageReference storageRef = storage.getReferenceFromUrl("gs://running-mate-crew.appspot.com").child("Used_img/"+ firebaseUser.getUid()+"/"+ filename);
 
@@ -95,6 +91,8 @@ public class UploadFile {
         } else {
             Toast.makeText(activity.getApplicationContext(), "파일을 먼저 선택하세요.", Toast.LENGTH_SHORT).show();
         }
+
+        return filename;
     }
 
 }

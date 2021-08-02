@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -32,6 +33,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageException;
@@ -40,11 +44,13 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.ridingmate.app.R;
 import com.ridingmate.app.activity.main.MainActivity;
+import com.ridingmate.app.activity.member.JoinActivity;
 import com.ridingmate.app.activity.member.UserAccount;
 import com.ridingmate.app.activity.used.UsedActivity;
 import com.ridingmate.app.util.used.UsedListData;
 import com.ridingmate.app.util.used.UsedWriteAdapter;
 import com.ridingmate.app.util.used.UsedWriteData;
+import com.ridingmate.app.util.used.Used_regist;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -53,12 +59,17 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
 public class Used_write extends Fragment {
+
+    EditText used_write_title,used_write_welth,used_content;
+
     String TAG = this.getClass().getName();
 
     private static final int REQUEST_CODE=0;
@@ -80,12 +91,13 @@ public class Used_write extends Fragment {
     FirebaseUser firebaseUser;
 
     UploadFile upload;
+    String save_num;
+
 
 
 
     @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
 
 
         mfireFirebaseAuth=FirebaseAuth.getInstance();
@@ -130,6 +142,11 @@ public class Used_write extends Fragment {
             }
         });
 
+//        EditText used_write_title,used_write_welth,used_content;
+        used_write_title=view.findViewById(R.id.used_write_title);
+        used_write_welth=view.findViewById(R.id.used_write_welth);
+        used_content=view.findViewById(R.id.used_content);
+
 
         return view;
     }
@@ -171,14 +188,95 @@ public class Used_write extends Fragment {
 
     public void regist(){
 
+        List<String> nameArr = new ArrayList<>();
+        upload = new UploadFile(getActivity(), firebaseUser);
         for(int i=0;i<filePathArray.size();i++){
-            upload = new UploadFile((Uri) filePathArray.get(i), getActivity(), firebaseUser, i);
+            String name=upload.uploadFile((Uri) filePathArray.get(i),i);
+            nameArr.add(name);
         }
+       
 
+        write_store(nameArr);
+        nameArr.clear();
 
 
     }
     
+
+    public void write_store(List list){
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMHH_mmssSS");
+        Date now = new Date();
+        String time = formatter.format(now) ;
+
+
+        Map<String, String> input_data = new HashMap<>();
+        input_data.put("UID", firebaseUser.getUid());
+        input_data.put("time", time);
+        input_data.put("title", used_write_title.getText().toString());
+        input_data.put("welth",used_write_welth.getText().toString());
+        input_data.put("content",used_content.getText().toString());
+
+        int i=0;
+        for(Object obj:list){
+            input_data.put(i+"img",obj.toString());
+            i++;
+        }
+
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+        db.collection("used").document("used_start").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                String num=documentSnapshot.getString("number");
+                save_num=num;
+                input_data.put("used_id",save_num);
+
+                db.collection("used").document(save_num).set(input_data).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        int plus = Integer.parseInt(save_num);
+                        plus++;
+
+                        Map<String, String> number = new HashMap<>();
+                        number.put("number",""+plus);
+                        db.collection("used").document("used_start").set(number);
+
+                        MainActivity main =  (MainActivity) getContext();
+                        main.showPage(5);
+                        Toast.makeText(getActivity(), "게시글 등록 완료", Toast.LENGTH_SHORT).show();
+
+//                        input_data.put("UID", firebaseUser.getUid());
+//                        input_data.put("time", time);
+//                        input_data.put("title", used_write_title.getText().toString());
+//                        input_data.put("welth",used_write_welth.getText().toString());
+//                        input_data.put("content",used_content.getText().toString());
+
+                        used_write_title.setText("");
+                        used_write_welth.setText("");
+                        used_content.setText("");
+                        input_data.clear();
+                        filePathArray.clear();
+                        arrayList.clear();
+                        usedWriteAdapter.notifyDataSetChanged();
+                    }
+                });
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+    }
 
 
 

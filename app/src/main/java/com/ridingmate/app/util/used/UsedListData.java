@@ -1,27 +1,35 @@
 package com.ridingmate.app.util.used;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
+
+import java.net.URI;
+
 public class UsedListData {
-    private int used_thumb;
+    private Uri used_thumb;
     private String used_thumbSrc;
     private String used_title;
     private String model_type;
     private String used_comment_cont;
     private String used_welth;
 
-    public UsedListData(int used_thumb, String used_thumbSrc, String used_title, String model_type, String used_comment_cont, String used_welth) {
-        this.used_thumb = used_thumb;
-        this.used_thumbSrc = used_thumbSrc;
-        this.used_title = used_title;
-        this.model_type = model_type;
-        this.used_comment_cont = used_comment_cont;
-        this.used_welth = used_welth;
+//    public UsedListData(int used_thumb, String used_thumbSrc, String used_title, String model_type, String used_comment_cont, String used_welth) {
+//        this.used_thumb = used_thumb;
+//        this.used_thumbSrc = used_thumbSrc;
+//        this.used_title = used_title;
+//        this.model_type = model_type;
+//        this.used_comment_cont = used_comment_cont;
+//        this.used_welth = used_welth;
+//    }
+    public UsedListData() {
+
     }
 
-    public int getUsed_thumb() {
+    public Uri getUsed_thumb() {
         return used_thumb;
     }
 
-    public void setUsed_thumb(int used_thumb) {
+    public void setUsed_thumb(Uri used_thumb) {
         this.used_thumb = used_thumb;
     }
 

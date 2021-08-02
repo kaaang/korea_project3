@@ -1,5 +1,6 @@
 package com.ridingmate.app.util.used;
 
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,8 +35,10 @@ public class UsedWriteAdapter extends RecyclerView.Adapter<UsedWriteAdapter.Cust
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull UsedWriteAdapter.CustomViewHolder holder, int position) {
-        holder.used_write_thumb.setImageResource(arrayList.get(position).getUsed_write_thumb());
+//        holder.used_write_thumb.setImageResource(arrayList.get(position).getUsed_write_thumb());
+//        Bitmap bitmap;
 
+        holder.used_write_thumb.setImageBitmap(arrayList.get(position).getBitmap());
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(v -> {
             String title= "이미지 왜 눌러 임마";

@@ -1,17 +1,19 @@
 package com.ridingmate.app.util.used;
 
+import android.graphics.Bitmap;
+
 public class UsedWriteData {
-    private int used_write_thumb;
+    private Bitmap bitmap;
 
-    public UsedWriteData(int used_write_thumb) {
-        this.used_write_thumb = used_write_thumb;
+    public UsedWriteData(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 
-    public int getUsed_write_thumb() {
-        return used_write_thumb;
+    public Bitmap getBitmap() {
+        return bitmap;
     }
 
-    public void setUsed_write_thumb(int used_write_thumb) {
-        this.used_write_thumb = used_write_thumb;
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 }

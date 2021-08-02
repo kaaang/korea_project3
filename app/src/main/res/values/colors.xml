@@ -17,5 +17,6 @@
     <color name="themeColor">#F54712</color>
     <color name="primaryTextColor">#F57254</color>
     <color name="transparent">#66000000</color>
+    <color name="nobackground">#00000000</color>
 
 </resources>

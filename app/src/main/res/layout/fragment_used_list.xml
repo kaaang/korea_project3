@@ -54,4 +54,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
+    <ImageButton
+        android:id="@+id/write_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/nobackground"
+        app:layout_constraintBottom_toBottomOf="@+id/used_RV"
+        app:layout_constraintEnd_toEndOf="@+id/used_RV"
+        app:srcCompat="@drawable/used_write" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

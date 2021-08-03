@@ -15,19 +15,19 @@
         android:theme="@style/Theme.RMC"
         android:usesCleartextTraffic="true">
         <activity android:name=".activity.member.PhoneNumActivity"
-            android:theme="@style/Theme.RMC.NoActionBar">
+            >
 
         </activity>
         <activity android:name=".activity.bike.BikeActivity" />
         <activity android:name=".activity.used.UsedActivity" />
         <activity
             android:name=".activity.member.JoinActivity"
-            android:theme="@style/Theme.RMC.NoActionBar" >
+             >
 
         </activity>
         <activity
             android:name=".activity.member.LoginActivity"
-            android:theme="@style/Theme.RMC.NoActionBar">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.main.MainActivity"
-            android:theme="@style/Theme.RMC.NoActionBar"
+
             android:windowSoftInputMode="adjustPan">
         </activity>
     </application>

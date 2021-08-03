@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ridingmate.app.R;
-import com.ridingmate.app.util.main.MaintenanceAdpter;
-import com.ridingmate.app.util.main.MaintenanceDAO;
 import com.ridingmate.app.util.main.MyBikeData;
 import com.ridingmate.app.util.main.SettingAdapter;
 import com.ridingmate.app.util.used.UsedListAdapter;

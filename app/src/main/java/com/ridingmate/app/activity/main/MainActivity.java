@@ -7,6 +7,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,14 +18,28 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.ridingmate.app.R;
+import com.ridingmate.app.fragment.bike.Bike_detail;
 import com.ridingmate.app.util.navi.MainBottomNaviListener;
 import com.ridingmate.app.util.pageAdapter.PageAdapter;
 
+import java.util.ArrayList;
 
+<<<<<<< HEAD
 public class MainActivity extends AppCompatActivity {
     public String data;
+=======
+
+public class MainActivity extends AppCompatActivity{
+>>>>>>> sukho2
     // 네비게이션 불러올 객체
     BottomNavigationView bottomNavigationView;
     // 프래그먼트 관리 어댑터
@@ -36,6 +51,21 @@ public class MainActivity extends AppCompatActivity {
     String[] category=null;
     // 주유 등록시 context접근 필요하여 선언
     public  static Context  _main;
+
+    //파이어베이스 관련
+    FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+    FirebaseFirestore db=FirebaseFirestore.getInstance();
+
+    //스피너관련
+    ArrayAdapter adapter;
+    ArrayList mybikeUid=new ArrayList();
+    ArrayList mybike=new ArrayList();
+    ArrayList spinnerList=new ArrayList();
+    String selectedBikeUid;
+    Spinner spinner;
+
+    Bike_detail bike_detail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,11 +115,11 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         MenuItem item=menu.findItem(R.id.bike_spinner);
-        Spinner spinner=(Spinner) item.getActionView();
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.my_bike, R.layout.bike_spinner);
-        adapter.setDropDownViewResource(R.layout.bike_spinner);
+        spinner=(Spinner) item.getActionView();
+        getMybike();
+        adapter = new ArrayAdapter(this,R.layout.bike_spinner,spinnerList);
         spinner.setAdapter(adapter);
+
 
 
         return super.onCreateOptionsMenu(menu);
@@ -105,7 +135,59 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void getMybike(){
+        //어레이 초기화
+        mybike.clear();
+        spinnerList.clear();
+        mybikeUid.clear();
 
+        db.collection("mybike")
+                .whereEqualTo("uid", firebaseAuth.getCurrentUser().getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            if (task.getResult().isEmpty()){
+                                spinnerList.add("바이크를 등록 하세요");
+                                adapter.notifyDataSetChanged();
+                            }else {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    Log.e("asd", document.getId() + " => " + document.getData());
+                                    mybike.add(document);
+                                    spinnerList.add(document.getData().get("nickname"));
+                                    mybikeUid.add(document.getId());
+                                    adapter.notifyDataSetChanged();
+                                    setSpinner();
+                                }
+                            }
+                        } else {
+                            Log.e("asd", "Error getting documents: ", task.getException());
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("asd", "Error getting documents: "+e);
+                    }
+                });
+    }
 
+    public void setSpinner(){
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedBikeUid= (String) mybikeUid.get(position);
+                Log.e("asd", selectedBikeUid);
+                bike_detail= (Bike_detail) pageAdapter.pages[9];
+                bike_detail.getDetail((QueryDocumentSnapshot) mybike.get(position));
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
 }

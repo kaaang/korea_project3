@@ -106,6 +106,8 @@ public class Bike_regist extends Fragment {
                 Toast.makeText(getContext(),"바이크 선택을 완료 해 주세요.",Toast.LENGTH_SHORT).show();
             }else if (driven.equals("")){
                 Toast.makeText(getContext(),"주행거리를 입력 해 주세요.",Toast.LENGTH_SHORT).show();
+            }else if (nickname.equals("")){
+                Toast.makeText(getContext(),"닉네임을 입력 해 주세요.",Toast.LENGTH_SHORT).show();
             }else{
                 insertBike();
             }

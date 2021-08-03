@@ -1,6 +1,8 @@
-package com.ridingmate.app.util.main;
+package com.ridingmate.app.util.main.maintenance;
 
 import android.widget.TextView;
+
+import com.ridingmate.app.util.main.FireBaseInterface;
 
 import java.util.ArrayList;
 
@@ -16,6 +18,7 @@ public class MaintenanceConstants {
         private TextView  list;
         private TextView location;
         private TextView regist;
+        private TextView detail;
         private String celDate;
         public  ArrayList<MaintenanceDAO> DAO_arrayList(ArrayList<MaintenanceDAO> list){
             arrayList = list;
@@ -37,6 +40,10 @@ public class MaintenanceConstants {
             regist = view;
             return view;
         }
+        public TextView Tv_maintenance_detail(TextView view){
+            detail = view;
+            return view;
+        }
         public  String Cel_Data(String str){
             celDate = str;
             return str;
@@ -46,15 +53,17 @@ public class MaintenanceConstants {
             if (check) {
                 MaintenanceDAO dao = arrayList.get(id);
                 //현제 데이터 가져오기
-                date.setText(dao.getItem_maintenance_date());
                 list.setText(dao.getItem_maintenance());
+                date.setText(dao.getItem_maintenance_date());
                 location.setText(dao.getItem_maintenance_location());
+                detail.setText(dao.getMaintenace_detail());
                 regist.setText("수정");
             }
             else {
-                date.setText(celDate);
                 list.setText("");
+                date.setText(celDate);
                 location.setText("");
+                detail.setText("");
                 regist.setText("등록");
             }
         }

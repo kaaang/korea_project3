@@ -16,9 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ridingmate.app.R;
 import com.ridingmate.app.activity.main.MainActivity;
-import com.ridingmate.app.util.main.MaintenanceAdpter;
-import com.ridingmate.app.util.main.MaintenanceDAO;
-import com.ridingmate.app.util.main.MaintenanceConstants;
+import com.ridingmate.app.util.main.maintenance.MaintenanceAdpter;
+import com.ridingmate.app.util.main.maintenance.MaintenanceDAO;
+import com.ridingmate.app.util.main.maintenance.MaintenanceConstants;
 
 import java.util.ArrayList;
 import java.util.Calendar;

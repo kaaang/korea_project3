@@ -1,9 +1,5 @@
-package com.ridingmate.app.util.main;
+package com.ridingmate.app.util.main.maintenance;
 
-
-import android.widget.TextView;
-
-import com.ridingmate.app.fragment.main.Main_maintenance_list;
 
 public class MaintenanceDAO {
     public static String item_maintenance;
@@ -50,4 +46,5 @@ public class MaintenanceDAO {
     public static void setMaintenace_detail(String maintenace_detail) {
         MaintenanceDAO.maintenace_detail = maintenace_detail;
     }
+
 }

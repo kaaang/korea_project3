@@ -131,6 +131,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/ViewsMargin"
                         android:hint="Phone Number"
+                        android:enabled="false"
                         android:inputType="phone" />
 
                     <TextView

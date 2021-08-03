@@ -40,7 +40,6 @@ public class UsedListAdapter extends RecyclerView.Adapter<UsedListAdapter.Custom
         context= view.getContext();
         CustomViewHolder holder=new CustomViewHolder(view);
 
-
         return holder;
     }
 

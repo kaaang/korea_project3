@@ -79,11 +79,12 @@
                                     android:textSize="16sp" />
 
                                 <TextView
+                                    android:id="@+id/HP_rpm"
                                     android:layout_width="89dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="3"
-                                    android:text="test"
-                                    android:textSize="20sp"
+                                    android:text="Power HP/Power Benchmark RPM"
+                                    android:textSize="10sp"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -94,11 +95,12 @@
                                     android:textSize="16sp" />
 
                                 <TextView
+                                    android:id="@+id/Bore_Stroke"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="3"
-                                    android:text="test"
-                                    android:textSize="20sp"
+                                    android:text="Bore mm x Stroke mm"
+                                    android:textSize="10sp"
                                     android:textStyle="bold" />
 
                             </TableRow>
@@ -115,11 +117,12 @@
                                     android:textSize="16sp" />
 
                                 <TextView
+                                    android:id="@+id/Torque"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="3"
-                                    android:text="test"
-                                    android:textSize="20sp"
+                                    android:text="Torque Nm x Torque Benchmark RPM"
+                                    android:textSize="5sp"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -130,6 +133,7 @@
                                     android:textSize="16sp" />
 
                                 <TextView
+                                    android:id="@+id/Compression_Ratio"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="3"
@@ -230,6 +234,7 @@
                                     android:textSize="16sp" />
 
                                 <TextView
+                                    android:id="@+id/Gearbox"
                                     android:layout_width="89dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="3"
@@ -245,6 +250,7 @@
                                     android:textSize="16sp" />
 
                                 <TextView
+                                    android:id="@+id/Front_suspension"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="3"
@@ -266,6 +272,7 @@
                                     android:textSize="16sp" />
 
                                 <TextView
+                                    android:id="@+id/Rear_suspension"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="3"
@@ -281,6 +288,7 @@
                                     android:textSize="16sp" />
 
                                 <TextView
+                                    android:id="@+id/Front_brakes"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="3"
@@ -310,6 +318,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/Rear_brakes"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="2"
@@ -415,7 +424,7 @@
                                     android:textSize="16sp" />
 
                                 <TextView
-                                    android:id="@+id/firestore_test"
+                                    android:id="@+id/Overall_height_mm"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="3"
@@ -431,6 +440,7 @@
                                     android:textSize="16sp" />
 
                                 <TextView
+                                    android:id="@+id/Dry_weight_kg"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="3"
@@ -452,6 +462,7 @@
                                     android:textSize="16sp" />
 
                                 <TextView
+                                    android:id="@+id/Overall_width_mm"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="3"
@@ -467,6 +478,7 @@
                                     android:textSize="16sp" />
 
                                 <TextView
+                                    android:id="@+id/Fuel_capacity_liters"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="3"
@@ -488,6 +500,7 @@
                                     android:textSize="16sp" />
 
                                 <TextView
+                                    android:id="@+id/Seat_height_mm"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="3"
@@ -503,6 +516,7 @@
                                     android:textSize="16sp" />
 
                                 <TextView
+                                    android:id="@+id/Front_tyre"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="3"
@@ -524,8 +538,9 @@
                                     android:textSize="16sp" />
 
                                 <TextView
+                                    android:id="@+id/Wheelbase_mm"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="match_parent"
                                     android:layout_weight="3"
                                     android:text="test"
                                     android:textSize="20sp"
@@ -539,6 +554,7 @@
                                     android:textSize="16sp" />
 
                                 <TextView
+                                    android:id="@+id/Rear_tyre"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="3"
@@ -560,6 +576,7 @@
                                     android:textSize="16sp" />
 
                                 <TextView
+                                    android:id="@+id/Overall_length_mm"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="3"

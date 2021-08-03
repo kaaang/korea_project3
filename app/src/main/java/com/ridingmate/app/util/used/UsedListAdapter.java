@@ -1,6 +1,7 @@
 package com.ridingmate.app.util.used;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +12,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentFactory;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.ridingmate.app.R;
+import com.ridingmate.app.activity.main.MainActivity;
+import com.ridingmate.app.fragment.used.Used_detail;
 import com.ridingmate.app.fragment.used.Used_list;
 
 import org.jetbrains.annotations.NotNull;
@@ -25,10 +29,13 @@ public class UsedListAdapter extends RecyclerView.Adapter<UsedListAdapter.Custom
     private ArrayList<UsedListData> arrayList;
     private FragmentActivity activity;
     Context context;
+    MainActivity main;
 
-    public UsedListAdapter(ArrayList<UsedListData> arrayList, FragmentActivity activity) {
+    public UsedListAdapter(ArrayList<UsedListData> arrayList, FragmentActivity activity, MainActivity main) {
         this.arrayList = arrayList;
         this.activity= activity;
+        this.main = main;
+
     }
 
     @NonNull
@@ -60,11 +67,12 @@ public class UsedListAdapter extends RecyclerView.Adapter<UsedListAdapter.Custom
         holder.model_type.setText(arrayList.get(position).getModel_type());
         holder.used_comment_cont.setText(arrayList.get(position).getUsed_comment_cont());
         holder.used_welth.setText(arrayList.get(position).getUsed_welth());
+        holder.used_id.setText(arrayList.get(position).getUsed_id());
 
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(v -> {
-            String title= holder.used_title.getText().toString();
-            Toast.makeText(v.getContext(),title,Toast.LENGTH_SHORT).show();
+            main.showPage(7);
+            main.data =holder.used_id.getText().toString();
         });
     }
 
@@ -83,6 +91,7 @@ public class UsedListAdapter extends RecyclerView.Adapter<UsedListAdapter.Custom
         protected TextView model_type;
         protected TextView used_comment_cont;
         protected TextView used_welth;
+        protected TextView used_id;
 
         public CustomViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -91,6 +100,7 @@ public class UsedListAdapter extends RecyclerView.Adapter<UsedListAdapter.Custom
             this.model_type = (TextView)itemView.findViewById(R.id.model_type);
             this.used_comment_cont = (TextView)itemView.findViewById(R.id.used_comment_cont);
             this.used_welth = (TextView)itemView.findViewById(R.id.used_welth);
+            this.used_id = (TextView)itemView.findViewById(R.id.used_id);
 
 
         }

@@ -29,8 +29,10 @@ import androidx.loader.content.CursorLoader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -188,22 +190,13 @@ public class Used_write extends Fragment {
 
     public void regist(){
 
-        List<String> nameArr = new ArrayList<>();
-        upload = new UploadFile(getActivity(), firebaseUser);
-        for(int i=0;i<filePathArray.size();i++){
-            String name=upload.uploadFile((Uri) filePathArray.get(i),i);
-            nameArr.add(name);
-        }
-       
-
-        write_store(nameArr);
-        nameArr.clear();
+       write_store();
 
 
     }
     
 
-    public void write_store(List list){
+    public void write_store(){
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMHH_mmssSS");
         Date now = new Date();
@@ -217,11 +210,7 @@ public class Used_write extends Fragment {
         input_data.put("welth",used_write_welth.getText().toString());
         input_data.put("content",used_content.getText().toString());
 
-        int i=0;
-        for(Object obj:list){
-            input_data.put(i+"img",obj.toString());
-            i++;
-        }
+
 
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -233,26 +222,47 @@ public class Used_write extends Fragment {
                 String num=documentSnapshot.getString("number");
                 save_num=num;
                 input_data.put("used_id",save_num);
+                List<String> nameArr = new ArrayList<>();
+                upload = new UploadFile(getActivity(), firebaseUser, Integer.parseInt(save_num));
+                for(int i=0;i<filePathArray.size();i++){
+                    String name=upload.uploadFile((Uri) filePathArray.get(i),i);
+                    nameArr.add(name);
+                }
+                int i=0;
+                for(Object obj:nameArr){
+                    input_data.put(i+"img",obj.toString());
+                    i++;
+                }
+                nameArr.clear();
+
 
                 db.collection("used").document(save_num).set(input_data).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         int plus = Integer.parseInt(save_num);
+
                         plus++;
 
                         Map<String, String> number = new HashMap<>();
                         number.put("number",""+plus);
                         db.collection("used").document("used_start").set(number);
 
+
+
+
+
+
+
+
+
+
+
+
                         MainActivity main =  (MainActivity) getContext();
                         main.showPage(5);
                         Toast.makeText(getActivity(), "게시글 등록 완료", Toast.LENGTH_SHORT).show();
 
-//                        input_data.put("UID", firebaseUser.getUid());
-//                        input_data.put("time", time);
-//                        input_data.put("title", used_write_title.getText().toString());
-//                        input_data.put("welth",used_write_welth.getText().toString());
-//                        input_data.put("content",used_content.getText().toString());
+
 
                         used_write_title.setText("");
                         used_write_welth.setText("");

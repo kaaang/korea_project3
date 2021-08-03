@@ -46,6 +46,7 @@ public class MainBottomNaviListener implements NavigationBarView.OnItemSelectedL
                 Toast.makeText(mainActivity.getApplicationContext(),"중고",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.setting:
+                mainActivity.showPage(10);
                 Toast.makeText(mainActivity.getApplicationContext(),"우주 대존잘 강신혁",Toast.LENGTH_SHORT).show();
                 break;
         }

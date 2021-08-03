@@ -82,23 +82,21 @@ public class Main_main extends Fragment {
                     }
                 });
 
-
-                // Firebase
-
-
                 // ---------------------팝업 버튼
                 // 확인
                 bt_ok = popupWindow.getContentView().findViewById(R.id.bt_ok);
                 bt_ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                  /*      String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();*/
+                        // Firebase에 DB 삽입
+                  /*     uid는 아직 어떻게 처리 할지 좀 감이 안 오니까 빼고 테스트 진행
+                        String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();*/
                         popupWindow.dismiss();
                         FireBaseInterface.m_interface.uploadMileageData(selected_date, tx_station.getText().toString(), tx_litter.getText().toString() + "L", tx_price.getText().toString() + "원");
                         FireBaseInterface.m_interface.downloadMileageData();
                     }
                 });
-                // 취소
+                // 목록으로
                 bt_list = popupWindow.getContentView().findViewById(R.id.bt_list);
                 bt_list.setOnClickListener(new View.OnClickListener() {
                     @Override

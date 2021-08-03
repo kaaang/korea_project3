@@ -33,13 +33,10 @@ import com.ridingmate.app.util.pageAdapter.PageAdapter;
 
 import java.util.ArrayList;
 
-<<<<<<< HEAD
-public class MainActivity extends AppCompatActivity {
-    public String data;
-=======
+
 
 public class MainActivity extends AppCompatActivity{
->>>>>>> sukho2
+    public String data;
     // 네비게이션 불러올 객체
     BottomNavigationView bottomNavigationView;
     // 프래그먼트 관리 어댑터

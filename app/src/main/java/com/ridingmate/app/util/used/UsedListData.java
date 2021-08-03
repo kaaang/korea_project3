@@ -12,6 +12,7 @@ public class UsedListData {
     private String model_type;
     private String used_comment_cont;
     private String used_welth;
+    private String used_id;
 
 //    public UsedListData(int used_thumb, String used_thumbSrc, String used_title, String model_type, String used_comment_cont, String used_welth) {
 //        this.used_thumb = used_thumb;
@@ -23,6 +24,14 @@ public class UsedListData {
 //    }
     public UsedListData() {
 
+    }
+
+    public String getUsed_id() {
+        return used_id;
+    }
+
+    public void setUsed_id(String used_id) {
+        this.used_id = used_id;
     }
 
     public Uri getUsed_thumb() {

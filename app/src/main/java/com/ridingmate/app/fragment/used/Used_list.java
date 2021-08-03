@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -41,8 +40,12 @@ public class Used_list extends Fragment {
 
     private LinearLayoutManager linearLayoutManager;
     private RecyclerView recyclerView;
+
+
     private ArrayList<UsedListData> arrayList;
     private HashMap<String, String> dataList;
+
+
     private UsedListAdapter usedListAdapter;
     private ImageButton write_button;
 
@@ -50,24 +53,30 @@ public class Used_list extends Fragment {
     private FirebaseStorage storage;
     private String folder;
 
+    public MainActivity main;
+
     @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_used_list,container,false);
 
+        main=(MainActivity) getContext();
+
         db=FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
-        folder = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//        folder = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
         recyclerView=(RecyclerView)view.findViewById(R.id.used_RV);
         linearLayoutManager= new LinearLayoutManager(view.getContext());
+
+
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), 1));
 
         arrayList=new ArrayList<>();
         dataList = new HashMap<>();
 
-        usedListAdapter=new UsedListAdapter(arrayList,getActivity());
+        usedListAdapter=new UsedListAdapter(arrayList,getActivity(),main);
         recyclerView.setAdapter(usedListAdapter);
 
 
@@ -84,9 +93,13 @@ public class Used_list extends Fragment {
                             for(QueryDocumentSnapshot document : task.getResult()){
 //                                Log.e(TAG,"가져온 게시글 데이터 : "+(String) document.getData().get("welth"));
                                 if(document.getData().get("number") == null) {
+                                    Log.e(TAG,"가져온 게시글 데이터 : "+document.getId());
+                                    Log.e(TAG,"가져온 이미지 이름 : "+(String) document.getData().get("0img"));
+                                    Log.e(TAG,"가져온 경로 : "+"Used_img/"+folder+"/"+document.getId()+"/"+(String) document.getData().get("0img"));
+                                    folder = document.getData().get("UID").toString();
 
 
-                                    storage.getReference().child("Used_img/"+folder+"/"+(String) document.getData().get("0img"))
+                                    storage.getReference().child("Used_img/"+folder+"/"+document.getId()+"/"+(String) document.getData().get("0img"))
                                             .getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                         @Override
                                         public void onSuccess(Uri uri) {
@@ -100,6 +113,7 @@ public class Used_list extends Fragment {
                                             usedListData.setUsed_welth((String) document.getData().get("welth"));
                                             usedListData.setModel_type("test");
                                             usedListData.setUsed_comment_cont("test");
+                                            usedListData.setUsed_id((String)document.getData().get("used_id"));
                                             arrayList.add(usedListData);
                                             usedListAdapter.notifyDataSetChanged();
                                         }

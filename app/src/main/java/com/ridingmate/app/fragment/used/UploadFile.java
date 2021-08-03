@@ -26,11 +26,13 @@ import java.util.Date;
 public class UploadFile {
     private Activity activity;
     private FirebaseUser firebaseUser;
+    private int used_num;
 
 
-    public UploadFile( Activity activity, FirebaseUser firebaseUser) {
+    public UploadFile( Activity activity, FirebaseUser firebaseUser, int used_num) {
         this.activity = activity;
         this.firebaseUser = firebaseUser;
+        this.used_num = used_num;
 
     }
 
@@ -51,7 +53,7 @@ public class UploadFile {
             Date now = new Date();
             filename = formatter.format(now);
             //storage 주소와 폴더 파일명을 지정해 준다.
-            StorageReference storageRef = storage.getReferenceFromUrl("gs://running-mate-crew.appspot.com").child("Used_img/"+ firebaseUser.getUid()+"/"+ filename);
+            StorageReference storageRef = storage.getReferenceFromUrl("gs://running-mate-crew.appspot.com").child("Used_img/"+ firebaseUser.getUid()+"/"+used_num+"/"+ filename);
 
 
 

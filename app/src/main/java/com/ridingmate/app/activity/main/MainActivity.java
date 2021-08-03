@@ -24,6 +24,7 @@ import com.ridingmate.app.util.pageAdapter.PageAdapter;
 
 
 public class MainActivity extends AppCompatActivity {
+    public String data;
     // 네비게이션 불러올 객체
     BottomNavigationView bottomNavigationView;
     // 프래그먼트 관리 어댑터

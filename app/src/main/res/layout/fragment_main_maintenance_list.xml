@@ -6,12 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-
-
     <!-- 캘린더 일자 클릭 시 정보가 하단의 정비 기록 란에 왔으면 좋겠음-->
-
-
     <CalendarView
         android:id="@+id/maintentance_cal"
         android:layout_width="match_parent"

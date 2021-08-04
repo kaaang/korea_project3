@@ -36,6 +36,7 @@ public class Main_maintenance_regist extends Fragment {
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
     private int mYear = 0, mMonth = 0, mDay = 0;
+    public  static String selected_date;
 
     @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -59,11 +60,14 @@ public class Main_maintenance_regist extends Fragment {
         regist_ServiceCenter= (EditText)view.findViewById(R.id.regist_maintenance_location);
         regist_detail= (EditText)view.findViewById(R.id.regist_maintenance_detail) ;
 
+        // 정비 등록폼 안에 있는 등록 버튼
         btn_regist=(TextView)view.findViewById(R.id.btn_maintenance_regist);
         btn_regist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FireBaseInterface.m_interface.uploadMaintenanceData(regist_item.getText().toString(), getTodaysDate(), regist_ServiceCenter.getText().toString(), regist_detail.getText().toString());
+                FireBaseInterface.m_interface.uploadMaintenanceData(regist_item.getText().toString(), selected_date, regist_ServiceCenter.getText().toString(), regist_detail.getText().toString());
+                Main_maintenance_list.arrayList.clear();
+                FireBaseInterface.m_interface.downloadMaintenanceData(selected_date);
                 MainActivity.showPage(0);
             }
         });
@@ -75,8 +79,6 @@ public class Main_maintenance_regist extends Fragment {
             }
         });
         // ---------------------날짜 선택
-
-        // 문제: 수정 누를 시에는 DB에 등록된 날짜가 와야하나, 오늘 날짜로 다이얼이 셋팅됨.(데이터피커 class별도 분리 후 constants에서 맞게 처리 필요)
         dateButton = (Button) view.findViewById(R.id.regist_maintenance_date);
         dateButton.setText(getTodaysDate());
         initDatePicker();
@@ -105,8 +107,8 @@ public class Main_maintenance_regist extends Fragment {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
-                String date = makeDateString(day, month, year);
-                dateButton.setText(date);
+                makeDateString(day, month, year);
+                dateButton.setText(selected_date);
             }
         };
 
@@ -123,36 +125,8 @@ public class Main_maintenance_regist extends Fragment {
     }
 
     private String makeDateString(int day, int month, int year) {
-        return year + "년 " +getMonthFormat(month)  + day + "일";
-    }
-
-    private String getMonthFormat(int month) {
-        if (month == 1)
-            return "01월 ";
-        if (month == 2)
-            return "02월 ";
-        if (month == 3)
-            return "03월 ";
-        if (month == 4)
-            return "04월 ";
-        if (month == 5)
-            return "05월 ";
-        if (month == 6)
-            return "06월 ";
-        if (month == 7)
-            return "07월 ";
-        if (month == 8)
-            return "08월 ";
-        if (month == 9)
-            return "09월 ";
-        if (month == 10)
-            return "10월 ";
-        if (month == 11)
-            return "11월 ";
-        if (month == 12)
-            return "12월 ";
-
-        return "01월";
+        selected_date = year + "년 " +month + "월 "  + day + "일";
+        return year + "년 " +month + "월 "  + day + "일";
     }
 
 }

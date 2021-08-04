@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/item_list"
         android:layout_margin="10dp"
-        android:text="엔진"
+        android:text=""
         android:textColor="#000000"
         android:textSize="20dp" />
 
@@ -40,7 +40,7 @@
         android:id="@+id/item_maintenance_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2021.07.27"
+        android:text=""
         android:layout_margin="10dp"
         app:layout_constraintLeft_toRightOf="@id/item_date"
         app:layout_constraintTop_toBottomOf="@+id/item_maintenance"
@@ -61,19 +61,40 @@
         android:id="@+id/item_maintenance_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="정비소"
+        android:text=""
         android:layout_margin="10dp"
         app:layout_constraintLeft_toRightOf="@id/item_location"
         app:layout_constraintTop_toBottomOf="@+id/item_maintenance_date"
         android:textColor="#000000"
         android:textSize="20dp"/>
 
+    <TextView
+        android:id="@+id/item_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="정비 내역:"
+        android:layout_margin="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_location"
+        android:textColor="#000000"
+        android:textSize="20dp"/>
+    <TextView
+        android:id="@+id/item_maintenance_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_margin="10dp"
+        app:layout_constraintLeft_toRightOf="@id/item_detail"
+        app:layout_constraintTop_toBottomOf="@+id/item_maintenance_location"
+        android:textColor="#000000"
+        android:textSize="20dp"/>
+
 
     <!-- 버튼 -->
-
+//    수정 버튼으로 접근하면 자꾸 디테일의 글이 이상하게 딸려옴.. 이건 추후 수정 예정
     <TextView
-        android:id="@+id/btn_maintenance_edit"
-        android:onClick="maintenance_regist"
+        android:id="@+id/btn_maintenance_edite"
+        android:onClick="btn_maintenance_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -86,6 +107,7 @@
         android:text="수정"
         app:layout_constraintRight_toLeftOf="@+id/btn_maintenance_delete"
         tools:ignore="MissingConstraints" />
+
 
     <TextView
         android:id="@+id/btn_maintenance_delete"

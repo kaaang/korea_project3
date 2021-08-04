@@ -1,5 +1,7 @@
 package com.ridingmate.app.fragment.main;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,21 +19,27 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.ridingmate.app.R;
 import com.ridingmate.app.activity.main.MainActivity;
+import com.ridingmate.app.util.main.FireBaseInterface;
 import com.ridingmate.app.util.pageAdapter.PageAdapter;
 import com.ridingmate.app.util.used.UsedListData;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.ridingmate.app.fragment.main.Main_maintenance_regist.selected_date;
 
 public class Main_setting_mybike_detail extends Fragment {
     String TAG="Main_setting_mybike_detail";
@@ -178,7 +186,51 @@ public class Main_setting_mybike_detail extends Fragment {
         });
     }
 
+    public void deleteBike(String myBikeId){
+        Log.d(TAG, "넘어온 아이디"+myBikeId);
 
+
+        db.collection("mybike").document(myBikeId)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                        deleteMyBikeFromUser(myBikeId);
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+
+    }
+
+    private void deleteMyBikeFromUser(String myBikeId) {
+
+        Map<String,Object> updates = new HashMap<>();
+        updates.put(myBikeId, FieldValue.delete());
+
+        db.collection("user").document(firebaseUser.getUid())
+                .update(updates)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(MainActivity._main, "삭제 성공",Toast.LENGTH_SHORT).show();
+
+                    Main_setting setPage=(Main_setting) PageAdapter.getInstance(mainActivity).pages[10];
+                    setPage.reload();
+
+                }
+            }
+            // [START_EXCLUDE]
+        });
+    }
 
 
 }

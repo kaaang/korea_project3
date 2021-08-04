@@ -8,22 +8,22 @@
     android:title="주유"/>
     <item
     android:id="@+id/maintentance"
-    android:icon="@drawable/ic_maintentance"
+    android:icon="@drawable/maint"
     android:enabled="true"
     android:title="정비"/>
     <item
     android:id="@+id/main"
-    android:icon="@drawable/ic_main"
+    android:icon="@drawable/home"
     android:enabled="true"
     android:title="메인"/>
     <item
     android:id="@+id/used"
-    android:icon="@drawable/ic_used"
+    android:icon="@drawable/used"
     android:enabled="true"
     android:title="중고"/>
     <item
     android:id="@+id/setting"
-    android:icon="@drawable/ic_setting"
+    android:icon="@drawable/setting"
     android:enabled="true"
     android:title="설정"/>
 </menu>

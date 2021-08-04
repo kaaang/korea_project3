@@ -57,10 +57,10 @@
 
     <ImageView
         android:id="@+id/cal_add"
-        android:onClick="addCal"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="10dp"
+        android:onClick="addCal"
         android:src="@drawable/bike_regist"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

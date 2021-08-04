@@ -9,10 +9,10 @@
         android:id="@+id/linearLayout8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,15 +22,15 @@
             android:id="@+id/textView18"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="주유량" />
+            android:layout_weight="1.5"
+            android:text="주유량(L)" />
 
         <TextView
             android:id="@+id/textView19"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="누적 주행거리" />
+            android:layout_weight="2.5"
+            android:text="누적 주행거리(km)" />
 
         <TextView
             android:id="@+id/textView20"
@@ -43,11 +43,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +57,7 @@
             android:id="@+id/main_mileage_oil"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="1.5"
             android:text="17L"
             android:textSize="16dp"
             android:textStyle="bold" />
@@ -66,7 +66,7 @@
             android:id="@+id/main_mileage_driven"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="2.5"
             android:text="74154 km"
             android:textSize="16dp"
             android:textStyle="bold" />

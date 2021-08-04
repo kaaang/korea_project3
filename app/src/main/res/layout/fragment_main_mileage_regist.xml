@@ -21,19 +21,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <TextView
-            android:id="@+id/milegae_regist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
-            android:text="주유 기록 등록"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <!--        <ScrollView
             android:id="@+id/milegae_scrollView"
             android:layout_width="match_parent"
@@ -47,6 +34,20 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/textView">-->
+
+        <TextView
+            android:id="@+id/milegae_regist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="주유 기록 등록"
+            android:textColor="@color/themeColor"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/milegae_scrollView"
@@ -65,12 +66,9 @@
 
             <TextView
                 android:id="@+id/milegae_date"
-                android:layout_width="50dp"
+                android:layout_width="60dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
                 android:gravity="center"
                 android:text="날짜"
                 android:textSize="15dp"
@@ -81,18 +79,16 @@
             <Button
                 android:id="@+id/date_picker"
                 style="?android:spinnerStyle"
-                android:layout_width="250dp"
+                android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
+
                 android:backgroundTint="#FDFCFC"
                 android:text="JAN 01 2020"
                 android:textColor="@color/black"
                 android:textSize="15dp"
-                app:layout_constraintLeft_toRightOf="@+id/milegae_date"
-
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/milegae_date"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -109,12 +105,15 @@
 
             <EditText
                 android:id="@+id/milegae_text_distance"
-                android:layout_width="250dp"
+                android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/white_edittext_noradius"
                 android:hint="  누적 주행거리를 입력하십시오."
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/date_picker"
                 app:layout_constraintLeft_toRightOf="@+id/milegae_distance"
+                app:layout_constraintStart_toStartOf="@+id/date_picker"
                 app:layout_constraintTop_toBottomOf="@+id/date_picker" />
 
             <TextView
@@ -131,12 +130,15 @@
 
             <EditText
                 android:id="@+id/milegae_text_litter"
-                android:layout_width="250dp"
+                android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/white_edittext_noradius"
                 android:hint="  주유 양을 입력하십시오."
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/milegae_text_distance"
                 app:layout_constraintLeft_toRightOf="@+id/milegae_distance"
+                app:layout_constraintStart_toStartOf="@+id/milegae_text_distance"
                 app:layout_constraintTop_toBottomOf="@+id/milegae_text_distance" />
 
             <TextView
@@ -153,12 +155,15 @@
 
             <EditText
                 android:id="@+id/milegae_text_price"
-                android:layout_width="250dp"
+                android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/white_edittext_noradius"
                 android:hint="  주유 금액을 입력하십시오."
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/milegae_text_litter"
                 app:layout_constraintLeft_toRightOf="@+id/milegae_price"
+                app:layout_constraintStart_toStartOf="@+id/milegae_text_litter"
                 app:layout_constraintTop_toBottomOf="@+id/milegae_text_litter" />
 
             <TextView
@@ -178,15 +183,15 @@
 
             <EditText
                 android:id="@+id/milegae_text_station"
-                android:layout_width="250dp"
+                android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
                 android:background="@drawable/white_edittext_noradius"
                 android:hint="  주유소를 입력하십시오."
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/milegae_text_price"
                 app:layout_constraintLeft_toRightOf="@+id/milegae_station"
+                app:layout_constraintStart_toStartOf="@+id/milegae_text_price"
                 app:layout_constraintTop_toBottomOf="@+id/milegae_text_price" />
             <!-- 버튼 -->
             <TextView
@@ -195,7 +200,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="15dp"
 
                 android:text="확인"
                 android:textColor="#D83F51B5"
@@ -210,12 +215,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|right"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
                 android:onClick="maintenace_back"
                 android:text="취소"
-                android:textColor="#D83F51B5"
+                android:textColor="#BF360C"
                 android:textSize="20sp"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/milegae_text_station" />

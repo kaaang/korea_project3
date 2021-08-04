@@ -3,9 +3,9 @@
 
     <item
     android:id="@+id/milegae"
-    android:icon="@drawable/ic_mileage"
+    android:icon="@drawable/chat"
     android:enabled="true"
-    android:title="주유"/>
+    android:title="채팅"/>
     <item
     android:id="@+id/maintentance"
     android:icon="@drawable/maint"

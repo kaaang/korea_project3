@@ -6,6 +6,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ScaleDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -73,6 +78,18 @@ public class MainActivity extends AppCompatActivity{
 
         //상단 툴바 인스턴스 얻기
         toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setTitle("");
+
+
+
+        Bitmap bMap = BitmapFactory.decodeResource(getResources(), R.drawable.logo_normal);
+        Bitmap bMapScaled = Bitmap.createScaledBitmap(bMap, 350, 200, true);
+        Drawable drawable = new BitmapDrawable(bMapScaled);
+
+
+        toolbar.setLogo(drawable);
 
         //프래그먼트 관리 어댑터 인스턴스 얻어오기
         pageAdapter=PageAdapter.getInstance(this);

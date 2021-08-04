@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import com.google.android.material.navigation.NavigationBarView;
 import com.ridingmate.app.R;
 import com.ridingmate.app.activity.main.MainActivity;
+import com.ridingmate.app.fragment.main.Main_setting;
+import com.ridingmate.app.util.pageAdapter.PageAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -47,7 +49,6 @@ public class MainBottomNaviListener implements NavigationBarView.OnItemSelectedL
                 break;
             case R.id.setting:
                 mainActivity.showPage(10);
-                Toast.makeText(mainActivity.getApplicationContext(),"우주 대존잘 강신혁",Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;

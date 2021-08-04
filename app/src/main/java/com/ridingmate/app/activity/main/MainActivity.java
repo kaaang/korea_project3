@@ -38,6 +38,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
     public String data;
+    public String myBikeId;
     // 네비게이션 불러올 객체
     BottomNavigationView bottomNavigationView;
     // 프래그먼트 관리 어댑터

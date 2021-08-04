@@ -42,6 +42,7 @@ public class Used_list extends Fragment {
     private RecyclerView recyclerView;
 
 
+
     private ArrayList<UsedListData> arrayList;
     private HashMap<String, String> dataList;
 

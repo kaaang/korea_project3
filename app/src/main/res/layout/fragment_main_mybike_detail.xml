@@ -30,13 +30,13 @@
 
 
                     <TextView
-                        android:id="@+id/textView13"
+                        android:id="@+id/bikeName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_margin="10dp"
                         android:gravity="center_horizontal"
-                        android:text="바이크 등록"
+                        android:text="나의 바이크"
                         android:textColor="@color/themeColor"
                         android:textSize="22sp"
                         android:textStyle="bold"
@@ -106,7 +106,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:text="대표 이미지 등록"
+                android:text="대표 이미지"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -134,35 +134,42 @@
                 app:layout_constraintStart_toStartOf="@+id/bike_regist_distance"
                 app:layout_constraintTop_toTopOf="@+id/textView" />
 
-            <Spinner
+            <EditText
                 android:id="@+id/bike_regist_companySpinner"
-                android:layout_width="222dp"
-                android:layout_height="29dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:entries="@array/bike_brand"
+                style="@style/modifiedEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:enabled="false"
                 app:layout_constraintBottom_toBottomOf="@+id/textView2"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView15"
                 app:layout_constraintTop_toTopOf="@+id/textView2" />
 
-            <Spinner
+            <EditText
                 android:id="@+id/bike_regist_modelSpinner"
-                android:layout_width="222dp"
-                android:layout_height="30dp"
-                android:entries="@array/bike_name"
+                style="@style/modifiedEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:enabled="false"
                 app:layout_constraintBottom_toBottomOf="@+id/textView3"
                 app:layout_constraintEnd_toEndOf="@+id/bike_regist_companySpinner"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/bike_regist_companySpinner"
                 app:layout_constraintTop_toTopOf="@+id/textView3" />
 
-            <Spinner
+            <EditText
                 android:id="@+id/bike_regist_yearSpinner"
-                android:layout_width="219dp"
-                android:layout_height="24dp"
-                android:entries="@array/bike_year"
-                android:spinnerMode="dropdown"
+                style="@style/modifiedEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:enabled="false"
                 app:layout_constraintBottom_toBottomOf="@+id/textView14"
                 app:layout_constraintEnd_toEndOf="@+id/bike_regist_modelSpinner"
+                app:layout_constraintHorizontal_bias="0.333"
                 app:layout_constraintStart_toStartOf="@+id/bike_regist_modelSpinner"
                 app:layout_constraintTop_toTopOf="@+id/textView14" />
 
@@ -171,39 +178,25 @@
                 style="@style/modifiedEditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
                 android:maxLines="1"
                 app:layout_constraintBottom_toBottomOf="@+id/textView15"
                 app:layout_constraintEnd_toEndOf="@+id/bike_regist_yearSpinner"
-                app:layout_constraintStart_toEndOf="@+id/textView15"
+                app:layout_constraintStart_toStartOf="@+id/bike_regist_yearSpinner"
                 app:layout_constraintTop_toTopOf="@+id/textView15" />
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="350dp"
+                android:layout_width="0dp"
                 android:layout_height="301dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
-                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView16"
                 tools:srcCompat="@tools:sample/avatars" />
-
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginLeft="100dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView16"
-                app:layout_constraintStart_toEndOf="@+id/textView16"
-                app:layout_constraintTop_toTopOf="@+id/textView16"
-                app:srcCompat="@android:drawable/ic_menu_camera" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -215,12 +208,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView">
 
                 <Button
-                    android:id="@+id/bike_regist_button"
+                    android:id="@+id/bike_edit_button"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:layout_weight="1"
-                    android:text="등록"
+                    android:text="수정"
                     app:cornerRadius="30dp"
                     app:backgroundTint="@color/themeColor" />
 

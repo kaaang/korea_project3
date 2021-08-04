@@ -38,6 +38,9 @@ public class Main_maintenance_regist extends Fragment {
     private int mYear = 0, mMonth = 0, mDay = 0;
     public  static String selected_date;
 
+    // Main에  접근
+    MainActivity mainActivity= (MainActivity) MainActivity._main;
+
     @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -65,7 +68,7 @@ public class Main_maintenance_regist extends Fragment {
         btn_regist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FireBaseInterface.m_interface.uploadMaintenanceData(regist_item.getText().toString(), selected_date, regist_ServiceCenter.getText().toString(), regist_detail.getText().toString());
+                FireBaseInterface.m_interface.uploadMaintenanceData(regist_item.getText().toString(), selected_date, regist_ServiceCenter.getText().toString(), regist_detail.getText().toString(), mainActivity.selectedBikeUid);
                 Main_maintenance_list.arrayList.clear();
                 FireBaseInterface.m_interface.downloadMaintenanceData(selected_date);
                 MainActivity.showPage(0);

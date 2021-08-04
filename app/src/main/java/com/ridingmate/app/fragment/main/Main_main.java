@@ -54,7 +54,7 @@ public class Main_main extends Fragment {
 
         ImageView imageView = view.findViewById(R.id.card_background);
         imageView.setColorFilter(R.color.black);
-        FireBaseInterface.m_interface.Tv_litter((TextView)view.findViewById(R.id.milegae_distance));
+        FireBaseInterface.m_interface.Tv_litter((TextView)view.findViewById(R.id.milegae_litter));
         FireBaseInterface.m_interface.Tv_date((TextView)view.findViewById(R.id.milegae_date));
         FireBaseInterface.m_interface.InitFirebase();
         FireBaseInterface.m_interface.downloadMileageData();

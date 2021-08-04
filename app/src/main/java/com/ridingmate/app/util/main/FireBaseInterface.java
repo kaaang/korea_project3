@@ -85,7 +85,7 @@ public class FireBaseInterface {
         // 주유 파트
         public void uploadMileageData(String date, String gasStation, String litter, String price, String distance, String uid){
             if( date == null||gasStation == null||price == null||litter == null){
-               // Log.e("upload", "+++++++++++++++nodata");
+              //  Log.e("upload", "+++++++++++++++nodata");
                 return;
             }
             else {
@@ -109,6 +109,7 @@ public class FireBaseInterface {
             collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot documentSnapshots) {
+                    // Get the last visible document
                     DocumentSnapshot lastVisible = documentSnapshots.getDocuments().get(documentSnapshots.size() - 1);
 
                     tv_letter.setText(lastVisible.getData().get("litter").toString());

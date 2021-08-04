@@ -1,7 +1,10 @@
 package com.ridingmate.app.fragment.bike;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,31 +13,42 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
+import com.google.firebase.storage.StorageReference;
 import com.ridingmate.app.R;
+import com.ridingmate.app.activity.main.MainActivity;
+import com.ridingmate.app.fragment.used.UploadFile;
+import com.ridingmate.app.util.used.UsedWriteData;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import static android.app.Activity.RESULT_OK;
 
 
 public class Bike_regist extends Fragment {
@@ -54,6 +68,16 @@ public class Bike_regist extends Fragment {
     Button cancel;
 
     ImageView imageView;
+
+    //이미지 버튼 관련
+    ImageButton imageButton4;
+    private static final int REQUEST_CODE=0;
+    //storage선언
+    private StorageReference mStorageRef;
+    private Uri filePath;
+    private List filePathArray;
+    private FirebaseUser firebaseUser;
+    private FirebaseAuth mfireFirebaseAuth;
 
     //스피너 관련
     Spinner companySpinner;
@@ -82,6 +106,8 @@ public class Bike_regist extends Fragment {
         View view=inflater.inflate(R.layout.fragment_bike_regist,container,false);
 
         userUid= FirebaseAuth.getInstance().getCurrentUser().getUid();
+        mfireFirebaseAuth=FirebaseAuth.getInstance();
+        firebaseUser=mfireFirebaseAuth.getCurrentUser();
 
         //바인딩
         companySpinner=view.findViewById(R.id.bike_regist_companySpinner);
@@ -90,16 +116,27 @@ public class Bike_regist extends Fragment {
         et_distance=view.findViewById(R.id.bike_regist_distance);
         et_nickname=view.findViewById(R.id.bike_regist_bikeNickname);
         imageView=view.findViewById(R.id.imageView);
+        imageButton4=view.findViewById(R.id.imageButton4);
 
         regist =view.findViewById(R.id.bike_regist_button);
         cancel =view.findViewById(R.id.bike_regist_cancel);
         getCompanyDB();
 
 
+
+
+        imageButton4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addImg();
+            }
+        });
+
+
+
         regist.setOnClickListener(v -> {
             driven=et_distance.getText().toString();
             nickname=et_nickname.getText().toString();
-            image=Integer.toString(imageView.getId());
 
 
             if (isSelected==false){
@@ -292,6 +329,7 @@ public class Bike_regist extends Fragment {
 
     }
     private void insertBike() {
+        getBikeImgName();
         Bike_regist_DAO data=new Bike_regist_DAO(company,model,year,driven,nickname,image,userUid);
         db.collection("mybike").add(data)
                 .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
@@ -301,6 +339,9 @@ public class Bike_regist extends Fragment {
                             DocumentReference document = task.getResult();
                             String bikeId = document.getId();
                             insertBikeInUser(bikeId);
+                            MainActivity main =  (MainActivity) getContext();
+                            main.showPage(4);
+
                         }
 
 
@@ -316,4 +357,42 @@ public class Bike_regist extends Fragment {
         db.collection("user").document(userUid)
                 .set(data, SetOptions.merge());
     }
+
+
+
+    
+    
+    
+    
+    
+    //바이크 이미지 관련
+    public void addImg(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        if(requestCode == 0 && resultCode == RESULT_OK){
+            filePath = data.getData();
+            Log.e(TAG, "uri:" + filePath.toString());
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), filePath);
+                imageView.onVisibilityAggregated(true);
+                imageView.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void getBikeImgName(){
+        BikeImgUpload  bikeImgUpload= new BikeImgUpload(getActivity(),firebaseUser);
+        image=bikeImgUpload.uploadFile(filePath);
+    }
+
+
+
 }

@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import com.google.android.material.navigation.NavigationBarView;
 import com.ridingmate.app.R;
 import com.ridingmate.app.activity.main.MainActivity;
+import com.ridingmate.app.fragment.used.Used_list;
+import com.ridingmate.app.util.pageAdapter.PageAdapter;
 
 import org.jetbrains.annotations.NotNull;
 

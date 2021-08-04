@@ -10,9 +10,12 @@ public class UsedListData {
     private String used_thumbSrc;
     private String used_title;
     private String model_type;
-    private String used_comment_cont;
+    private String used_comment;
     private String used_welth;
     private String used_id;
+    private String area;
+    private String time;
+
 
 //    public UsedListData(int used_thumb, String used_thumbSrc, String used_title, String model_type, String used_comment_cont, String used_welth) {
 //        this.used_thumb = used_thumb;
@@ -24,6 +27,22 @@ public class UsedListData {
 //    }
     public UsedListData() {
 
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getUsed_id() {
@@ -66,12 +85,12 @@ public class UsedListData {
         this.model_type = model_type;
     }
 
-    public String getUsed_comment_cont() {
-        return used_comment_cont;
+    public String getUsed_comment() {
+        return used_comment;
     }
 
-    public void setUsed_comment_cont(String used_comment_cont) {
-        this.used_comment_cont = used_comment_cont;
+    public void setUsed_comment(String used_comment) {
+        this.used_comment = used_comment;
     }
 
     public String getUsed_welth() {

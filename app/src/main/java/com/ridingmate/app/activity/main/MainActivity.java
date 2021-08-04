@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity{
     ArrayList mybikeUid=new ArrayList();
     ArrayList mybike=new ArrayList();
     ArrayList spinnerList=new ArrayList();
-    String selectedBikeUid;
+    public String selectedBikeUid;
     Spinner spinner;
 
     Bike_detail bike_detail;
@@ -187,4 +187,6 @@ public class MainActivity extends AppCompatActivity{
             }
         });
     }
+
+
 }

@@ -1,13 +1,11 @@
-package com.ridingmate.app.fragment.used;
+package com.ridingmate.app.fragment.bike;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.net.Uri;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -17,29 +15,24 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.ridingmate.app.activity.main.MainActivity;
-import com.ridingmate.app.util.pageAdapter.PageAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
-public class UploadFile {
+public class BikeImgUpload {
     private Activity activity;
     private FirebaseUser firebaseUser;
-    private int used_num;
 
 
-    public UploadFile( Activity activity, FirebaseUser firebaseUser, int used_num) {
+    public BikeImgUpload( Activity activity, FirebaseUser firebaseUser) {
         this.activity = activity;
         this.firebaseUser = firebaseUser;
-        this.used_num = used_num;
 
     }
 
-    public String uploadFile(Uri filePath,int i) {
+    public String uploadFile(Uri filePath) {
         String filename = null;
         //업로드할 파일이 있으면 수행
         if (filePath != null) {
@@ -52,11 +45,11 @@ public class UploadFile {
             FirebaseStorage storage = FirebaseStorage.getInstance();
 
             //Unique한 파일명을 만들자.
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMHH_mmssSS"+i);
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMHH_mmssSS");
             Date now = new Date();
             filename = formatter.format(now);
             //storage 주소와 폴더 파일명을 지정해 준다.
-            StorageReference storageRef = storage.getReferenceFromUrl("gs://running-mate-crew.appspot.com").child("Used_img/"+ firebaseUser.getUid()+"/"+used_num+"/"+ filename);
+            StorageReference storageRef = storage.getReferenceFromUrl("gs://running-mate-crew.appspot.com").child("Bike_img/"+ firebaseUser.getUid()+"/"+ filename);
 
 
 
@@ -71,9 +64,6 @@ public class UploadFile {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss(); //업로드 진행 Dialog 상자 닫기
-                            Used_list used_list=(Used_list) PageAdapter.getInstance((FragmentActivity) MainActivity._main) .pages[5];
-                            used_list.reload();
-                            Log.e("asd","리로드 호출");
 
                         }
                     })

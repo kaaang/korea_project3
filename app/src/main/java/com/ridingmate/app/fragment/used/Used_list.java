@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -55,6 +57,8 @@ public class Used_list extends Fragment {
 
     public MainActivity main;
 
+
+
     @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_used_list,container,false);
@@ -83,56 +87,12 @@ public class Used_list extends Fragment {
 
 
 
-        //모든 문서 가져오기
-        db.collection("used")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            for(QueryDocumentSnapshot document : task.getResult()){
-//                                Log.e(TAG,"가져온 게시글 데이터 : "+(String) document.getData().get("welth"));
-                                if(document.getData().get("number") == null) {
-                                    Log.e(TAG,"가져온 게시글 데이터 : "+document.getId());
-                                    Log.e(TAG,"가져온 이미지 이름 : "+(String) document.getData().get("0img"));
-                                    Log.e(TAG,"가져온 경로 : "+"Used_img/"+folder+"/"+document.getId()+"/"+(String) document.getData().get("0img"));
-                                    folder = document.getData().get("UID").toString();
-
-
-                                    storage.getReference().child("Used_img/"+folder+"/"+document.getId()+"/"+(String) document.getData().get("0img"))
-                                            .getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                        @Override
-                                        public void onSuccess(Uri uri) {
-
-
-
-                                            Log.e(TAG,"Uri : >>>>>>>>>>>>"+uri);
-                                            UsedListData usedListData = new UsedListData();
-                                            usedListData.setUsed_thumb(uri);
-                                            usedListData.setUsed_title((String) document.getData().get("title"));
-                                            usedListData.setUsed_welth((String) document.getData().get("welth"));
-                                            usedListData.setModel_type("test");
-                                            usedListData.setUsed_comment_cont("test");
-                                            usedListData.setUsed_id((String)document.getData().get("used_id"));
-                                            arrayList.add(usedListData);
-                                            usedListAdapter.notifyDataSetChanged();
-                                        }
-                                    });
-
-
-                                }
-                            }
-
-                        }else{
-                            Log.e(TAG,"게시글 가져오기 실패");
-                        }
-                    }
-                });
 
 
 
 
 
+    reload();
 
 
 
@@ -159,4 +119,71 @@ public class Used_list extends Fragment {
 
         return view;
     }
+
+    public void reload(){
+//        FragmentTransaction ft = getFragmentManager().beginTransaction();
+//        ft.detach(this).attach(this).commit();
+//        Log.e(TAG,"@@@@@@@@@@@재시작");
+        //모든 문서 가져오기
+        db.collection("used")
+                .orderBy("used_id")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            arrayList.clear();
+                            for(QueryDocumentSnapshot document : task.getResult()){
+//                                Log.e(TAG,"가져온 게시글 데이터 : "+(String) document.getData().get("welth"));
+                                if(document.getData().get("number") == null) {
+                                    folder = document.getData().get("UID").toString();
+
+
+                                    storage.getReference().child("Used_img/"+folder+"/"+document.getId()+"/"+(String) document.getData().get("0img"))
+                                            .getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+
+
+
+                                            Log.e(TAG,"Uri : >>>>>>>>>>>>"+uri);
+                                            UsedListData usedListData = new UsedListData();
+                                            usedListData.setUsed_thumb(uri);
+                                            usedListData.setUsed_title((String) document.getData().get("title"));
+                                            usedListData.setArea((String) document.getData().get("area"));
+                                            usedListData.setTime((String) document.getData().get("day"));
+                                            usedListData.setUsed_welth((String) document.getData().get("welth"));
+
+                                            usedListData.setUsed_id((String)document.getData().get("used_id"));
+
+                                            db.collection("mybike").document(document.getData().get("bike_id").toString()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                @Override
+                                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                    usedListData.setModel_type(documentSnapshot.getData().get("model").toString());
+                                                    usedListData.setUsed_comment(documentSnapshot.getData().get("year").toString());
+                                                    arrayList.add(usedListData);
+                                                    usedListAdapter.notifyDataSetChanged();
+                                                }
+                                            });
+
+
+                                        }
+                                    });
+
+
+                                }
+                            }
+                            MainActivity.showPage(5);
+
+                        }else{
+                            Log.e(TAG,"게시글 가져오기 실패");
+                        }
+                    }
+                });
+
+    }
+
+
+
+
 }

@@ -28,11 +28,13 @@ import static com.ridingmate.app.fragment.main.Main_maintenance_regist.selected_
 public class MaintenanceAdpter extends RecyclerView.Adapter<MaintenanceAdpter.CustomViewHolder> {
 
     // 수정 삭제
-
     private ArrayList<Maintenance> mArrayList;
     private Context context;
     private CustomViewHolder holder;
     private int view_id;
+
+    // Main에  접근
+    MainActivity mainActivity= (MainActivity) MainActivity._main;
 
     public MaintenanceAdpter() {
         mArrayList = Main_maintenance_list.arrayList;
@@ -75,7 +77,7 @@ public class MaintenanceAdpter extends RecyclerView.Adapter<MaintenanceAdpter.Cu
                         String str=mArrayList.get(position).getDocument_ID();
                         FireBaseInterface.m_interface.deleteMaintenanceData(str);
                         Main_maintenance_list.arrayList.clear();
-                        FireBaseInterface.m_interface.downloadMaintenanceData(selected_date);
+                        FireBaseInterface.m_interface.downloadMaintenanceData(selected_date,mainActivity.selectedBikeUid);
                         MainActivity.showPage(0);
                     }
                 });

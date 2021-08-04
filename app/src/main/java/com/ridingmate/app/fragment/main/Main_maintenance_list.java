@@ -32,21 +32,19 @@ import java.util.Calendar;
 public class Main_maintenance_list extends Fragment{
     // 리사이클러뷰 처리
     private LinearLayoutManager linearLayoutManager;
-
     public static RecyclerView recyclerView;
     public static ArrayList<Maintenance> arrayList = new ArrayList<>();
     public static MaintenanceAdpter adpter;
+    // 메인 접근
+    MainActivity mainActivity= (MainActivity) MainActivity._main;
     // 캘린더
     private CalendarView mCalendarView;
     // 등록페이지 넘어가는 버튼
     private ImageView imgView;
-
     private Calendar  _todayCal = Calendar.getInstance();
     // 등록 수정 삭제
     private TextView btn_edit, btn_list;
 
-    private FirebaseDatabase database;
-    private DatabaseReference databaseReference;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_maintenance_list, container, false);
@@ -61,14 +59,14 @@ public class Main_maintenance_list extends Fragment{
         // ---------------------------------------------------------------------------- 날짜 선택시 날짜 따라오게끔(정비내역&등록 수정 시 이용)
         mCalendarView = (CalendarView) view.findViewById(R.id.maintentance_cal);
         MaintenanceConstants.m_interface.Cel_Data( _todayCal.get(Calendar.YEAR) + "년 " +  (_todayCal.get(Calendar.MONTH) +1) + "월 " +  _todayCal.get(Calendar.DATE) + "일");
-        FireBaseInterface.m_interface.downloadMaintenanceData(MaintenanceConstants.mtc_Date);
+        FireBaseInterface.m_interface.downloadMaintenanceData(MaintenanceConstants.mtc_Date,mainActivity.selectedBikeUid);
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener()
         {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 MaintenanceConstants.m_interface.Cel_Data(year + "년 " + (month + 1) + "월 " + dayOfMonth + "일");
                 arrayList.clear();
-                FireBaseInterface.m_interface.downloadMaintenanceData(MaintenanceConstants.mtc_Date);
+                FireBaseInterface.m_interface.downloadMaintenanceData(MaintenanceConstants.mtc_Date,mainActivity.selectedBikeUid);
             }
         });
 

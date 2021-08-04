@@ -70,7 +70,7 @@ public class Main_maintenance_regist extends Fragment {
             public void onClick(View v) {
                 FireBaseInterface.m_interface.uploadMaintenanceData(regist_item.getText().toString(), selected_date, regist_ServiceCenter.getText().toString(), regist_detail.getText().toString(), mainActivity.selectedBikeUid);
                 Main_maintenance_list.arrayList.clear();
-                FireBaseInterface.m_interface.downloadMaintenanceData(selected_date);
+                FireBaseInterface.m_interface.downloadMaintenanceData(selected_date,mainActivity.selectedBikeUid);
                 MainActivity.showPage(0);
             }
         });

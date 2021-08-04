@@ -111,11 +111,12 @@ public class FireBaseInterface {
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot documentSnapshots) {
-                    // Get the last visible document
-                    DocumentSnapshot lastVisible = documentSnapshots.getDocuments().get(documentSnapshots.size() - 1);
 
-                    tv_litter.setText(lastVisible.getData().get("litter").toString());
-                    tv_date.setText(lastVisible.getData().get("date").toString());
+                    if(documentSnapshots.getDocuments().size() !=0){
+                        DocumentSnapshot lastVisible = documentSnapshots.getDocuments().get(documentSnapshots.size() - 1);
+                        tv_litter.setText(lastVisible.getData().get("litter").toString());
+                        tv_date.setText(lastVisible.getData().get("date").toString());
+                    }
                 }
             });
         }
@@ -182,8 +183,9 @@ public class FireBaseInterface {
         }
 
         // 게시글 가져오기
-        public void downloadMaintenanceData(String cel_date) {
-            db.collection("maintenance").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        public void downloadMaintenanceData(String cel_date, String str) {
+            db.collection("maintenance").whereEqualTo("uid", str)
+                    .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
@@ -224,7 +226,7 @@ public class FireBaseInterface {
 
         TextView item_maintenance_detail(TextView tv);
 
-        void downloadMaintenanceData(String date);
+        void downloadMaintenanceData(String date, String str);
         void deleteMaintenanceData(String id);
     }
 }

@@ -34,7 +34,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.ridingmate.app.R;
 import com.ridingmate.app.fragment.bike.Bike_detail;
 import com.ridingmate.app.fragment.main.Main_main;
+import com.ridingmate.app.fragment.main.Main_maintenance_list;
 import com.ridingmate.app.util.main.FireBaseInterface;
+import com.ridingmate.app.util.main.maintenance.MaintenanceConstants;
 import com.ridingmate.app.util.navi.MainBottomNaviListener;
 import com.ridingmate.app.util.pageAdapter.PageAdapter;
 
@@ -208,6 +210,12 @@ public class MainActivity extends AppCompatActivity{
                     main_main.getMileage();
                     main_main.showImage();
                     FireBaseInterface.m_interface.downloadMileageData(selectedBikeUid);
+
+                    Main_maintenance_list main_maintenance_list= (Main_maintenance_list) pageAdapter.pages[0];
+                    if (main_maintenance_list.recyclerView!=null){
+                        FireBaseInterface.m_interface.downloadMaintenanceData(MaintenanceConstants.mtc_Date,selectedBikeUid);
+                    }
+
                 }
 
             }

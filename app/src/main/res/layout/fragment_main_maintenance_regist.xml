@@ -7,17 +7,17 @@
 
     <TextView
         android:id="@+id/regist_maintenance"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:maxLines="10"
         android:text="정비등록"
+        android:textColor="@color/themeColor"
         android:textSize="20dp"
-        android:textColor="@color/black"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <ScrollView
@@ -40,106 +40,99 @@
             android:layout_height="wrap_content">
 
             <!-- 정비 항목 -->
+
+            <!-- 정비 일자 -->
             <TextView
                 android:id="@+id/tv_maintenance_list"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
                 android:text="정비 항목"
+                android:textSize="18dp"
+                app:layout_constraintEnd_toStartOf="@+id/regist_maintenance_list"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints" />
+
             <EditText
                 android:id="@+id/regist_maintenance_list"
-                android:layout_width="250dp"
+                android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:hint="정비 항목"
                 android:layout_margin="10dp"
+                android:hint="정비 항목을 입력하세요"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_maintenance_list"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/tv_maintenance_list"
+                app:layout_constraintStart_toEndOf="@+id/tv_maintenance_list"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints,NotSibling" />
-            <!-- 정비 일자 -->
+
             <TextView
                 android:id="@+id/tv_maintenance_date"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
                 android:text="정비 일자"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_maintenance_list"
                 tools:ignore="MissingConstraints" />
 
             <Button
                 android:id="@+id/regist_maintenance_date"
-                android:layout_width="250dp"
-                android:layout_height="40dp"
+                style="?android:spinnerStyle"
+                android:layout_width="0dp"
 
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
+                android:backgroundTint="#FDFCFC"
                 android:text="정비 일자"
                 android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@+id/regist_maintenance_list"
+                app:layout_constraintEnd_toEndOf="@+id/regist_maintenance_list"
                 app:layout_constraintLeft_toRightOf="@+id/tv_maintenance_date"
-                android:backgroundTint="#FDFCFC"
-                style="?android:spinnerStyle"
-                />
+                app:layout_constraintStart_toStartOf="@+id/regist_maintenance_list"
+                app:layout_constraintTop_toBottomOf="@+id/regist_maintenance_list" />
             <!-- 정비소 -->
             <TextView
                 android:id="@+id/tv_maintenance_location"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
                 android:text="정비소"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_maintenance_date"
                 tools:ignore="MissingConstraints" />
+
             <EditText
                 android:id="@+id/regist_maintenance_location"
-                android:layout_width="250dp"
+                android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:hint="정비소"
-                app:layout_constraintTop_toBottomOf="@+id/regist_maintenance_date"
-                app:layout_constraintLeft_toRightOf="@+id/tv_maintenance_location"/>
+                android:hint="정비소를 입력하세요"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/regist_maintenance_date"
+                app:layout_constraintLeft_toRightOf="@+id/tv_maintenance_location"
+                app:layout_constraintStart_toStartOf="@+id/regist_maintenance_date"
+                app:layout_constraintTop_toBottomOf="@+id/regist_maintenance_date" />
             <!-- 정비 내역 -->
             <TextView
                 android:id="@+id/tv_maintenance_detail"
-                android:layout_width="100dp"
+                android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
                 android:text="정비 내역"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_maintenance_location"
                 tools:ignore="MissingConstraints" />
+
+            <!-- 버튼 -->
+
             <EditText
                 android:id="@+id/regist_maintenance_detail"
-                android:inputType="textMultiLine"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginStart="20dp"
@@ -147,43 +140,42 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
-                android:hint="정비 내역"
-                app:layout_constraintTop_toBottomOf="@+id/tv_maintenance_detail"/>
-
-            <!-- 버튼 -->
+                android:hint="정비 내역을 입력하세요"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_maintenance_detail" />
 
             <TextView
                 android:id="@+id/btn_maintenance_regist"
-                android:onClick="maintenance_regist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="left"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
-                android:layout_gravity="left"
-                android:textColor="#D83F51B5"
-                android:textSize="20sp"
+                android:onClick="maintenance_regist"
                 android:text="등록"
-                app:layout_constraintTop_toBottomOf="@+id/regist_maintenance_detail"
+                android:textColor="#D83F51B5"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/btn_maintenance_list"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/regist_maintenance_detail" />
 
             <TextView
                 android:id="@+id/btn_maintenance_list"
-                android:onClick="maintenace_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
                 android:layout_gravity="end"
-                android:textColor="#D83F51B5"
-                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:onClick="maintenace_back"
                 android:text="취소"
-                app:layout_constraintTop_toBottomOf="@+id/regist_maintenance_detail"
-                app:layout_constraintRight_toRightOf="parent"/>
+                android:textColor="#B71C1C"
+                android:textSize="18sp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/regist_maintenance_detail" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

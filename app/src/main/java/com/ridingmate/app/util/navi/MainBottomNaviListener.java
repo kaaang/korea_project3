@@ -33,19 +33,15 @@ public class MainBottomNaviListener implements NavigationBarView.OnItemSelectedL
         switch (item.getItemId()){
             case R.id.maintentance:
                 mainActivity.showPage(0);
-                Toast.makeText(mainActivity.getApplicationContext(),"정비",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.milegae:
                 mainActivity.showPage(2);
-                Toast.makeText(mainActivity.getApplicationContext(),"주유",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.main:
                 mainActivity.showPage(4);
-                Toast.makeText(mainActivity.getApplicationContext(),"홈",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.used:
                 mainActivity.showPage(5);
-                Toast.makeText(mainActivity.getApplicationContext(),"중고",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.setting:
                 mainActivity.showPage(10);

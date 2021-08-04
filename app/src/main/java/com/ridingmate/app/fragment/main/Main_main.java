@@ -114,7 +114,7 @@ public class Main_main extends Fragment {
 
 
                 // 주유 기록 등록
-                tx_litter= (EditText)popup.findViewById(R.id.milegae_text_distance);
+                tx_litter= (EditText)popup.findViewById(R.id.milegae_text_litter);
                 tx_price= (EditText)popup.findViewById(R.id.milegae_text_price);
                 tx_station= (EditText)popup.findViewById(R.id.milegae_text_station);
                 tx_distance= (EditText)popup.findViewById(R.id.milegae_text_distance);
@@ -140,9 +140,6 @@ public class Main_main extends Fragment {
                     @Override
                     public void onClick(View v) {
                         // Firebase에 DB 삽입
-                  /*     uid는 아직 어떻게 처리 할지 좀 감이 안 오니까 빼고 테스트 진행
-                        String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();*/
-
                         FireBaseInterface.m_interface.uploadMileageData(dateButton.getText().toString(), tx_station.getText().toString(), tx_litter.getText().toString() , tx_price.getText().toString() ,tx_distance.getText().toString(),mainActivity.selectedBikeUid);
                         FireBaseInterface.m_interface.downloadMileageData();
                         popupWindow.dismiss();
@@ -159,13 +156,6 @@ public class Main_main extends Fragment {
                 popupWindow.showAsDropDown(v);
             }
         });
-
-
-
-
-
-
-
         return view;
     }
 

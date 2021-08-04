@@ -360,11 +360,11 @@ public class Bike_regist extends Fragment {
 
 
 
-
-
-
-
-
+    
+    
+    
+    
+    
     //바이크 이미지 관련
     public void addImg(){
         Intent intent = new Intent();

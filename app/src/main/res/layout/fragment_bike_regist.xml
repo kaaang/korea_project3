@@ -192,7 +192,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView16"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@tools:sample/avatars"
+                android:visibility="visible"/>
 
             <ImageButton
                 android:id="@+id/imageButton4"

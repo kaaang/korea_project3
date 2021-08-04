@@ -20,6 +20,7 @@ import com.ridingmate.app.R;
 import com.ridingmate.app.activity.main.MainActivity;
 import com.ridingmate.app.fragment.used.Used_detail;
 import com.ridingmate.app.fragment.used.Used_list;
+import com.ridingmate.app.util.pageAdapter.PageAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -64,14 +65,20 @@ public class UsedListAdapter extends RecyclerView.Adapter<UsedListAdapter.Custom
 
         holder.used_title.setText(arrayList.get(position).getUsed_title());
         holder.model_type.setText(arrayList.get(position).getModel_type());
-        holder.used_comment_cont.setText(arrayList.get(position).getUsed_comment_cont());
+        holder.used_comment.setText(arrayList.get(position).getUsed_comment());
         holder.used_welth.setText(arrayList.get(position).getUsed_welth());
+        holder.area.setText(arrayList.get(position).getArea());
+        holder.time.setText(arrayList.get(position).getTime());
         holder.used_id.setText(arrayList.get(position).getUsed_id());
 
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(v -> {
-            main.showPage(7);
+            Used_detail used_detail=(Used_detail) PageAdapter.getInstance((FragmentActivity) MainActivity._main) .pages[7];
             main.data =holder.used_id.getText().toString();
+            if(used_detail.TAG != null){
+                used_detail.reload(holder.used_id.getText().toString());
+            }
+            MainActivity.showPage(7);
         });
     }
 
@@ -88,18 +95,23 @@ public class UsedListAdapter extends RecyclerView.Adapter<UsedListAdapter.Custom
         protected ImageView used_thumb;
         protected TextView used_title;
         protected TextView model_type;
-        protected TextView used_comment_cont;
+        protected TextView used_comment;
         protected TextView used_welth;
         protected TextView used_id;
+        protected TextView area;
+        protected TextView time;
 
         public CustomViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             this.used_thumb = (ImageView)itemView.findViewById(R.id.used_thumb);
             this.used_title = (TextView)itemView.findViewById(R.id.used_title);
             this.model_type = (TextView)itemView.findViewById(R.id.model_type);
-            this.used_comment_cont = (TextView)itemView.findViewById(R.id.used_comment_cont);
+            this.used_comment = (TextView)itemView.findViewById(R.id.used_comment);
             this.used_welth = (TextView)itemView.findViewById(R.id.used_welth);
+            this.area = (TextView)itemView.findViewById(R.id.area);
+            this.time = (TextView)itemView.findViewById(R.id.time);
             this.used_id = (TextView)itemView.findViewById(R.id.used_id);
+
 
 
         }

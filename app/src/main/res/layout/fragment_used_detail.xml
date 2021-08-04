@@ -47,7 +47,8 @@
                 android:layout_marginRight="16dp"
                 android:text=" 전"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/used_detail_photo" />
+                app:layout_constraintTop_toBottomOf="@+id/used_detail_photo"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/used_detail_time"
@@ -85,7 +86,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/used_detail_writer" />
 
-            <TextView
+            <LinearLayout
                 android:id="@+id/used_detail_police"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -99,7 +100,29 @@
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/used_detail_content" />
+                app:layout_constraintTop_toBottomOf="@+id/used_detail_content"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/show"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="상세정보"/>
+                <Button
+                    android:id="@+id/update"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="수정"/>
+                <Button
+                    android:id="@+id/delete"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="삭제"/>
+
+            </LinearLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.loader.content.CursorLoader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,6 +51,7 @@ import com.ridingmate.app.activity.main.MainActivity;
 import com.ridingmate.app.activity.member.JoinActivity;
 import com.ridingmate.app.activity.member.UserAccount;
 import com.ridingmate.app.activity.used.UsedActivity;
+import com.ridingmate.app.util.pageAdapter.PageAdapter;
 import com.ridingmate.app.util.used.UsedListData;
 import com.ridingmate.app.util.used.UsedWriteAdapter;
 import com.ridingmate.app.util.used.UsedWriteData;
@@ -78,6 +81,7 @@ public class Used_write extends Fragment {
     private FirebaseAuth mfireFirebaseAuth;
 
     private LinearLayoutManager linearLayoutManager;
+    private Spinner spinner;
     private RecyclerView recyclerView;
     private ArrayList<UsedWriteData> arrayList;
     private UsedWriteAdapter usedWriteAdapter;
@@ -95,6 +99,11 @@ public class Used_write extends Fragment {
     UploadFile upload;
     String save_num;
 
+    //스피너 선택
+    String area;
+
+    MainActivity main;
+
 
 
 
@@ -110,11 +119,33 @@ public class Used_write extends Fragment {
             requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},0);
         }
         View view=inflater.inflate(R.layout.fragment_used_write,container,false);
+        main=(MainActivity) getActivity();
 
+        //스피너 관련
+        spinner = view.findViewById(R.id.used_write_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.korea,R.layout.support_simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                area = (String)parent.getItemAtPosition(position);
+                Log.e(TAG,"@@@###" + area);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        
         arrayList=new ArrayList<>();
         recyclerView=view.findViewById(R.id.used_write_RV);
         linearLayoutManager=new LinearLayoutManager(view.getContext(),LinearLayoutManager.HORIZONTAL,true);
         usedWriteAdapter=new UsedWriteAdapter(arrayList);
+
 
         recyclerView.setAdapter(usedWriteAdapter);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -141,6 +172,7 @@ public class Used_write extends Fragment {
             @Override
             public void onClick(View v) {
                 regist();
+                Log.e("asd","온클릭 순서확인 ");
             }
         });
 
@@ -198,17 +230,23 @@ public class Used_write extends Fragment {
 
     public void write_store(){
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMHH_mmssSS");
+        SimpleDateFormat dayformat = new SimpleDateFormat("yy.MM.dd");
+        SimpleDateFormat timeformat = new SimpleDateFormat("HH:mm:ss");
         Date now = new Date();
-        String time = formatter.format(now) ;
+        String day = dayformat.format(now) ;
+        String time = timeformat.format(now);
 
 
         Map<String, String> input_data = new HashMap<>();
         input_data.put("UID", firebaseUser.getUid());
+        input_data.put("day", day);
         input_data.put("time", time);
         input_data.put("title", used_write_title.getText().toString());
         input_data.put("welth",used_write_welth.getText().toString());
         input_data.put("content",used_content.getText().toString());
+        input_data.put("area",area);
+        input_data.put("bike_id",main.selectedBikeUid);
+
 
 
 
@@ -245,7 +283,16 @@ public class Used_write extends Fragment {
 
                         Map<String, String> number = new HashMap<>();
                         number.put("number",""+plus);
-                        db.collection("used").document("used_start").set(number);
+                        db.collection("used").document("used_start").set(number)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull @NotNull Task<Void> task) {
+
+
+                                    }
+                                });
+
+                        Log.e("asd","디비 올라감");
 
 
 
@@ -257,10 +304,6 @@ public class Used_write extends Fragment {
 
 
 
-
-                        MainActivity main =  (MainActivity) getContext();
-                        main.showPage(5);
-                        Toast.makeText(getActivity(), "게시글 등록 완료", Toast.LENGTH_SHORT).show();
 
 
 
@@ -271,6 +314,7 @@ public class Used_write extends Fragment {
                         filePathArray.clear();
                         arrayList.clear();
                         usedWriteAdapter.notifyDataSetChanged();
+
                     }
                 });
             }

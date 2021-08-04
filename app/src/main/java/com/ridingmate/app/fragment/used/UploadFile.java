@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -16,6 +17,8 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.ridingmate.app.activity.main.MainActivity;
+import com.ridingmate.app.util.pageAdapter.PageAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -68,6 +71,9 @@ public class UploadFile {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss(); //업로드 진행 Dialog 상자 닫기
+                            Used_list used_list=(Used_list) PageAdapter.getInstance((FragmentActivity) MainActivity._main) .pages[5];
+                            used_list.reload();
+                            Log.e("asd","리로드 호출");
 
                         }
                     })

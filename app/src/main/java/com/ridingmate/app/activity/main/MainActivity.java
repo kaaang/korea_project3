@@ -28,7 +28,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.ridingmate.app.R;
 import com.ridingmate.app.fragment.bike.Bike_detail;
-import com.ridingmate.app.fragment.main.Main_main;
 import com.ridingmate.app.util.navi.MainBottomNaviListener;
 import com.ridingmate.app.util.pageAdapter.PageAdapter;
 
@@ -38,13 +37,12 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
     public String data;
-    public String myBikeId;
     // 네비게이션 불러올 객체
     BottomNavigationView bottomNavigationView;
     // 프래그먼트 관리 어댑터
     PageAdapter pageAdapter;
     // 뷰페이저
-    public   static   ViewPager2 viewPager;
+   public   static   ViewPager2 viewPager;
     //상단 툴바
     Toolbar toolbar;
     String[] category=null;
@@ -58,7 +56,7 @@ public class MainActivity extends AppCompatActivity{
     //스피너관련
     ArrayAdapter adapter;
     ArrayList mybikeUid=new ArrayList();
-    public ArrayList mybike=new ArrayList();
+    ArrayList mybike=new ArrayList();
     ArrayList spinnerList=new ArrayList();
     public String selectedBikeUid;
     Spinner spinner;
@@ -158,10 +156,7 @@ public class MainActivity extends AppCompatActivity{
                                     mybikeUid.add(document.getId());
                                     adapter.notifyDataSetChanged();
                                     setSpinner();
-
                                 }
-
-
                             }
                         } else {
                             Log.e("asd", "Error getting documents: ", task.getException());
@@ -180,15 +175,10 @@ public class MainActivity extends AppCompatActivity{
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (mybike!=null){
-                    selectedBikeUid= (String) mybikeUid.get(position);
-                    Log.e("asd", selectedBikeUid);
-                    bike_detail= (Bike_detail) pageAdapter.pages[9];
-                    bike_detail.getDetail((QueryDocumentSnapshot) mybike.get(position));
-                    Main_main main_main= (Main_main) pageAdapter.pages[4];
-                    main_main.setCard((QueryDocumentSnapshot) mybike.get(position));
-                }
-
+                selectedBikeUid= (String) mybikeUid.get(position);
+                Log.e("asd", selectedBikeUid);
+                bike_detail= (Bike_detail) pageAdapter.pages[9];
+                bike_detail.getDetail((QueryDocumentSnapshot) mybike.get(position));
             }
 
             @Override
@@ -197,4 +187,6 @@ public class MainActivity extends AppCompatActivity{
             }
         });
     }
+
+
 }

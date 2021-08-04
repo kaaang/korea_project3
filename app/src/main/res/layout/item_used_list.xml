@@ -51,9 +51,10 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="4dp"
-        android:text="1"
+        android:text="년식"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
     <TextView
         android:id="@+id/used_comment"
@@ -62,7 +63,8 @@
         android:layout_marginBottom="4dp"
         android:text="댓글 "
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/used_comment_cont" />
+        app:layout_constraintEnd_toStartOf="@+id/used_comment_cont"
+       />
 
     <TextView
         android:id="@+id/manwon"
@@ -124,7 +126,8 @@
         android:layout_marginBottom="3dp"
         android:text="전"
         app:layout_constraintBottom_toTopOf="@+id/manwon"
-        app:layout_constraintStart_toEndOf="@+id/time" />
+        app:layout_constraintStart_toEndOf="@+id/time"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/used_id"

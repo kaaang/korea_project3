@@ -1,20 +1,24 @@
 package com.ridingmate.app.util.main;
 
 public class MyBikeData {
+    private String bikeId;
     private String nickname;
     private String company;
     private String model;
     private String year;
 
-    public MyBikeData(String nickname, String company, String model, String year) {
-        this.nickname = nickname;
-        this.company = company;
-        this.model = model;
-        this.year = year;
-    }
 
     public MyBikeData() {
     }
+
+    public String getBikeId() {
+        return bikeId;
+    }
+
+    public void setBikeId(String bikeId) {
+        this.bikeId = bikeId;
+    }
+
 
     public String getNickname() {
         return nickname;
@@ -47,4 +51,5 @@ public class MyBikeData {
     public void setYear(String year) {
         this.year = year;
     }
+
 }

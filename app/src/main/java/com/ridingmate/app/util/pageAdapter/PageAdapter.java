@@ -12,7 +12,7 @@ import com.ridingmate.app.fragment.used.*;
 
 
 public class PageAdapter extends FragmentStateAdapter {
-    public Fragment pages[]=new Fragment[11];
+    public Fragment pages[]=new Fragment[12];
     static private PageAdapter pageAdapter=null;
 
     private PageAdapter(@NonNull FragmentActivity fragmentActivity) {
@@ -28,6 +28,7 @@ public class PageAdapter extends FragmentStateAdapter {
         pages[8]=new Bike_regist();
         pages[9]=new Bike_detail();
         pages[10]=new Main_setting();
+        pages[11]=new Main_setting_mybike_detail();
     }
     public static PageAdapter getInstance(FragmentActivity fragmentActivity){
         if(pageAdapter==null){

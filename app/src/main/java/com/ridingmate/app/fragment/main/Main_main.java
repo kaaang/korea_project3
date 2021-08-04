@@ -2,6 +2,7 @@ package com.ridingmate.app.fragment.main;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,12 +22,15 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
 import com.ridingmate.app.R;
 import com.ridingmate.app.activity.main.MainActivity;
 import com.ridingmate.app.util.main.FireBaseInterface;
@@ -41,6 +45,7 @@ public class Main_main extends Fragment {
 
     //카드뷰
     TextView tv_distance,tv_average,tv_bikename;
+    ImageView cardViewBackground;
 
     //리사이클러뷰
     RecyclerView rv;
@@ -81,11 +86,12 @@ public class Main_main extends Fragment {
         tv_bikename=(TextView)view.findViewById(R.id.text_bikename);
         tv_distance=(TextView) view.findViewById(R.id.distance);
         tv_average=(TextView) view.findViewById(R.id.text_average);
-
+        cardViewBackground=(ImageView)view.findViewById(R.id.card_background);
+        showImage();
 
         ImageView imageView = view.findViewById(R.id.card_background);
         imageView.setColorFilter(R.color.black);
-        FireBaseInterface.m_interface.Tv_litter((TextView)view.findViewById(R.id.milegae_distance));
+        FireBaseInterface.m_interface.Tv_litter((TextView)view.findViewById(R.id.milegae_litter));
         FireBaseInterface.m_interface.Tv_date((TextView)view.findViewById(R.id.milegae_date));
         FireBaseInterface.m_interface.InitFirebase();
         FireBaseInterface.m_interface.downloadMileageData();
@@ -244,4 +250,39 @@ public class Main_main extends Fragment {
                     }
                 });
     }
+    public void showImage(){
+        String folder;
+        String image;
+
+        for (int i=0 ;i<mainActivity.mybike.size();i++){
+            QueryDocumentSnapshot selected= (QueryDocumentSnapshot) mainActivity.mybike.get(i);
+            String str= selected.getId();
+
+            if (str.equals(mainActivity.selectedBikeUid)){
+                folder= (String) selected.get("uid");
+                image= (String) selected.get("image");
+                Log.e("asd","Uri : >>>>>>>>>>>>"+mainActivity.mybike.size()+"       "+str+"    "+mainActivity.selectedBikeUid);
+                Log.e("asd","image : >>>>>>>>>>>>"+image+"    "+folder);
+                FirebaseStorage storage=FirebaseStorage.getInstance();
+                storage.getReference().child("Bike_img/"+folder+"/"+image+".jpg")
+                        .getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Log.e("asd","Uri : >>>>>>>>>>>>"+uri);
+
+                        Glide
+                                .with(getContext())
+                                .load(uri) // the uri you got from Firebase
+                                .centerCrop()
+                                .into(cardViewBackground); //Your imageView variable
+                    }
+
+                });
+            }
+        }
+
+
+
+    }
+
 }

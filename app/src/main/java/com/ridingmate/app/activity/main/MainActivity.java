@@ -205,6 +205,7 @@ public class MainActivity extends AppCompatActivity{
                     Main_main main_main= (Main_main) pageAdapter.pages[4];
                     main_main.setCard((QueryDocumentSnapshot) mybike.get(position));
                     main_main.getMileage();
+                    main_main.showImage();
                 }
 
             }

@@ -3,6 +3,7 @@ package com.ridingmate.app.fragment.main;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,47 +15,77 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.ridingmate.app.R;
 import com.ridingmate.app.activity.main.MainActivity;
 import com.ridingmate.app.util.main.FireBaseInterface;
+import com.ridingmate.app.util.main.MileageAdapter;
+import com.ridingmate.app.util.main.MileageData;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Map;
 
 public class Main_main extends Fragment {
-    // 카드뷰
+
+    //카드뷰
     TextView tv_distance,tv_average,tv_bikename;
+
+    //리사이클러뷰
+    RecyclerView rv;
+    MileageAdapter mileageAdapter;
+    ArrayList<MileageData> mileageDataArrayList;
 
     // 팝업
     private EditText tx_litter, tx_price, tx_station, tx_distance;
     private Button btn_showGasStation;
     private TextView bt_ok, bt_list;
-
     // 날짜 선택
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
     private int mYear = 0, mMonth = 0, mDay = 0;
     private  String selected_date;
 
-    // Main에  접근
     MainActivity mainActivity= (MainActivity) MainActivity._main;
-
+    LinearLayoutManager linearLayoutManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_main, container, false);
-        // 카드뷰
+
+        //리싸이클러뷰
+        mileageDataArrayList=new ArrayList<>();
+
+        rv=(RecyclerView)view.findViewById(R.id.main_mileage_RV);
+        linearLayoutManager= new LinearLayoutManager(view.getContext());
+        rv.setLayoutManager(linearLayoutManager);
+        rv.addItemDecoration(new DividerItemDecoration(view.getContext(), 1));
+
+        mileageAdapter=new MileageAdapter(mileageDataArrayList,getActivity(),mainActivity);
+        rv.setAdapter(mileageAdapter);
+
+        getMileage();
+
+        //카드뷰
         tv_bikename=(TextView)view.findViewById(R.id.text_bikename);
         tv_distance=(TextView) view.findViewById(R.id.distance);
         tv_average=(TextView) view.findViewById(R.id.text_average);
 
+
         ImageView imageView = view.findViewById(R.id.card_background);
         imageView.setColorFilter(R.color.black);
-        FireBaseInterface.m_interface.Tv_litter((TextView)view.findViewById(R.id.milegae_litter));
+        FireBaseInterface.m_interface.Tv_litter((TextView)view.findViewById(R.id.milegae_distance));
         FireBaseInterface.m_interface.Tv_date((TextView)view.findViewById(R.id.milegae_date));
         FireBaseInterface.m_interface.InitFirebase();
         FireBaseInterface.m_interface.downloadMileageData();
@@ -77,7 +108,7 @@ public class Main_main extends Fragment {
 
 
                 // 주유 기록 등록
-                tx_litter= (EditText)popup.findViewById(R.id.milegae_text_litter);
+                tx_litter= (EditText)popup.findViewById(R.id.milegae_text_distance);
                 tx_price= (EditText)popup.findViewById(R.id.milegae_text_price);
                 tx_station= (EditText)popup.findViewById(R.id.milegae_text_station);
                 tx_distance= (EditText)popup.findViewById(R.id.milegae_text_distance);
@@ -103,6 +134,9 @@ public class Main_main extends Fragment {
                     @Override
                     public void onClick(View v) {
                         // Firebase에 DB 삽입
+                  /*     uid는 아직 어떻게 처리 할지 좀 감이 안 오니까 빼고 테스트 진행
+                        String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();*/
+
                         FireBaseInterface.m_interface.uploadMileageData(dateButton.getText().toString(), tx_station.getText().toString(), tx_litter.getText().toString() , tx_price.getText().toString() ,tx_distance.getText().toString(),mainActivity.selectedBikeUid);
                         FireBaseInterface.m_interface.downloadMileageData();
                         popupWindow.dismiss();
@@ -116,21 +150,19 @@ public class Main_main extends Fragment {
                         popupWindow.dismiss();
                     }
                 });
-               popupWindow.showAsDropDown(v);
+                popupWindow.showAsDropDown(v);
             }
         });
+
+
+
+
+
+
+
         return view;
     }
 
-    public void setCard(QueryDocumentSnapshot list){
-
-        Map<String,Object> temp = list.getData();
-
-        tv_bikename.setText((String) temp.get("nickname"));
-        tv_distance.setText((String) temp.get("driven"));
-        tv_average.setText("추후 지원예정");
-
-    }
     /* ----------------------------------------DatePicker 함수---------------------------------------------------------------*/
     private String getTodaysDate() {
         Calendar cal = Calendar.getInstance();
@@ -172,4 +204,44 @@ public class Main_main extends Fragment {
 
 
 
+
+
+
+
+    public void setCard(QueryDocumentSnapshot list){
+
+        Map<String,Object> temp = list.getData();
+
+        tv_bikename.setText((String) temp.get("nickname"));
+        tv_distance.setText((String) temp.get("driven"));
+        tv_average.setText("지원예정");
+
+    }
+
+    public void getMileage(){
+        mileageDataArrayList.clear();
+        MainActivity main= (MainActivity) MainActivity._main;
+        Log.e("asd","문서커먼"+mainActivity.selectedBikeUid);
+        FirebaseFirestore.getInstance().collection("mileage")
+                .whereEqualTo("uid",mainActivity.selectedBikeUid)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for(QueryDocumentSnapshot document : task.getResult()){
+                                Log.e("asd","문서커먼");
+                                Map<String,Object>map= document.getData();
+                                MileageData data=new MileageData((String) map.get("litter"),(String)map.get("distance"),(String)map.get("date"));
+                                mileageDataArrayList.add(data);
+                                mileageAdapter.notifyDataSetChanged();
+                            }
+                        }
+
+
+
+
+                    }
+                });
+    }
 }

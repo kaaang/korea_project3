@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <!--                            Maintenance 카드뷰 레이아웃                 -->
+
+        <!--                            Maintenance 카드뷰 레이아웃                 -->
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -156,17 +157,17 @@
                 android:textSize="15dp" />
 
 
-            <TextView
-                android:id="@+id/milegae_litter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="105dp"
-                android:gravity="top|left"
-                android:text="0"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/milegae_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="105dp"
+            android:gravity="top|left"
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
             <!--                            최근 주유 일시                           -->
 
@@ -208,5 +209,14 @@
                 android:textSize="10dp"
                 android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_mileage_RV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/milegae" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

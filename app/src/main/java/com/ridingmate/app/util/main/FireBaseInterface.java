@@ -85,7 +85,7 @@ public class FireBaseInterface {
         // 주유 파트
         public void uploadMileageData(String date, String gasStation, String litter, String price, String distance, String uid){
             if( date == null||gasStation == null||price == null||litter == null){
-              //  Log.e("upload", "+++++++++++++++nodata");
+                //  Log.e("upload", "+++++++++++++++nodata");
                 return;
             }
             else {
@@ -141,7 +141,7 @@ public class FireBaseInterface {
         // 게시글 등록
         public void uploadMaintenanceData(String item, String date, String serviceCenter, String detail, String uid) {
             if (date == null || item == null || serviceCenter == null || detail == null) {
-/*                Log.e("upload", "+++++++++++++++nodata");*/
+                /*                Log.e("upload", "+++++++++++++++nodata");*/
                 return;
             } else {
                 Map<String, Object> input = new HashMap<>();
@@ -178,7 +178,7 @@ public class FireBaseInterface {
                         }
                     });
         }
-        
+
         // 게시글 가져오기
         public void downloadMaintenanceData(String cel_date) {
             db.collection("maintenance").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -199,7 +199,7 @@ public class FireBaseInterface {
 
     }
 
-    
+
     // ***********************************인터페이스
     public interface mil {
         void InitFirebase();

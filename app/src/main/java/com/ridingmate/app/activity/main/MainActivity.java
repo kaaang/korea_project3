@@ -28,6 +28,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.ridingmate.app.R;
 import com.ridingmate.app.fragment.bike.Bike_detail;
+import com.ridingmate.app.fragment.main.Main_main;
 import com.ridingmate.app.util.navi.MainBottomNaviListener;
 import com.ridingmate.app.util.pageAdapter.PageAdapter;
 
@@ -56,9 +57,9 @@ public class MainActivity extends AppCompatActivity{
     //스피너관련
     ArrayAdapter adapter;
     ArrayList mybikeUid=new ArrayList();
-    ArrayList mybike=new ArrayList();
+    public ArrayList mybike=new ArrayList();
     ArrayList spinnerList=new ArrayList();
-    String selectedBikeUid;
+    public String selectedBikeUid;
     Spinner spinner;
 
     Bike_detail bike_detail;
@@ -156,7 +157,10 @@ public class MainActivity extends AppCompatActivity{
                                     mybikeUid.add(document.getId());
                                     adapter.notifyDataSetChanged();
                                     setSpinner();
+
                                 }
+
+
                             }
                         } else {
                             Log.e("asd", "Error getting documents: ", task.getException());
@@ -175,10 +179,16 @@ public class MainActivity extends AppCompatActivity{
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedBikeUid= (String) mybikeUid.get(position);
-                Log.e("asd", selectedBikeUid);
-                bike_detail= (Bike_detail) pageAdapter.pages[9];
-                bike_detail.getDetail((QueryDocumentSnapshot) mybike.get(position));
+                if (mybike!=null){
+                    selectedBikeUid= (String) mybikeUid.get(position);
+                    Log.e("asd", selectedBikeUid);
+                    bike_detail= (Bike_detail) pageAdapter.pages[9];
+                    bike_detail.getDetail((QueryDocumentSnapshot) mybike.get(position));
+                    Main_main main_main= (Main_main) pageAdapter.pages[4];
+                    main_main.setCard((QueryDocumentSnapshot) mybike.get(position));
+                    main_main.getMileage();
+                }
+
             }
 
             @Override

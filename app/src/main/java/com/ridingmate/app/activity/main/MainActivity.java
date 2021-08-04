@@ -34,6 +34,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.ridingmate.app.R;
 import com.ridingmate.app.fragment.bike.Bike_detail;
 import com.ridingmate.app.fragment.main.Main_main;
+import com.ridingmate.app.util.main.FireBaseInterface;
 import com.ridingmate.app.util.navi.MainBottomNaviListener;
 import com.ridingmate.app.util.pageAdapter.PageAdapter;
 
@@ -206,6 +207,7 @@ public class MainActivity extends AppCompatActivity{
                     main_main.setCard((QueryDocumentSnapshot) mybike.get(position));
                     main_main.getMileage();
                     main_main.showImage();
+                    FireBaseInterface.m_interface.downloadMileageData(selectedBikeUid);
                 }
 
             }

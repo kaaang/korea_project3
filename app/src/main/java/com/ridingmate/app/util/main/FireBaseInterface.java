@@ -52,7 +52,7 @@ public class FireBaseInterface {
         private FirebaseUser firebaseUser;
         private FirebaseFirestore db;
         //주유 UI
-        private TextView tv_letter;
+        private TextView tv_litter;
         private TextView tv_date;
         // 정비 리스트 UI
         private TextView item_maintenance;
@@ -72,7 +72,7 @@ public class FireBaseInterface {
         // ---------------------------------------------------------------주유 파트
 
         public TextView Tv_litter(TextView tv) {
-            tv_letter = tv;
+            tv_litter = tv;
             return tv;
         }
 
@@ -103,16 +103,18 @@ public class FireBaseInterface {
         }
 
         // 게시글 가져오기
-        public void downloadMileageData() {
+        public void downloadMileageData(String str) {
             CollectionReference collectionReference = db.collection("mileage");
             QueryDocumentSnapshot documentSnapshot;
-            collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            collectionReference.whereEqualTo("uid", str)
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot documentSnapshots) {
                     // Get the last visible document
                     DocumentSnapshot lastVisible = documentSnapshots.getDocuments().get(documentSnapshots.size() - 1);
 
-                    tv_letter.setText(lastVisible.getData().get("litter").toString());
+                    tv_litter.setText(lastVisible.getData().get("litter").toString());
                     tv_date.setText(lastVisible.getData().get("date").toString());
                 }
             });
@@ -210,7 +212,7 @@ public class FireBaseInterface {
 
         TextView Tv_date(TextView tv);
 
-        void downloadMileageData();
+        void downloadMileageData(String str);
 
         void uploadMaintenanceData(String item, String date, String serviceCenter, String detail, String uid);
 

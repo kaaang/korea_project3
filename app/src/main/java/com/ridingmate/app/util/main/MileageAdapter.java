@@ -51,9 +51,9 @@ public class MileageAdapter extends RecyclerView.Adapter<MileageAdapter.CustomVi
 
         Log.e("asd",Integer.toString(arrayList.size()));
 
-        holder.main_mileage_oil.setText(arrayList.get(position).getMain_mileage_oil());
-        holder.main_mileage_driven.setText(arrayList.get(position).getMain_mileage_driven());
-        holder.main_mileage_date.setText(arrayList.get(position).getMain_mileage_date());
+        holder.main_mileage_oil.setText(arrayList.get((arrayList.size()-1-position)).getMain_mileage_oil());
+        holder.main_mileage_driven.setText(arrayList.get((arrayList.size()-1-position)).getMain_mileage_driven());
+        holder.main_mileage_date.setText(arrayList.get((arrayList.size()-1-position)).getMain_mileage_date());
 
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(v -> {

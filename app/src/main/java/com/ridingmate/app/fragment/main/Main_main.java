@@ -94,7 +94,7 @@ public class Main_main extends Fragment {
         FireBaseInterface.m_interface.Tv_litter((TextView)view.findViewById(R.id.milegae_litter));
         FireBaseInterface.m_interface.Tv_date((TextView)view.findViewById(R.id.milegae_date));
         FireBaseInterface.m_interface.InitFirebase();
-        FireBaseInterface.m_interface.downloadMileageData();
+        FireBaseInterface.m_interface.downloadMileageData(mainActivity.selectedBikeUid);
 
         // -------------------------------------------------------------------주유 기록 등록
         btn_showGasStation = (Button) view.findViewById(R.id.btn_showGasStation);
@@ -141,7 +141,8 @@ public class Main_main extends Fragment {
                     public void onClick(View v) {
                         // Firebase에 DB 삽입
                         FireBaseInterface.m_interface.uploadMileageData(dateButton.getText().toString(), tx_station.getText().toString(), tx_litter.getText().toString() , tx_price.getText().toString() ,tx_distance.getText().toString(),mainActivity.selectedBikeUid);
-                        FireBaseInterface.m_interface.downloadMileageData();
+
+                        FireBaseInterface.m_interface.downloadMileageData(mainActivity.selectedBikeUid);
                         popupWindow.dismiss();
                     }
                 });
@@ -225,6 +226,7 @@ public class Main_main extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
+
                             for(QueryDocumentSnapshot document : task.getResult()){
                                 Log.e("asd","문서커먼");
                                 Map<String,Object>map= document.getData();

@@ -1,0 +1,20 @@
+► Title - 
+	Improved Encoding
+▬ Message - 
+	'C:\Users\82109\Desktop\구글로그인.gif' 파일은 다른 프로세스에서 사용 중이므로 프로세스에서 액세스할 수 없습니다.
+○ Type - 
+	System.IO.IOException
+♦ [Version] Date/Hour - 
+	[2.27.3] 08/05/2021 02:44:54
+▲ Source - 
+	mscorlib
+▼ TargetSite - 
+	Void WinIOError(Int32, System.String)
+♠ StackTrace - 
+   위치: System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   위치: System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   위치: System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   위치: ScreenToGif.Util.EncodingManager.<Encode>d__26.MoveNext()
+
+----------------------------------
+

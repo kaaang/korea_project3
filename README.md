@@ -15,3 +15,56 @@
 + 회원 설정
   + 등록된 바이크 수정
   + 닉네임 
+---
+## 사용 기술
+#### Android(JAVA), firebase(firestore, storage)
+
+---
+#### 시연
+##### [구글 로그인]
+
+![](https://github.com/kaaang/korea_project3/blob/master/%EC%A0%95%EB%B9%84%EB%93%B1%EB%A1%9D%EC%88%98%EC%A0%95%EC%82%AD%EC%A0%9C/%EA%B5%AC%EA%B8%80%EB%A1%9C%EA%B7%B8%EC%9D%B82.gif)
+
+
+##### [일반 로그인]
+
+![](https://github.com/kaaang/korea_project3/blob/master/%EC%A0%95%EB%B9%84%EB%93%B1%EB%A1%9D%EC%88%98%EC%A0%95%EC%82%AD%EC%A0%9C/%EC%9D%BC%EB%B0%98%20%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif)
+
+
+##### [사용자 바이크 등록]
+
+![](https://github.com/kaaang/korea_project3/blob/master/%EC%A0%95%EB%B9%84%EB%93%B1%EB%A1%9D%EC%88%98%EC%A0%95%EC%82%AD%EC%A0%9C/%EB%B0%94%EC%9D%B4%ED%81%AC%20%EB%93%B1%EB%A1%9D.gif)
+
+
+##### [바이크 상세정보]
+
+![](https://github.com/kaaang/korea_project3/blob/master/%EC%A0%95%EB%B9%84%EB%93%B1%EB%A1%9D%EC%88%98%EC%A0%95%EC%82%AD%EC%A0%9C/%EB%B0%94%EC%9D%B4%ED%81%AC%20%EC%A0%9C%EC%9B%90.gif)
+
+
+##### [주유 기록]
+
+![](https://github.com/kaaang/korea_project3/blob/master/%EC%A0%95%EB%B9%84%EB%93%B1%EB%A1%9D%EC%88%98%EC%A0%95%EC%82%AD%EC%A0%9C/%EC%A3%BC%EC%9C%A0%EB%93%B1%EB%A1%9D.gif)
+
+
+##### [정비 기록]
+
+![](https://github.com/kaaang/korea_project3/blob/master/%EC%A0%95%EB%B9%84%EB%93%B1%EB%A1%9D%EC%88%98%EC%A0%95%EC%82%AD%EC%A0%9C/%EC%A0%95%EB%B9%84%EB%93%B1%EB%A1%9D%EC%88%98%EC%A0%95%EC%82%AD%EC%A0%9C.gif)
+
+
+##### [중고 장터]
+
+![](https://github.com/kaaang/korea_project3/blob/master/%EC%A0%95%EB%B9%84%EB%93%B1%EB%A1%9D%EC%88%98%EC%A0%95%EC%82%AD%EC%A0%9C/%EC%A4%91%EA%B3%A0%EA%B1%B0%EB%9E%98%20%EB%93%B1%EB%A1%9D.gif)
+
+
+##### [회원 설정]
+
+![](https://github.com/kaaang/korea_project3/blob/master/%EC%A0%95%EB%B9%84%EB%93%B1%EB%A1%9D%EC%88%98%EC%A0%95%EC%82%AD%EC%A0%9C/%EB%82%B4%20%EB%8B%89%EB%84%A4%EC%9E%84%20%EC%88%98%EC%A0%95.gif)
+
+
+![](https://github.com/kaaang/korea_project3/blob/master/%EC%A0%95%EB%B9%84%EB%93%B1%EB%A1%9D%EC%88%98%EC%A0%95%EC%82%AD%EC%A0%9C/%EB%82%B4%EB%B0%94%EC%9D%B4%ED%81%AC%20%EC%88%98%EC%A0%95.gif)
+
+
+##### [아이디 찾기]
+
+![](https://github.com/kaaang/korea_project3/blob/master/%EC%A0%95%EB%B9%84%EB%93%B1%EB%A1%9D%EC%88%98%EC%A0%95%EC%82%AD%EC%A0%9C/%EC%9D%B4%EB%A9%94%EC%9D%BC%20%EC%B0%BE%EA%B8%B0.gif)
+
